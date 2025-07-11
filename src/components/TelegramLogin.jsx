@@ -13,10 +13,10 @@ const TelegramLogin = () => {
     console.log('Bot username:', botUsername); // перевірка
     window.onTelegramAuth = async (userData) => {
       try {
-        const res = await fetch('http://127.0.0.1:4000/verify-and-check', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(userData),
+        const res = await fetch('/api/verify-and-check', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData),
         });
 
         const result = await res.json();
