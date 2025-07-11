@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -6,6 +7,7 @@ export default async function handler(req, res) {
   }
 
   const { hash, ...rest } = req.body;
+
   const checkString = Object.keys(rest)
     .sort()
     .map(key => `${key}=${rest[key]}`)
@@ -20,7 +22,6 @@ export default async function handler(req, res) {
 
   const userId = String(rest.id);
 
-  // 🔹 перевірка Google Sheets
   try {
     const checkRes = await fetch(`${process.env.REACT_APP_GOOGLE_SCRIPT_URL}?id=${userId}`);
     const checkData = await checkRes.json();
@@ -29,7 +30,6 @@ export default async function handler(req, res) {
       return res.json({ status: 'known', user: req.body });
     }
 
-    // 🔹 запис нового користувача
     const saveRes = await fetch(process.env.REACT_APP_GOOGLE_SCRIPT_URL, {
       method : 'POST',
       headers: { 'Content-Type': 'application/json' },
