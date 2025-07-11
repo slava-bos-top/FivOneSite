@@ -11,6 +11,8 @@ const TelegramLogin = () => {
   useEffect(() => {
 
     console.log('Bot username:', botUsername); // перевірка
+    console.log("Bot token", process.env.REACT_APP_BOT_TOKEN)
+    console.log("Google", process.env.REACT_APP_GOOGLE_SCRIPT_URL)
     window.onTelegramAuth = async (userData) => {
       try {
         const res = await fetch('/api/verify-and-check', {
