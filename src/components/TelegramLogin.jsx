@@ -40,11 +40,12 @@ const TelegramLogin = () => {
     script.setAttribute('data-onauth', 'onTelegramAuth(user)');
     script.async = true;
     document.getElementById('telegram-button').appendChild(script);
+    console.log(script)
   }, []);
 
   return (
     <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-      <h1>Авторизація через Telegram</h1>
+      <h1 style={{marginBottom: "20px"}}>Авторизація через Telegram</h1>
       {status === 'authorized' ? (
         <div>
           <h2>Вітаємо, {user.first_name}!</h2>
