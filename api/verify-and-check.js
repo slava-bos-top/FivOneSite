@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     .map(key => `${key}=${rest[key]}`)
     .join('\n');
 
-  const secret = crypto.createHash('sha256').update(process.env.BOT_TOKEN).digest();
+  const secret = crypto.createHash('sha256').update(process.env.REACT_APP_BOT_TOKEN).digest();
   const hmac = crypto.createHmac('sha256', secret).update(checkString).digest('hex');
 
   if (hmac !== hash) {
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
   // 🔹 перевірка Google Sheets
   try {
-    const checkRes = await fetch(`${process.env.GOOGLE_SCRIPT_URL}?id=${userId}`);
+    const checkRes = await fetch(`${process.env.REACT_APP_GOOGLE_SCRIPT_URL}?id=${userId}`);
     const checkData = await checkRes.json();
 
     if (checkData.exists === true) {
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     }
 
     // 🔹 запис нового користувача
-    const saveRes = await fetch(process.env.GOOGLE_SCRIPT_URL, {
+    const saveRes = await fetch(process.env.REACT_APP_GOOGLE_SCRIPT_URL, {
       method : 'POST',
       headers: { 'Content-Type': 'application/json' },
       body   : JSON.stringify(req.body),
