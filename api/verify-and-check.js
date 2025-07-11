@@ -1,7 +1,6 @@
-import crypto from 'crypto';
-import fetch from 'node-fetch';
+const crypto = require('crypto');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -47,4 +46,4 @@ export default async function handler(req, res) {
     console.error('❌ Помилка запиту до Google Script:', err);
     return res.status(500).json({ status: 'error', message: 'Серверна помилка' });
   }
-}
+};
