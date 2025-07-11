@@ -1,0 +1,106 @@
+.register-form {
+  max-width: 420px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  font-family: 'Comfortaa', sans-serif;
+}
+
+.register-form h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.register-form label {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #222;
+}
+
+.register-form input[name="firstName"],
+.register-form input[name="lastName"],
+.register-form input[name="age"],
+.register-form input[name="phone"],
+.register-form input[name="password"],
+.register-form input[type="text"] {
+  width: 100%;
+  padding: 10px 15px;
+  margin-top: 5px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.register-form input:focus {
+  border-color: #ffce07;
+  outline: none;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.form-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.register-form button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #ffce07, #ffe75c, #ffce07);
+  background-size: 200%;
+  color: black;
+  cursor: pointer;
+  animation: glowMove 3s linear infinite;
+  box-shadow: 0 0 15px rgba(255, 206, 7, 0.6);
+  transition: background-position 0.5s;
+  margin-bottom: 10px;
+}
+
+@keyframes glowMove {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.register-form button:hover {
+  background-position: 100% center;
+  box-shadow: 0 0 25px rgba(255, 206, 7, 0.9), 0 0 50px rgba(255, 206, 7, 0.7);
+}
+
+.register-form .telegram-login {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.register-form .telegram-login a {
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-form .telegram-login a:hover {
+  text-decoration: underline;
+}

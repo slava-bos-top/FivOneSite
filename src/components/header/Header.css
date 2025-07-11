@@ -1,0 +1,261 @@
+* {
+    transition: .2s linear;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85); /* легкий білий прозорий фон */
+    backdrop-filter: blur(8px); /* опціонально, для "скляного" ефекту */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* поверх усіх елементів */
+    font-family: 'Comfortaa', Arial, sans-serif;
+    font-weight: 400;
+}
+
+.header_row {
+    padding: 0 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.85); /* легкий білий прозорий фон */
+    backdrop-filter: blur(8px); /* опціонально, для "скляного" ефекту */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header_logo {
+    display: flex;
+    align-items: center;
+    color: #000;
+}
+
+.header_logo span {
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 60px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.header_nav {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 33px;
+    letter-spacing: 0.01em;
+}
+
+.header_nav_list {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown_button {
+  display: inline-block;
+  width: 160px;
+  height: 80px;
+  font-size: 20px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  color: #000;
+  padding: 25px 10px;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown_button:hover {
+  background-color: var(--yellow);
+  color: #fff;
+}
+
+/* Dropdown */
+.header_nav .dropdown {
+    position: relative;
+  }
+  
+  .header_nav .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    display: none;
+    padding: 10px 0;
+    z-index: 999;
+    min-width: 300px;
+    text-align: start;
+  }
+  
+  .header_nav .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown-menu_element {
+    display: block;
+    padding: 10px 20px;
+    color: #000;
+    font-size: 18px;
+    text-decoration: none;
+    font-family: 'Comfortaa', Arial, sans-serif;
+    font-weight: 400;
+  }
+  
+  .dropdown-menu_element:hover {
+    background-color: var(--yellow);
+    color: #000;
+  }
+
+.header_nav_button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 60px;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ffce07, #ffe75c, #ffce07);
+    background-size: 200%;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 0 15px rgba(255, 206, 7, 0.6);
+    transition: background-position 0.5s, box-shadow 0.3s;
+    animation: glowMove 3s linear infinite;
+    margin-left: 80px;
+  }
+  
+  @keyframes glowMove {
+    0% {
+      background-position: 0% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+  
+  .header_nav_button:hover {
+    box-shadow: 0 0 25px rgba(255, 206, 7, 0.9), 0 0 50px rgba(255, 206, 7, 0.7);
+    background-position: 100% center;
+  }
+
+  .burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1001;
+  }
+  
+  .burger-line {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    transition: 0.3s;
+  }
+  
+  .header_nav {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 1324px) {
+    .header_row {
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.85); /* легкий білий прозорий фон */
+      backdrop-filter: blur(8px); /* опціонально, для "скляного" ефекту */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .header_nav_button {
+      position: relative;
+      display: inline-block;
+      padding: 10px 30px;
+      color: black;
+      font-size: 16px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ffce07, #ffe75c, #ffce07);
+      background-size: 200%;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 0 15px rgba(255, 206, 7, 0.6);
+      transition: background-position 0.5s, box-shadow 0.3s;
+      animation: glowMove 3s linear infinite;
+      margin-left: 0;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .header_row {
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.85); /* легкий білий прозорий фон */
+      backdrop-filter: blur(8px); /* опціонально, для "скляного" ефекту */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .burger {
+      display: flex;
+    }
+  
+    .header_nav {
+      position: fixed;
+      top: 80px;
+      right: 0;
+      width: 55%;
+      height: calc(100vh - 80px);
+      background-color: white;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 30px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      overflow-y: auto;
+    }
+  
+    .header_nav.open {
+      transform: translateX(0);
+    }
+  
+    .header_nav_list {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+  
+    .dropdown-menu {
+      position: static;
+      box-shadow: none;
+      padding-left: 10px;
+    }
+  
+    .dropdown-menu_element {
+      padding: 8px 0;
+      padding-left: 20px;
+      font-size: 14px;
+      width: 250px;
+    }
+  
+    .header_nav_button {
+      margin-top: 20px;
+    }
+
+    .dropdown_button {
+      width: 160px;
+      font-size: 20px;
+      text-decoration: none; 
+      background: none;
+      border: none;
+      color: #000; 
+      padding: 25px 10px;    
+      text-align: start;  
+  }
+  }

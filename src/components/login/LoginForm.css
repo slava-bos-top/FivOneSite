@@ -1,0 +1,96 @@
+.login-form {
+    max-width: 400px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    font-family: 'Comfortaa', sans-serif;
+  }
+  
+  .login-form h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .login-form label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #222;
+  }
+  
+  .login-form input[type="text"],
+  .login-form input[type="password"],
+  .login-form input[type="email"],
+  .login-form input[type="tel"] {
+    width: 100%;
+    padding: 10px 15px;
+    margin-top: 5px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .login-form input:focus {
+    border-color: #ffce07;
+    outline: none;
+  }
+  
+  .form-error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .login-form button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #ffce07, #ffe75c, #ffce07);
+    background-size: 200%;
+    color: black;
+    cursor: pointer;
+    animation: glowMove 3s linear infinite;
+    box-shadow: 0 0 15px rgba(255, 206, 7, 0.6);
+    transition: background-position 0.5s;
+  }
+  
+  @keyframes glowMove {
+    0% {
+      background-position: 0% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+  
+  .login-form button:hover {
+    background-position: 100% center;
+    box-shadow: 0 0 25px rgba(255, 206, 7, 0.9), 0 0 50px rgba(255, 206, 7, 0.7);
+  }
+  
+  .login-form p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  .login-form p span,
+  .login-form p button {
+    color: #007bff;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    font-family: inherit;
+  }

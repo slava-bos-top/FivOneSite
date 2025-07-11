@@ -1,0 +1,130 @@
+.about-us {
+    /* background-color: #FFCE07; */
+    max-width: 100vw;
+    padding: 80px 20px;
+    text-align: center;
+    font-family: 'Comfortaa', Arial, sans-serif;
+    font-weight: 400;
+    align-items: center;
+    color: #000;
+    background-color: var(--yellow);
+  }
+  
+  .about-us__title {
+    font-size: 48px;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+  
+  .about-us__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+  }
+  
+  .about-us__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .about-us__left,
+  .about-us__right {
+    flex: 1 1 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  .about-us__image {
+    flex: 1 1 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px
+  }
+  
+  .about-us__image img {
+    max-width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .about-us__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .about-us__item_text {
+    text-align: end;
+  }
+  
+  .about-us__icon {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    padding: 5px;
+  }
+
+  @media (max-width: 768px) {
+    .about-us {
+      /* background-color: #FFCE07; */
+      width: 100%;
+      padding: 80px 0px;
+      text-align: center;
+      font-family: 'Comfortaa', Arial, sans-serif;
+      font-weight: 400;
+      align-items: center;
+      color: #000;
+    }
+    .about-us__content {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .about-us__title {
+      font-size: 48px;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  
+    .about-us__left,
+    .about-us__right {
+      flex: 1 1 100%;
+      text-align: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .about-us__left .about-us__item {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  
+    .about-us__item {
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      max-width: 90%;
+    }
+  
+    .about-us__item_text {
+      text-align: left;
+    }
+  
+    .about-us__image {
+      padding: 0;
+    }
+  
+    .about-us__image img {
+      display: none;
+    }
+  }

@@ -1,0 +1,52 @@
+.swiper-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: auto;
+    padding: 40px 0;
+    height: 500px;
+  }
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .swiper-slide img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .swiper-button {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    padding: 10px 12px 12px 12px;
+    user-select: none;
+  }
+  
+  .swiper-button.left-slide {
+    position: absolute;
+    left: 10px;
+  }
+
+  .left:hover {
+    background-color: var(--yellow);
+    border-radius: 50%;
+  }
+  
+  .swiper-button.right-slide {
+    position: absolute;
+    right: 10px;
+  }
+
+  .right:hover {
+    background-color: var(--yellow);
+    border-radius: 50%;
+  }

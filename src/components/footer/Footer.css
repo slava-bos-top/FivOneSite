@@ -1,0 +1,213 @@
+footer {
+    font-family: 'Arial', sans-serif;
+    align-items: center;
+    color: #000;
+    width: 100%;
+  }
+  
+  .footer-contact-section {
+    border: 5px solid #fff;
+    background-color: #ffcd00;
+    text-align: center;
+    padding: 50px 20px;
+  }
+  
+  .footer-contact-section h2 {
+    margin-bottom: 15px;
+    font-family: 'Comfortaa', Arial, sans-serif;
+    font-size: 38px;
+    font-weight: 600;
+    padding-top: 35px;
+  }
+  
+  .footer-section-text {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .footer-section-text p {
+    width: 700px;
+    margin: 30px auto;
+    font-family: 'Comfortaa', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+  }
+  
+  .footer-contact-section p {
+    display: block;
+    font-family: 'Comfortaa', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: black;
+    margin-bottom: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  .footer-link-two {
+    margin-bottom: 20px !important;
+  }
+  .footer-contact-section i {
+    cursor: pointer;
+  }
+
+  .footer-icons {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  
+  .footer-icons a {
+    margin: 0 10px;
+    font-size: 20px;
+    color: black;
+  }
+
+  .footer-link-one {
+    padding-top: 30px;
+  }
+
+  .footer-link-two {
+    padding-bottom: 10px;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    padding: 40px 180px;
+    background-color: #f8f8f8;
+  }
+
+  .footer-bottom-block {
+    display: flex;
+    justify-content:space-between;
+    column-gap: 40px;
+    flex-direction: row;
+  }
+  
+  .footer-left,
+  .footer-middle,
+  .footer-links,
+  .footer-company {
+    max-width: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-family: 'Comfortaa', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+  }
+  
+  .footer-logo {
+    width: 80px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-icons-gray i {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #aaa;
+  }
+  
+  .footer-links a {
+    display: block;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 16px;
+    text-decoration: none;
+  }
+  
+  .payment-icons img {
+    height: 25px;
+    margin-right: 10px;
+  }
+  
+  .footer-company p {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  
+  .footer-made {
+    text-align: center;
+    background-color: #111;
+    color: #aaa;
+    font-size: 12px;
+    padding: 10px;
+  }
+  
+  .tilda-logo {
+    font-weight: bold;
+    color: white;
+  }
+
+  @media (max-width: 1024px) {
+    footer {
+      width: 100%;
+      font-family: 'Arial', sans-serif;
+      align-items: center;
+      color: #000;
+    }
+    .footer-contact-section {
+      border: none;
+    }
+    .footer-contact-section h2 {
+      margin-bottom: 15px;
+      font-family: 'Comfortaa', Arial, sans-serif;
+      font-size: 38px;
+      font-weight: 600;
+      padding-top: 0px;
+    }
+    .footer-contact-section {
+      padding-top: 20px;
+    }
+    .footer-section-text p {
+      font-size: 18px;
+      width: 90%;
+    }
+
+    .footer-link-one {
+      padding-top: 10px;
+    }
+
+    .footer-link-two {
+      padding-bottom: 0px;
+    }
+  
+    .footer-left,
+    .footer-middle,
+    .footer-links,
+    .footer-company {
+      align-items: center;
+      text-align: center;
+    }
+  
+    .footer-bottom {
+      padding: 15px 10px;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer-bottom-block {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer-contact-section h2 {
+      font-size: 30px;
+    }
+  
+    .footer-contact-section a {
+      font-size: 18px;
+    }
+  
+    .footer-icons a {
+      font-size: 18px;
+    }
+
+    .footer-middle {
+      display: none;
+    }
+  }
