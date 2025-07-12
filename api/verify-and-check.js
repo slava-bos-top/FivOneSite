@@ -47,11 +47,12 @@ module.exports = async function handler(req, res) {
           text   : `👋 Привіт, ${rest.first_name}! Ви успішно авторизувалися на сайті.`,
         }),
       });
-
+      
       const tgData = await tgRes.json();
-
+      console.log('📩 Відповідь Telegram API:', tgData); // 🔍 лог результату
+      
       if (!tgData.ok) {
-        console.error('⚠️ Не вдалося надіслати повідомлення:', tgData);
+        console.error('⚠️ Помилка надсилання повідомлення:', tgData.description);
       }
 
       return res.json({ status: 'saved', user: req.body });
@@ -64,3 +65,4 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ status: 'error', message: 'Серверна помилка' });
   }
 };
+
