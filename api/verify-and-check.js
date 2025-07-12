@@ -34,16 +34,33 @@ module.exports = async function handler(req, res) {
       headers: { 'Content-Type': 'application/json' },
       body   : JSON.stringify(req.body),
     });
+
     const saveData = await saveRes.json();
 
     if (saveData.success === true) {
+      // 🔹 Надіслати повідомлення користувачу в Telegram
+      const tgRes = await fetch(`https://api.telegram.org/bot${process.env.REACT_APP_BOT_TOKEN}/sendMessage`, {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({
+          chat_id: userId,
+          text   : `👋 Привіт, ${rest.first_name}! Ви успішно авторизувалися на сайті.`,
+        }),
+      });
+
+      const tgData = await tgRes.json();
+
+      if (!tgData.ok) {
+        console.error('⚠️ Не вдалося надіслати повідомлення:', tgData);
+      }
+
       return res.json({ status: 'saved', user: req.body });
     }
 
     return res.status(500).json({ status: 'error', message: 'Не вдалося зберегти' });
 
   } catch (err) {
-    console.error('❌ Помилка запиту до Google Script:', err);
+    console.error('❌ Помилка запиту до Google Script або Telegram:', err);
     return res.status(500).json({ status: 'error', message: 'Серверна помилка' });
   }
 };

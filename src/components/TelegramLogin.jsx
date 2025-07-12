@@ -27,6 +27,7 @@ const TelegramLogin = () => {
           setStatus('authorized');
         } else if (result.status === 'unknown') {
           window.location.href = result.startLink;
+          console.log("unknown")
         }
       } catch (err) {
         console.error('Помилка авторизації:', err);
