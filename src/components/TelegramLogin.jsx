@@ -1,28 +1,30 @@
 import { useEffect } from 'react';
 
 // ❗ Глобальна функція (до компонента!)
-window.onTelegramAuth = async (user) => {
-  console.log('✅ Telegram User:', user);
-
-  try {
-    const res = await fetch('/api/telegram-auth', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
-    });
-
-    const result = await res.json();
-    if (result.success) {
-      console.log('🎉 Авторизація на бекенді пройшла успішно');
-    } else {
-      console.error('❌ Авторизація не вдалася:', result.message);
-    }
-  } catch (err) {
-    console.error('❌ Помилка при відправці Telegram-даних:', err);
-  }
-};
+function tryCode() {
+    window.onTelegramAuth = async (user) => {
+        console.log('✅ Telegram User:', user);
+      
+        try {
+          const res = await fetch('/api/telegram-auth', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+          });
+      
+          const result = await res.json();
+          if (result.success) {
+            console.log('🎉 Авторизація на бекенді пройшла успішно');
+          } else {
+            console.error('❌ Авторизація не вдалася:', result.message);
+          }
+        } catch (err) {
+          console.error('❌ Помилка при відправці Telegram-даних:', err);
+        }
+      };
+}
 
 function TelegramLogin() {
   useEffect(() => {
@@ -43,10 +45,13 @@ function TelegramLogin() {
   }, []);
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-      <h2>Авторизація через Telegram</h2>
-      <div id="telegram-login-button" />
-    </div>
+    <>
+        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <h2>Авторизація через Telegram</h2>
+            <div id="telegram-login-button" />
+        </div>
+        <button onClick={() => tryCode()}>try</button>
+    </>
   );
 }
 
