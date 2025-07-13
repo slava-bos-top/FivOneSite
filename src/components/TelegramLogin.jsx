@@ -1,17 +1,34 @@
 import { useEffect } from 'react';
 
+// ❗ Глобальна функція (до компонента!)
+window.onTelegramAuth = async (user) => {
+  console.log('✅ Telegram User:', user);
+
+  try {
+    const res = await fetch('/api/telegram-auth', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    });
+
+    const result = await res.json();
+    if (result.success) {
+      console.log('🎉 Авторизація на бекенді пройшла успішно');
+    } else {
+      console.error('❌ Авторизація не вдалася:', result.message);
+    }
+  } catch (err) {
+    console.error('❌ Помилка при відправці Telegram-даних:', err);
+  }
+};
+
 function TelegramLogin() {
   useEffect(() => {
-    console.log("1")
-    window.onTelegramAuth = async (user) => {
-        console.log('✅ Telegram User:', user);
-        // user.id — це той самий chat_id
-    };
-    console.log("2")
-
     const script = document.createElement('script');
     script.src = 'https://telegram.org/js/telegram-widget.js?22';
-    script.setAttribute('data-telegram-login', 'fivone_bot'); // 🔁 заміни на свого бота
+    script.setAttribute('data-telegram-login', 'fivone_bot');
     script.setAttribute('data-size', 'large');
     script.setAttribute('data-userpic', 'false');
     script.setAttribute('data-request-access', 'write');
@@ -20,35 +37,10 @@ function TelegramLogin() {
 
     document.getElementById('telegram-login-button').appendChild(script);
 
-    // 🔁 cleanup on unmount
     return () => {
       document.getElementById('telegram-login-button').innerHTML = '';
     };
   }, []);
-
-  // Глобальна функція зворотного виклику
-  window.onTelegramAuth = async (user) => {
-    console.log('✅ Authenticated Telegram User:', user);
-
-    try {
-      const res = await fetch('/api/telegram-auth', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      });
-
-      const result = await res.json();
-      if (result.success) {
-        console.log('🎉 Авторизація на бекенді пройшла успішно');
-      } else {
-        console.error('❌ Авторизація не вдалася:', result.message);
-      }
-    } catch (err) {
-      console.error('❌ Помилка при відправці Telegram-даних:', err);
-    }
-  };
 
   return (
     <div style={{ textAlign: 'center', marginTop: '2rem' }}>
