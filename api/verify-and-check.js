@@ -23,8 +23,14 @@ module.exports = async function handler(req, res) {
 
   const userId = String(rest.id);
 
+  // ✅ Перевірка наявності userId
+  if (!userId) {
+    console.error('❌ userId відсутній');
+    return res.status(400).json({ status: 'error', message: 'userId is missing' });
+  }
+
   try {
-    // 🔍 Перевірка у Google Sheets
+    // 🔍 Перевірка в Google Sheets
     const checkRes = await fetch(`${process.env.REACT_APP_GOOGLE_SCRIPT_URL}?id=${userId}`);
     const checkData = await checkRes.json();
 
@@ -34,9 +40,9 @@ module.exports = async function handler(req, res) {
 
     // 💾 Збереження нового користувача
     const saveRes = await fetch(process.env.REACT_APP_GOOGLE_SCRIPT_URL, {
-      method : 'POST',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body   : JSON.stringify(req.body),
+      body: JSON.stringify(req.body),
     });
 
     const saveData = await saveRes.json();
@@ -46,25 +52,34 @@ module.exports = async function handler(req, res) {
       console.log('🧪 Надсилаємо повідомлення користувачу з id:', userId);
 
       const tgRes = await fetch(`https://api.telegram.org/bot${process.env.REACT_APP_BOT_TOKEN}/sendMessage`, {
-        method : 'POST',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify({
+        body: JSON.stringify({
           chat_id: userId,
-          text   : `👋 Привіт, ${rest.first_name}! Ви успішно авторизувалися на сайті.`,
+          text: `👋 Привіт, ${rest.first_name}! Ви успішно авторизувалися на сайті.`,
         }),
       });
 
       const tgData = await tgRes.json();
-      console.log('📩 Відповідь Telegram API:', tgData); // лог для дебагу
+      console.log('📩 Відповідь Telegram API:', tgData);
 
       if (!tgData.ok) {
-        console.error('⚠️ Помилка надсилання повідомлення:', tgData.description);
+        if (tgData.error_code === 403) {
+          console.error('⚠️ Користувач ще не написав боту. Неможливо надіслати повідомлення.');
+        } else {
+          console.error('⚠️ Інша помилка надсилання повідомлення:', tgData.description);
+        }
       }
 
-      return res.json({ status: 'saved', user: req.body, tgData });
+      return res.json({
+        status: 'saved',
+        user: req.body,
+        tgData,
+        warning: !tgData.ok ? 'sendMessage_failed' : undefined,
+      });
     }
 
-    return res.status(500).json({ status: 'error', message: 'Не вдалося зберегти' });
+    return res.status(500).json({ status: 'error', message: 'Не вдалося зберегти користувача' });
 
   } catch (err) {
     console.error('❌ Помилка запиту до Google Script або Telegram:', err);
