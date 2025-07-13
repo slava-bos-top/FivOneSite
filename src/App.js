@@ -3,11 +3,8 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Courses from './components/courses/Courses';
-import Gallery from './components/Gallery/Gallery';
 import Competition from './components/competition/Competition';
 import Main from './components/main/Main';
-import Register from './components/register/Register';
-import Login from './components/login/Login';
 import TelegramLogin from './components/TelegramLogin';
 
 function App() {
