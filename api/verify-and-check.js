@@ -1,34 +1,25 @@
 
-const crypto = require('crypto');
+// /api/verify-and-login.js
+import { AuthDataValidator } from '@telegram-auth/server';
+import { urlStrToAuthDataMap } from '@telegram-auth/server/utils';
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, message: 'Method Not Allowed' });
+    return res.status(405).json({ success: false, message: 'Only POST allowed' });
   }
 
-  const { hash, ...user } = req.body;
+  const validator = new AuthDataValidator({
+    botToken: process.env.REACT_APP_BOT_TOKEN, // 🔒 Повинен бути точним токеном твого бота
+  });
 
-  const checkString = Object.keys(user)
-    .sort()
-    .map(key => `${key}=${user[key]}`)
-    .join('\n');
+  try {
+    const user = await validator.validate(req.body); // validate Telegram login data
+    console.log('✅ Перевірено Telegram користувача:', user);
 
-  const secret = crypto
-    .createHash('sha256')
-    .update(process.env.REACT_APP_BOT_TOKEN)
-    .digest();
-
-  const hmac = crypto
-    .createHmac('sha256', secret)
-    .update(checkString)
-    .digest('hex');
-
-  if (hmac !== hash) {
-    return res.status(403).json({ success: false, message: 'Invalid Telegram hash' });
+    // 🔹 Тут можна зберегти user в Google Sheets, базі даних або надіслати повідомлення
+    return res.status(200).json({ success: true, user });
+  } catch (error) {
+    console.error('❌ Invalid Telegram login:', error);
+    return res.status(403).json({ success: false, message: 'Invalid Telegram login' });
   }
-
-  // ✅ Валідація пройдена. Можеш зберегти користувача, видати токен тощо.
-  console.log('🧾 Telegram user авторизований:', user);
-
-  return res.status(200).json({ success: true, user });
-};
+}
