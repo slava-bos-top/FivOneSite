@@ -47,7 +47,7 @@ const TelegramLogin = () => {
       script.setAttribute('data-size', 'large');
       script.setAttribute('data-userpic', 'false');
       script.setAttribute('data-request-access', 'write');
-      script.setAttribute('data-onauth', 'onTelegramAuth(user)');
+      script.setAttribute('data-onauth', 'onTelegramAuth');
       script.async = true;
   
       telegramButtonRef.current.innerHTML = ''; // Очистка
