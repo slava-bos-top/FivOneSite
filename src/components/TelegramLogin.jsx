@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 // 🔹 ОГОЛОШЕННЯ window.onTelegramAuth — ОБОВ'ЯЗКОВО до useEffect
 if (typeof window !== 'undefined' && !window.onTelegramAuth) {
     window.onTelegramAuth = async (user) => {
@@ -23,8 +24,6 @@ if (typeof window !== 'undefined' && !window.onTelegramAuth) {
       }
     };
   }
-  
-  import { useEffect } from 'react';
   
   function TelegramLogin() {
     useEffect(() => {
