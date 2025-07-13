@@ -18,7 +18,6 @@ function App() {
         <Route path="/fivone" element={<Main />} className="fivone"/>
         <Route path="/course" element={<Courses />} />
         <Route path="/marathon" element={<Competition />} />
-        <Route path="/registration" element={<Register />} />
         <Route path='/login' element={<TelegramLogin />} />
       </Routes>
     </div>

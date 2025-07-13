@@ -78,7 +78,7 @@ function Header() {
 
               <li><a href="#reviewMain" className="dropdown_button">Відгуки</a></li>
               <li>
-                <Link to="/registration" className="header_nav_button">Зареєструватись</Link>
+                <Link to="/login" className="header_nav_button">Зареєструватись</Link>
               </li>
             </ul>
           </nav>
