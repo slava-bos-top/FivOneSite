@@ -29,7 +29,7 @@ if (typeof window !== 'undefined' && !window.onTelegramAuth) {
     useEffect(() => {
       const script = document.createElement('script');
       script.src = 'https://telegram.org/js/telegram-widget.js?22';
-      script.setAttribute('data-telegram-login', process.env.REACT_APP_BOT_USERNAME);
+      script.setAttribute('data-telegram-login', "fivone_bot");
       script.setAttribute('data-size', 'large');
       script.setAttribute('data-userpic', 'false');
       script.setAttribute('data-request-access', 'write');
