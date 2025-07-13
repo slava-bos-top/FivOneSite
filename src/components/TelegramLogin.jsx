@@ -1,8 +1,37 @@
 import { useEffect } from 'react';
 // 🔹 ОГОЛОШЕННЯ window.onTelegramAuthwindow.onTelegramAuth — ОБОВ'ЯЗКОВО до useEffect
 if (typeof window !== 'undefined') {
-    window.onTelegramAuth = function (user) {
+    window.onTelegramAuth = async function (user) {
       console.log('✅ Telegram user:', user);
+  
+      try {
+        const response = await fetch('/api/verify-and-chek', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user),
+        });
+  
+        const data = await response.json();
+  
+        if (data.success) {
+          console.log('🔐 Авторизація підтверджена:', data.user);
+  
+          // 🔹 Надсилаємо користувачу повідомлення в Telegram
+          await fetch('/api/send-login-notification', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ user: data.user }),
+          });
+        } else {
+          console.error('⛔ Помилка авторизації:', data.message);
+        }
+      } catch (error) {
+        console.error('❌ Помилка під час авторизації Telegram:', error);
+      }
     };
   }
   
