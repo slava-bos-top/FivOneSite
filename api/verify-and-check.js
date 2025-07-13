@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const fetch = require('node-fetch'); // Якщо локально — npm i node-fetch
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -7,6 +8,7 @@ module.exports = async function handler(req, res) {
 
   const { hash, ...rest } = req.body;
 
+  // 🔐 Перевірка хешу Telegram
   const checkString = Object.keys(rest)
     .sort()
     .map(key => `${key}=${rest[key]}`)
@@ -22,6 +24,7 @@ module.exports = async function handler(req, res) {
   const userId = String(rest.id);
 
   try {
+    // 🔍 Перевірка у Google Sheets
     const checkRes = await fetch(`${process.env.REACT_APP_GOOGLE_SCRIPT_URL}?id=${userId}`);
     const checkData = await checkRes.json();
 
@@ -29,6 +32,7 @@ module.exports = async function handler(req, res) {
       return res.json({ status: 'known', user: req.body });
     }
 
+    // 💾 Збереження нового користувача
     const saveRes = await fetch(process.env.REACT_APP_GOOGLE_SCRIPT_URL, {
       method : 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -38,7 +42,9 @@ module.exports = async function handler(req, res) {
     const saveData = await saveRes.json();
 
     if (saveData.success === true) {
-      // 🔹 Надіслати повідомлення користувачу в Telegram
+      // ✉️ Надсилання повідомлення користувачу
+      console.log('🧪 Надсилаємо повідомлення користувачу з id:', userId);
+
       const tgRes = await fetch(`https://api.telegram.org/bot${process.env.REACT_APP_BOT_TOKEN}/sendMessage`, {
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -47,15 +53,15 @@ module.exports = async function handler(req, res) {
           text   : `👋 Привіт, ${rest.first_name}! Ви успішно авторизувалися на сайті.`,
         }),
       });
-      
+
       const tgData = await tgRes.json();
-      console.log('📩 Відповідь Telegram API:', tgData); // 🔍 лог результату
-      
+      console.log('📩 Відповідь Telegram API:', tgData); // лог для дебагу
+
       if (!tgData.ok) {
         console.error('⚠️ Помилка надсилання повідомлення:', tgData.description);
       }
 
-      return res.json({ status: 'saved', user: req.body });
+      return res.json({ status: 'saved', user: req.body, tgData });
     }
 
     return res.status(500).json({ status: 'error', message: 'Не вдалося зберегти' });
@@ -65,4 +71,3 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ status: 'error', message: 'Серверна помилка' });
   }
 };
-
