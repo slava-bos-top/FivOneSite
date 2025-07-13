@@ -7,11 +7,7 @@ function Register({ onLoginSuccess }) {
 
   return (
     <>
-        <RegisterForm
-          onRequestSms={handleRequestSms}
-          onVerifyCode={handleVerifyCode}
-          onSubmit={handleSubmit}
-        />
+        <RegisterForm/>
     </>
   );
 }
