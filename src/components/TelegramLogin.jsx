@@ -2,10 +2,12 @@ import { useEffect } from 'react';
 
 function TelegramLogin() {
   useEffect(() => {
+    console.log("1")
     window.onTelegramAuth = async (user) => {
         console.log('✅ Telegram User:', user);
         // user.id — це той самий chat_id
     };
+    console.log("2")
 
     const script = document.createElement('script');
     script.src = 'https://telegram.org/js/telegram-widget.js?22';
