@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-// 🔹 ОГОЛОШЕННЯ window.onTelegramAuth — ОБОВ'ЯЗКОВО до useEffect
-if (typeof window !== 'undefined' && !window.onTelegramAuth) {
+// 🔹 ОГОЛОШЕННЯ window.onTelegramAuthwindow.onTelegramAuth — ОБОВ'ЯЗКОВО до useEffect
+if (typeof window !== 'undefined') {
     window.onTelegramAuth = function (user) {
       console.log('✅ Telegram user:', user);
     };
