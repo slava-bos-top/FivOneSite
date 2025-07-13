@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
 // 🔹 Глобальна функція повинна бути оголошена ДО завантаження Telegram скрипта
-if (typeof window !== 'undefined' && !window.onTelegramAuth) {
   window.onTelegramAuth = async (user) => {
     console.log('✅ Telegram User:', user);
 
@@ -24,18 +23,27 @@ if (typeof window !== 'undefined' && !window.onTelegramAuth) {
       console.error('❌ Помилка при відправці Telegram-даних:', err);
     }
   };
-}
+
+  window.onTelegramAuth = function(user) {
+    console.log('✅ Telegram User:', user);
+  };
+
+
 
 function TelegramLogin() {
   useEffect(() => {
+    window.onTelegramAuth = function(user) {
+        console.log('✅ Telegram User:', user);
+    };
     const script = document.createElement('script');
     script.src = 'https://telegram.org/js/telegram-widget.js?22';
-    script.setAttribute('data-telegram-login', 'fivone_bot'); // заміни на свого бота
+    script.setAttribute('data-telegram-login', process.env.REACT_APP_BOT_USERNAME); // заміни на свого бота
     script.setAttribute('data-size', 'large');
     script.setAttribute('data-userpic', 'false');
     script.setAttribute('data-request-access', 'write');
     script.setAttribute('data-onauth', 'onTelegramAuth');
     script.async = true;
+
 
     const container = document.getElementById('telegram-login-button');
     if (container) {
