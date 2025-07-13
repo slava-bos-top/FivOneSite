@@ -9,19 +9,25 @@ const TelegramLogin = () => {
 
   // 🔹 Глобальна функція для обробки Telegram авторизації
   useEffect(() => {
+    if (!botUsername) {
+      console.error('❌ BOT_USERNAME не задано у .env');
+      return;
+    }
+  
+    // 🔹 Спочатку визначаємо глобальну функцію
     window.onTelegramAuth = async (userData) => {
       console.log('✅ Telegram повернув дані користувача:', userData);
-
+  
       try {
         const res = await fetch('/api/verify-and-check', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(userData),
         });
-
+  
         const result = await res.json();
         console.log('📡 Відповідь від verify-and-check:', result);
-
+  
         if (result.status === 'known') {
           setUser(result.user);
           setStatus('authorized');
@@ -32,15 +38,8 @@ const TelegramLogin = () => {
         console.error('❌ Помилка авторизації:', err);
       }
     };
-  }, []);
-
-  // 🔹 Додаємо скрипт тільки після монтування елементу
-  useEffect(() => {
-    if (!botUsername) {
-      console.error('❌ BOT_USERNAME не задано у .env');
-      return;
-    }
-
+  
+    // 🔹 Потім додаємо Telegram-скрипт
     if (telegramButtonRef.current) {
       const script = document.createElement('script');
       script.src = 'https://telegram.org/js/telegram-widget.js?22';
@@ -50,13 +49,19 @@ const TelegramLogin = () => {
       script.setAttribute('data-request-access', 'write');
       script.setAttribute('data-onauth', 'onTelegramAuth(user)');
       script.async = true;
-
-      telegramButtonRef.current.innerHTML = ''; // очистка на випадок перерендеру
+  
+      telegramButtonRef.current.innerHTML = ''; // Очистка
       telegramButtonRef.current.appendChild(script);
+  
       console.log('✅ Telegram script додано в контейнер');
     } else {
       console.error('❌ Контейнер telegramButtonRef не знайдено');
     }
+  
+    // 🔹 Очистка (на випадок повторного монтування)
+    return () => {
+      delete window.onTelegramAuth;
+    };
   }, [botUsername]);
 
   return (
