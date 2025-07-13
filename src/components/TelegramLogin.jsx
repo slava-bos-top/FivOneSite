@@ -9,6 +9,7 @@ const TelegramLogin = () => {
 
   // 🔹 Глобальна функція для обробки Telegram авторизації
   useEffect(() => {
+    console.log('🧪 typeof window.onTelegramAuth =', typeof window.onTelegramAuth);
     if (!botUsername) {
       console.error('❌ BOT_USERNAME не задано у .env');
       return;
