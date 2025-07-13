@@ -9,41 +9,43 @@ const TelegramLogin = () => {
   const botUsername = process.env.REACT_APP_BOT_USERNAME;
 
   useEffect(() => {
-
-    console.log('Bot username:', botUsername); // перевірка
-    console.log("Bot token", process.env.REACT_APP_BOT_TOKEN)
-    console.log("Google", process.env.REACT_APP_GOOGLE_SCRIPT_URL)
+    // 🔹 Спочатку визначаємо функцію
     window.onTelegramAuth = async (userData) => {
+      console.log('✅ Telegram повернув дані користувача:', userData); // 🔍 Додай лог
       try {
         const res = await fetch('/api/verify-and-check', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(userData),
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(userData),
         });
-
+  
         const result = await res.json();
+        console.log('📡 Відповідь від verify-and-check:', result);
+  
         if (result.status === 'known') {
           setUser(result.user);
           setStatus('authorized');
         } else if (result.status === 'unknown') {
           window.location.href = result.startLink;
-          console.log("unknown")
+          console.log("🔁 unknown, перенаправлення...");
         }
       } catch (err) {
-        console.error('Помилка авторизації:', err);
+        console.error('❌ Помилка авторизації:', err);
       }
     };
-
+  
+    // 🔹 Потім вставляємо скрипт Telegram
     const script = document.createElement('script');
-    script.src = 'https://telegram.org/js/telegram-widget.js?7';
+    script.src = 'https://telegram.org/js/telegram-widget.js?22';
     script.setAttribute('data-telegram-login', botUsername);
     script.setAttribute('data-size', 'large');
     script.setAttribute('data-userpic', 'false');
     script.setAttribute('data-request-access', 'write');
     script.setAttribute('data-onauth', 'onTelegramAuth(user)');
     script.async = true;
-    document.getElementById('telegram-button').appendChild(script);
-    console.log(script)
+  
+    const container = document.getElementById('telegram-button');
+    if (container) container.appendChild(script);
   }, []);
 
   return (
