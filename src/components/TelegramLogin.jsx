@@ -2,6 +2,11 @@ import { useEffect } from 'react';
 
 function TelegramLogin() {
   useEffect(() => {
+    window.onTelegramAuth = async (user) => {
+        console.log('✅ Telegram User:', user);
+        // user.id — це той самий chat_id
+    };
+
     const script = document.createElement('script');
     script.src = 'https://telegram.org/js/telegram-widget.js?22';
     script.setAttribute('data-telegram-login', 'fivone_bot'); // 🔁 заміни на свого бота
