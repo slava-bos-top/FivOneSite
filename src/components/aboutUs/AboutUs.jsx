@@ -20,7 +20,7 @@ export default function AboutUs() {
             onAuthCallback={(data) => {
               console.log("✅ Отримано дані Telegram", data);
               // Тут зробити fetch на бекенд для валідації hash
-              fetch('/api/verify-and-login', {
+              fetch('/api/verify-and-check', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
