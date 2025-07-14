@@ -6,6 +6,23 @@ import { LoginButton } from '@telegram-auth/react';
 
 export default function AboutUs() {
 
+  const handleAuth = async (data) => {
+    console.log("✅ Отримано дані Telegram", data);
+    // Тут зробити fetch на бекенд для валідації hash
+    const res = await fetch("https://beneficial-forgiveness.up.railway.app/api/verify-and-login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    
+    const data = await res.json();
+    if (data.success) {
+      // Користувач авторизований
+    }
+  }
+
   return (
     <section className="about-us" id="aboutUs">
       <div className="about-us__container">
@@ -14,26 +31,11 @@ export default function AboutUs() {
           <h2>Авторизація через Telegram</h2>
           <LoginButton
             botUsername="fivone_bot"
+            onAuthCallback={handleAuth}
             buttonSize="large"
             cornerRadius={8}
             showAvatar={true}
             lang="uk"
-            onAuthCallback={async (data) => {
-              console.log("✅ Отримано дані Telegram", data);
-              // Тут зробити fetch на бекенд для валідації hash
-              const res = await fetch("https://beneficial-forgiveness.up.railway.app/api/verify-and-login", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(telegramUserData),
-              });
-              
-              const data = await res.json();
-              if (data.success) {
-                // Користувач авторизований
-              }
-            }}
           />
         </div>
         <TelegramManualLogin />
