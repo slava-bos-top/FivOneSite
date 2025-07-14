@@ -6,26 +6,38 @@ import { LoginButton } from '@telegram-auth/react';
 export default function AboutUs() {
 
   const handleAuth = async (data) => {
-    console.log("🌐 Telegram data:", data);
+    if (!data || !data.id) {
+      console.error("❌ Немає даних з Telegram:", data);
+      return;
+    } else {
+      console.log("🌐 Telegram data:", data);
 
-    try {
-      const res = await fetch('/api/verify-and-login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      const result = await res.json();
-      if (result.success) {
-        console.log('✅ Успішна авторизація:', result.user);
-        // Збережи користувача в контексті або localStorage тут
-      } else {
-        console.error('❌ Помилка авторизації:', result.message);
+      try {
+        const res = await fetch('/api/verify-and-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+  
+        const result = await res.json();
+        if (result.success) {
+          console.log('✅ Успішна авторизація:', result.user);
+          // Збережи користувача в контексті або localStorage тут
+        } else {
+          console.error('❌ Помилка авторизації:', result.message);
+        }
+      } catch (e) {
+        console.error('❌ Server error:', e);
       }
-    } catch (e) {
-      console.error('❌ Server error:', e);
     }
   };
+
+  // const handleAuth = async (data) => {
+  //   if (!data || !data.id) {
+  //     console.error("❌ Немає даних з Telegram:", data);
+  //     return;
+  //   }
+  // };
 
 
   return (
