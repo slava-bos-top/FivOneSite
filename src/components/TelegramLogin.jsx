@@ -33,6 +33,7 @@ function TelegramLogin() {
         botUsername={process.env.REACT_APP_BOT_USERNAME}
         onAuthCallback={(data) => {
             console.log(data);
+            console.log("Telegram")
             // call your backend here to validate the data and sign in the user
         }}
         buttonSize="large"
