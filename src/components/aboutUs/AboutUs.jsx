@@ -10,11 +10,10 @@ export default function AboutUs() {
     <section className="about-us" id="aboutUs">
       <div className="about-us__container">
         <h2 className="about-us__title">Про нас</h2>
-        {/* <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
           <h2>Авторизація через Telegram</h2>
           <LoginButton
             botUsername="fivone_bot"
-            authCallbackUrl="https://fiv-one-site.vercel.app/telegram-callback"
             buttonSize="large"
             cornerRadius={8}
             showAvatar={true}
@@ -22,20 +21,21 @@ export default function AboutUs() {
             onAuthCallback={(data) => {
               console.log("✅ Отримано дані Telegram", data);
               // Тут зробити fetch на бекенд для валідації hash
-              fetch('/api/verify-and-check', {
-                method: 'POST',
+              const res = await fetch("https://your-railway-url.up.railway.app/api/verify-and-login", {
+                method: "POST",
                 headers: {
-                  'Content-Type': 'application/json'
+                  "Content-Type": "application/json",
                 },
-                body: JSON.stringify(data),
-              }).then(res => res.json())
-                .then(result => {
-                  console.log('Результат авторизації:', result);
-                  // зберегти токен чи перенаправити
-                });
+                body: JSON.stringify(telegramUserData),
+              });
+              
+              const data = await res.json();
+              if (data.success) {
+                // Користувач авторизований
+              }
             }}
           />
-        </div> */}
+        </div>
         <TelegramManualLogin />
         <a href="https://t.me/fivone_bot?start=login_123456" target="_blank">
           <button>Увійти через Telegram</button>
