@@ -32,13 +32,6 @@ export default function AboutUs() {
     }
   };
 
-  // const handleAuth = async (data) => {
-  //   if (!data || !data.id) {
-  //     console.error("❌ Немає даних з Telegram:", data);
-  //     return;
-  //   }
-  // };
-
 
   return (
     <section className="about-us" id="aboutUs">
@@ -48,7 +41,10 @@ export default function AboutUs() {
           <h2>Авторизація через Telegram</h2>
           <LoginButton
             botUsername="fivone_bot"
-            onAuthCallback={handleAuth}
+            onAuthCallback={() => {
+              console.log("test")
+              handleAuth()
+            }}
             buttonSize="large"
             cornerRadius={8}
             showAvatar={true}
