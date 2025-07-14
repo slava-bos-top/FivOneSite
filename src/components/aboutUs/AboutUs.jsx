@@ -10,7 +10,7 @@ export default function AboutUs() {
     console.log("🌐 Telegram data:", data);
 
     try {
-      const res = await fetch('https://beneficial-forgiveness.up.railway.app/api/verify-and-login', {
+      const res = await fetch('https://fiv-production.up.railway.app/api/verify-and-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
