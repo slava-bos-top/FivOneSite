@@ -44,9 +44,9 @@ export default function AboutUs() {
           <h2>Авторизація через Telegram</h2>
           <LoginButton
             botUsername="fivone_bot"
-            onAuthCallback={() => {
-              console.log("test")
-              handleAuth()
+            onAuthCallback={(data) => {
+              console.log("test");
+              handleAuth(data);
             }}
             buttonSize="large"
             cornerRadius={8}
