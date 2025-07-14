@@ -39,6 +39,7 @@ function TelegramLogin() {
         cornerRadius={8}
         showAvatar={true}
         lang="uk"
+        data-auth-url="https://fiv-one-site.vercel.app/api/verify-and-login"
       />
     </div>
   );
