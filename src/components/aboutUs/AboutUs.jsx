@@ -13,25 +13,26 @@ export default function AboutUs() {
           <h2>Авторизація через Telegram</h2>
           <LoginButton
             botUsername="fivone_bot"
+            authCallbackUrl="https://fiv-one-site.vercel.app/telegram-callback"
             buttonSize="large"
             cornerRadius={8}
             showAvatar={true}
             lang="uk"
-            onAuthCallback={(data) => {
-              console.log("✅ Отримано дані Telegram", data);
-              // Тут зробити fetch на бекенд для валідації hash
-              fetch('/api/verify-and-check', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data),
-              }).then(res => res.json())
-                .then(result => {
-                  console.log('Результат авторизації:', result);
-                  // зберегти токен чи перенаправити
-                });
-            }}
+            // onAuthCallback={(data) => {
+            //   console.log("✅ Отримано дані Telegram", data);
+            //   // Тут зробити fetch на бекенд для валідації hash
+            //   fetch('/api/verify-and-check', {
+            //     method: 'POST',
+            //     headers: {
+            //       'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(data),
+            //   }).then(res => res.json())
+            //     .then(result => {
+            //       console.log('Результат авторизації:', result);
+            //       // зберегти токен чи перенаправити
+            //     });
+            // }}
           />
         </div>
 
