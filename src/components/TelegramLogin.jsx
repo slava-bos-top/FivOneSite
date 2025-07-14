@@ -2,7 +2,6 @@
 import { LoginButton } from '@telegram-auth/react';
 
 function TelegramLogin() {
-  const bot = "SampleBot";
 
   const handleAuth = async (data) => {
     console.log("🌐 Telegram data:", data);
@@ -30,7 +29,7 @@ function TelegramLogin() {
     <div style={{ textAlign: 'center', marginTop: '2rem' }}>
       <h2>Авторизація через Telegram</h2>
       <LoginButton
-        botUsername={bot}
+        botUsername={process.env.REACT_APP_BOT_USERNAME}
         onAuthCallback={handleAuth}
         buttonSize="large"
         cornerRadius={8}
