@@ -1,7 +1,8 @@
 import React from 'react';
+import TelegramManualLogin from '../TelegramManualLogin';
 import './AboutUs.css';
 
-import { LoginButton } from '@telegram-auth/react';
+// import { LoginButton } from '@telegram-auth/react';
 
 export default function AboutUs() {
 
@@ -9,7 +10,7 @@ export default function AboutUs() {
     <section className="about-us" id="aboutUs">
       <div className="about-us__container">
         <h2 className="about-us__title">Про нас</h2>
-        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        {/* <div style={{ textAlign: 'center', marginTop: '2rem' }}>
           <h2>Авторизація через Telegram</h2>
           <LoginButton
             botUsername="fivone_bot"
@@ -18,23 +19,24 @@ export default function AboutUs() {
             cornerRadius={8}
             showAvatar={true}
             lang="uk"
-            // onAuthCallback={(data) => {
-            //   console.log("✅ Отримано дані Telegram", data);
-            //   // Тут зробити fetch на бекенд для валідації hash
-            //   fetch('/api/verify-and-check', {
-            //     method: 'POST',
-            //     headers: {
-            //       'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(data),
-            //   }).then(res => res.json())
-            //     .then(result => {
-            //       console.log('Результат авторизації:', result);
-            //       // зберегти токен чи перенаправити
-            //     });
-            // }}
+            onAuthCallback={(data) => {
+              console.log("✅ Отримано дані Telegram", data);
+              // Тут зробити fetch на бекенд для валідації hash
+              fetch('/api/verify-and-check', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+              }).then(res => res.json())
+                .then(result => {
+                  console.log('Результат авторизації:', result);
+                  // зберегти токен чи перенаправити
+                });
+            }}
           />
-        </div>
+        </div> */}
+        <TelegramManualLogin />
 
         <div className="about-us__content">
           <div className="about-us__left">
