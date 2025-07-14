@@ -29,7 +29,7 @@ function TelegramLogin() {
     <div style={{ textAlign: 'center', marginTop: '2rem' }}>
       <h2>Авторизація через Telegram</h2>
       <LoginButton
-        botUsername={process.env.REACT_APP_BOT_USERNAME}
+        botUsername="fivone_bot"
         onAuthCallback={handleAuth}
         buttonSize="large"
         cornerRadius={8}
