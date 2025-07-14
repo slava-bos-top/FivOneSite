@@ -7,21 +7,26 @@ import { LoginButton } from '@telegram-auth/react';
 export default function AboutUs() {
 
   const handleAuth = async (data) => {
-    console.log("✅ Отримано дані Telegram", data);
-    // Тут зробити fetch на бекенд для валідації hash
-    const res = await fetch("https://beneficial-forgiveness.up.railway.app/api/verify-and-login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    
-    const data = await res.json();
-    if (data.success) {
-      // Користувач авторизований
+    console.log("🌐 Telegram data:", data);
+
+    try {
+      const res = await fetch('https://beneficial-forgiveness.up.railway.app/api/verify-and-loginn', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+      if (result.success) {
+        console.log('✅ Успішна авторизація:', result.user);
+        // Збережи користувача в контексті або localStorage тут
+      } else {
+        console.error('❌ Помилка авторизації:', result.message);
+      }
+    } catch (e) {
+      console.error('❌ Server error:', e);
     }
-  }
+  };
 
   return (
     <section className="about-us" id="aboutUs">
