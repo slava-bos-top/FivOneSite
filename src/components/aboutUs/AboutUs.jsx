@@ -5,37 +5,6 @@ import { LoginButton } from '@telegram-auth/react';
 
 export default function AboutUs() {
 
-  // const handleAuth = async (data) => {
-  //   if (!data || !data.id) {
-  //     console.error("❌ Немає даних з Telegram:", data);
-  //     return;
-  //   } else {
-  //     console.log("🌐 Telegram data:", data);
-
-  //     try {
-  //       const res = await fetch('/api/verify-and-login', {
-  //         method: 'POST',
-  //         headers: { 'Content-Type': 'application/json' },
-  //         body: JSON.stringify(data),
-  //       });
-  
-  //       const result = await res.json();
-  //       if (result.success) {
-  //         console.log('✅ Успішна авторизація:', result.user);
-  //         // Збережи користувача в контексті або localStorage тут
-  //       } else {
-  //         console.error('❌ Помилка авторизації:', result.message);
-  //       }
-  //     } catch (e) {
-  //       console.error('❌ Server error:', e);
-  //     }
-  //   }
-  // };
-
-  const handleAuth = async (data) => {
-    console.log("🌐 Telegram data:", data);
-  };
-
   return (
     <section className="about-us" id="aboutUs">
       <div className="about-us__container">
@@ -44,14 +13,25 @@ export default function AboutUs() {
           <h2>Авторизація через Telegram</h2>
           <LoginButton
             botUsername="fivone_bot"
-            onAuthCallback={(data) => {
-              console.log("test");
-              handleAuth(data);
-            }}
             buttonSize="large"
             cornerRadius={8}
             showAvatar={true}
             lang="uk"
+            onAuthCallback={(data) => {
+              console.log("✅ Отримано дані Telegram", data);
+              // Тут зробити fetch на бекенд для валідації hash
+              fetch('/api/verify-and-login', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+              }).then(res => res.json())
+                .then(result => {
+                  console.log('Результат авторизації:', result);
+                  // зберегти токен чи перенаправити
+                });
+            }}
           />
         </div>
 
