@@ -36,8 +36,7 @@ export default function AboutUs() {
             }}
           />
         </div> */}
-        <TelegramManualLogin />
-        <a href="https://t.me/your_bot?start=login_123456" target="_blank">
+        <a href="https://t.me/fivone_bot?start=login_123456" target="_blank">
           <button>Увійти через Telegram</button>
         </a>
 
