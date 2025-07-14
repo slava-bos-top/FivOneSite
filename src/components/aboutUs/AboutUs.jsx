@@ -18,7 +18,7 @@ export default function AboutUs() {
             cornerRadius={8}
             showAvatar={true}
             lang="uk"
-            onAuthCallback={(data) => {
+            onAuthCallback={async (data) => {
               console.log("✅ Отримано дані Telegram", data);
               // Тут зробити fetch на бекенд для валідації hash
               const res = await fetch("https://beneficial-forgiveness.up.railway.app/api/verify-and-login", {
