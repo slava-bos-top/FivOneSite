@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ message: 'Only POST allowed' });
 
   const validator = new AuthDataValidator({
-    botToken: process.env.REACT_APP_BOT_TOKEN,
+    botToken: "7912350149:AAGS6CKZsgdTa4nBAQiHeQj0DtaadqOrPFk",
   });
 
   try {

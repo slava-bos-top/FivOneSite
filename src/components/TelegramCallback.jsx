@@ -17,13 +17,20 @@ const TelegramCallback = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
-        .then(res => res.json())
+        .then(async (res) => {
+          if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.message || 'Auth error');
+          }
+          return res.json();
+        })
         .then(result => {
           console.log('🎉 Авторизація успішна:', result);
-          // Можеш тут зберегти токен або перейти на головну:
-          navigate('/');
+          // перенаправлення або збереження
         })
-        .catch(err => console.error('❌ Помилка Telegram:', err));
+        .catch(err => {
+          console.error('❌ Помилка Telegram авторизації:', err.message);
+        });
     } else {
       console.warn('⛔ Немає hash — користувач відхилив або не Telegram редирект');
     }
