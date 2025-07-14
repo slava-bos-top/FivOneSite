@@ -3,6 +3,7 @@ import TelegramManualLogin from '../TelegramManualLogin';
 import './AboutUs.css';
 
 import { LoginButton } from '@telegram-auth/react';
+import TelegramLoginButton from 'react-telegram-login';
 
 export default function AboutUs() {
 
