@@ -2,7 +2,7 @@ import React from 'react';
 import TelegramManualLogin from '../TelegramManualLogin';
 import './AboutUs.css';
 
-// import { LoginButton } from '@telegram-auth/react';
+import { LoginButton } from '@telegram-auth/react';
 
 export default function AboutUs() {
 
