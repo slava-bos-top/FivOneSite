@@ -12,7 +12,7 @@ function App() {
   return (
     <div className='App' style={{width: "100%"}}>
       <Routes>
-        <Route path="/fivone" element={<Main />} className="fivone"/>
+        <Route path="/" element={<Main />} className="fivone"/>
         <Route path="/course" element={<Courses />} />
         <Route path="/marathon" element={<Competition />} />
         <Route path='/login' element={<TelegramLogin />} />
