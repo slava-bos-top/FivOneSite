@@ -20,11 +20,12 @@ const TelegramCallback = () => {
         .then(res => res.json())
         .then(result => {
           console.log('🎉 Авторизація успішна:', result);
+          // Можеш тут зберегти токен або перейти на головну:
           navigate('/');
         })
         .catch(err => console.error('❌ Помилка Telegram:', err));
     } else {
-      console.warn('⛔ Немає Telegram hash');
+      console.warn('⛔ Немає hash — користувач відхилив або не Telegram редирект');
     }
   }, [navigate]);
 

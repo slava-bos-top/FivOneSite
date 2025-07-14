@@ -1,12 +1,16 @@
 // TelegramManualLogin.jsx
+// TelegramLogin.jsx
 import React from 'react';
 
-const TelegramManualLogin = () => {
+const TelegramLogin = () => {
   const handleLogin = () => {
-    const botUsername = 'fivone_bot';
-    const redirectUrl = `https://oauth.telegram.org/auth?bot_id=7912350149&origin=${encodeURIComponent(window.location.origin)}&embed=1&request_access=write&lang=uk&return_to=${encodeURIComponent('https://fiv-one-site.vercel.app/telegram-callback')}`;
+    const botId = '7912350149'; // або через env
+    const origin = window.location.origin;
+    const callbackUrl = `${origin}/telegram-callback`;
 
-    window.open(redirectUrl, '_blank', 'width=500,height=500');
+    const url = `https://oauth.telegram.org/auth?bot_id=${botId}&origin=${encodeURIComponent(origin)}&embed=1&request_access=write&lang=uk&return_to=${encodeURIComponent(callbackUrl)}`;
+
+    window.open(url, '_blank', 'width=500,height=500');
   };
 
   return (
@@ -16,4 +20,4 @@ const TelegramManualLogin = () => {
   );
 };
 
-export default TelegramManualLogin;
+export default TelegramLogin;
