@@ -31,11 +31,7 @@ function TelegramLogin() {
       <h2>Авторизація через Telegram</h2>
       <LoginButton
         botUsername={process.env.REACT_APP_BOT_USERNAME}
-        onAuthCallback={(data) => {
-            console.log(data);
-            console.log("Telegram")
-            // call your backend here to validate the data and sign in the user
-        }}
+        onAuthCallback={handleAuth}
         buttonSize="large"
         cornerRadius={8}
         showAvatar={false}
