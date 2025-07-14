@@ -21,7 +21,7 @@ export default function AboutUs() {
             onAuthCallback={(data) => {
               console.log("✅ Отримано дані Telegram", data);
               // Тут зробити fetch на бекенд для валідації hash
-              const res = await fetch("https://your-railway-url.up.railway.app/api/verify-and-login", {
+              const res = await fetch("https://beneficial-forgiveness.up.railway.app/api/verify-and-login", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
