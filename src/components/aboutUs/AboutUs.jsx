@@ -8,18 +8,18 @@ export default function AboutUs() {
 
   const handleAuth = async (data) => {
     console.log("🌐 Telegram data:", data);
-
+  
     try {
       const res = await fetch('https://fiv-production.up.railway.app/api/verify-and-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-
+  
       const result = await res.json();
       if (result.success) {
         console.log('✅ Успішна авторизація:', result.user);
-        // Збережи користувача в контексті або localStorage тут
+        localStorage.setItem('user', JSON.stringify(result.user)); // або в контекст
       } else {
         console.error('❌ Помилка авторизації:', result.message);
       }
@@ -32,14 +32,13 @@ export default function AboutUs() {
     <section className="about-us" id="aboutUs">
       <div className="about-us__container">
         <h2 className="about-us__title">Про нас</h2>
-        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <div>
           <h2>Авторизація через Telegram</h2>
-          <LoginButton
-            botUsername="fivone_bot"
-            onAuthCallback={handleAuth}
+          <TelegramLoginButton
+            botName="fivone_bot"
+            dataOnauth={handleAuth}
             buttonSize="large"
-            cornerRadius={8}
-            showAvatar={true}
+            requestAccess="write"
             lang="uk"
           />
         </div>
