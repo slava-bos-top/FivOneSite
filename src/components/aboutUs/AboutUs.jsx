@@ -36,7 +36,7 @@ export default function AboutUs() {
         <div>
           <h2>Авторизація через Telegram</h2>
           <TelegramLoginButton
-            botName="fivone_bot"
+            botName="ggggggggggbhhgt_bot"
             dataOnauth={handleAuth}
             buttonSize="large"
             requestAccess="write"
