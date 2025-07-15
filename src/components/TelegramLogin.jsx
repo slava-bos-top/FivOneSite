@@ -10,7 +10,7 @@ const TelegramLogin = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            chat_id: 527493827, // ✅ user.id з Telegram
+            chat_id: 886330407, // ✅ user.id з Telegram
             text: "👋 Привіт з Vercel сайту!",
           }),
         });
