@@ -5,7 +5,16 @@ import './AboutUs.css';
 import { LoginButton } from '@telegram-auth/react';
 import TelegramLoginButton from "telegram-login-button";
 
+import { v4 as uuidv4 } from 'uuid';
+
+const token = uuidv4(); // напр. 'abc123-456-def'
+
 export default function AboutUs() {
+
+  // Зберігаємо токен у localStorage або state
+  localStorage.setItem('tg_login_token', token);
+
+  const telegramBotLink = `https://t.me/YOUR_BOT_USERNAME?start=token_${token}`;
 
   const handleAuth = async (data) => {
     console.log("🌐 Telegram data:", data);
@@ -44,8 +53,8 @@ export default function AboutUs() {
           />
         </div>
         <TelegramManualLogin />
-        <a href="https://t.me/fivone_bot?start=login_123456" target="_blank">
-          <button>Увійти через Telegram</button>
+        <a href={telegramBotLink} target="_blank" rel="noopener noreferrer">
+          Увійти через Telegram
         </a>
 
         <div className="about-us__content">

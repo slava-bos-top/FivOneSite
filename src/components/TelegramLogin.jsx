@@ -1,44 +1,33 @@
-// TelegramLogin.jsx
-import { LoginButton } from '@telegram-auth/react';
+import React, { useState, useEffect } from "react";
 
-function TelegramLogin() {
+const TelegramLogin = () => {
+  const telegramBotLink = `https://t.me/fivone_bot`;
 
-  const handleAuth = async (data) => {
-    console.log("🌐 Telegram data:", data);
-
-    try {
-      const res = await fetch('/api/verify-and-login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      const result = await res.json();
-      if (result.success) {
-        console.log('✅ Успішна авторизація:', result.user);
-        // Збережи користувача в контексті або localStorage тут
-      } else {
-        console.error('❌ Помилка авторизації:', result.message);
-      }
-    } catch (e) {
-      console.error('❌ Server error:', e);
-    }
-  };
-
+    const sendToTelegram = async () => {
+        const response = await fetch("/api/send-message", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: 527493827, // ✅ user.id з Telegram
+            text: "👋 Привіт з Vercel сайту!",
+          }),
+        });
+      
+        const data = await response.json();
+        console.log("Result:", data);
+      };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-      <h2>Авторизація через Telegram</h2>
-      <LoginButton
-        botUsername="fivone_bot"
-        onAuthCallback={handleAuth}
-        buttonSize="large"
-        cornerRadius={8}
-        showAvatar={true}
-        lang="uk"
-      />
+    <div>
+      <a href={telegramBotLink} target="_blank" rel="noopener noreferrer">
+        Увійти через Telegram
+      </a>
+
+      <button onClick={sendToTelegram}>Надіслати повідомлення</button>
     </div>
   );
-}
+};
 
 export default TelegramLogin;
