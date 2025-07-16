@@ -6,7 +6,6 @@ import Courses from './components/courses/Courses';
 import Competition from './components/competition/Competition';
 import Main from './components/main/Main';
 import TelegramLogin from './components/TelegramLogin';
-import TelegramCallback from './components/TelegramCallback';
 
 function App() {
   console.log('App rendered');
@@ -17,7 +16,6 @@ function App() {
         <Route path="/course" element={<Courses />} />
         <Route path="/marathon" element={<Competition />} />
         <Route path='/login' element={<TelegramLogin />} />
-        <Route path="/telegram-callback" element={<TelegramCallback />} />
       </Routes>
     </div>
   );
