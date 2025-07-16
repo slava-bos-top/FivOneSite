@@ -4,44 +4,62 @@ const TelegramLogin = () => {
   const [phone, setPhone] = useState("");
   const telegramBotLink = "https://t.me/fivone_bot";
 
-  const savePhoneToSheet = async (phone) => {
-    try {
-      const res = await fetch("/api/forward-to-sheets", {
-        method: "POST",
-        body: JSON.stringify({ phone }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+//   const savePhoneToSheet = async (phone) => {
+//     try {
+//       const res = await fetch("/api/forward-to-sheets", {
+//         method: "POST",
+//         body: JSON.stringify({ phone }),
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       });
   
-      const result = await res.json();
-      console.log("📄 Google Sheets result:", result);
-    } catch (err) {
-      console.error("❌ Google Sheets error:", err);
-    }
-  };
+//       const result = await res.json();
+//       console.log("📄 Google Sheets result:", result);
+//     } catch (err) {
+//       console.error("❌ Google Sheets error:", err);
+//     }
+//   };
 
   const sendToTelegram = async () => {
     if (!phone) {
       alert("Введіть номер телефону");
       return;
     }
-
-    await savePhoneToSheet(phone);
-
-    const response = await fetch("/api/send-message", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: 886330407, // ❗ Тут постав свій userId або збережений з логіки бота
-        text: `☎️ Користувач намагається увійти з номером: ${phone}\nПотрібне підтвердження. Для підтвердження натисніть /start`,
-      }),
-    });
-
-    const data = await response.json();
-    console.log("Telegram response:", data);
+  
+    try {
+      // 1️⃣ Перевірка номера та збереження (якщо новий)
+      const checkRes = await fetch("/api/check-or-save-phone", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone }),
+      });
+  
+      const checkData = await checkRes.json();
+      console.log("📄 Перевірка номера:", checkData);
+  
+      // 2️⃣ Формуємо повідомлення
+      let message = "";
+  
+      if (checkData.exists) {
+        message = `✅ Користувач намагається увійти з номером: ${phone}\nПідтвердіть вхід у боті`;
+      } else {
+        message = `❗ Новий користувач хоче зареєструватись з номером: ${phone}\nПерейдіть у бот /start`;
+      }
+  
+      // 3️⃣ Відправка повідомлення в Telegram
+      await fetch("/api/send-message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: 886330407, // ← твій Telegram user_id
+          text: message,
+        }),
+      });
+  
+    } catch (err) {
+      console.error("❌ Помилка:", err);
+    }
   };
 
   return (
