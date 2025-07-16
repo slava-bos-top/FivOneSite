@@ -2,88 +2,83 @@ import React, { useState } from "react";
 
 const TelegramLogin = () => {
   const [phone, setPhone] = useState("");
+  const [checking, setChecking] = useState(false);
   const encodedPhone = `phone_${phone.replace("+", "")}`;
   const telegramBotLink = `https://t.me/fivone_bot?start=${encodedPhone}`;
 
-  const sendToTelegram = async () => {
+  const checkIfPhoneExists = async () => {
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbx2xdYFvKM1X7Hoc6uaHSp4hbE_dmRHyI3ud0N4w1XgGKrB2A68JrYni-iNGPvhNd4O/exec?phone=${phone}`);
+    const data = await res.json();
+    return data.confirmed === "true" || data.confirmed === true;
+  };
+
+  const startConfirmationPolling = () => {
+    let attempts = 0;
+    const maxAttempts = 12; // ~1 хвилина
+
+    const intervalId = setInterval(async () => {
+      const exists = await checkIfPhoneExists();
+
+      if (exists) {
+        clearInterval(intervalId);
+        setChecking(false);
+        alert("✅ Реєстрація підтверджена!");
+      } else if (attempts >= maxAttempts) {
+        clearInterval(intervalId);
+        setChecking(false);
+        alert("⏳ Час підтвердження вийшов. Спробуйте ще раз.");
+      }
+
+      attempts++;
+    }, 5000);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
     if (!phone) {
-      alert("Введіть номер телефону");
+      alert("📱 Введіть номер телефону");
       return;
     }
-  
-    try {
-      // 1️⃣ Перевірка номера та збереження (якщо новий)
-      const checkRes = await fetch("/api/check-or-save-phone", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone }),
-      });
-  
-      const checkData = await checkRes.json();
-      console.log("📄 Перевірка номера:", checkData);
-  
-      // 2️⃣ Формуємо повідомлення
-      let message = "";
-  
-      if (checkData.exists) {
-        message = `✅ Ви успішно зайшли у свій кабінет з номером: ${phone}\nПідтвердіть вхід у боті`;
-      } else {
-        message = `❗ Новий користувач хоче зареєструватись з номером: ${phone}\nПерейдіть у бот /start`;
-      }
-  
-      // 3️⃣ Відправка повідомлення в Telegram
-      await fetch("/api/send-message", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            chat_id: 886330407,
-            text: message,
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Підтвердити",
-                    callback_data: "toconfirmdata",
-                  },
-                ],
-              ],
-            },
-        }),
-      });
-  
-    } catch (err) {
-      console.error("❌ Помилка:", err);
+
+    const exists = await checkIfPhoneExists();
+
+    if (exists) {
+      alert("⚠️ Користувач з таким номером вже зареєстрований.");
+      return;
     }
+
+    setChecking(true);
+    window.open(telegramBotLink, "_blank");
+    startConfirmationPolling();
   };
 
   return (
-    <div style={{width: "100%", alignItems: "center", paddingTop: "100px", display: "flex", justifyContent: "center"}}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxWidth: "300px" }}>
+    <div style={{ width: "100%", alignItems: "center", paddingTop: "100px", display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxWidth: "300px" }}>
         <input
-            type="tel"
-            placeholder="+380..."
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            style={{ padding: "8px", fontSize: "16px" }}
+          type="tel"
+          placeholder="+380..."
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          style={{ padding: "8px", fontSize: "16px" }}
         />
 
-        <a
-            href={telegramBotLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            // onClick={sendToTelegram}
-            style={{
+        <button
+          onClick={handleLogin}
+          disabled={checking}
+          style={{
             textAlign: "center",
             background: "#0088cc",
             color: "#fff",
             padding: "10px",
             borderRadius: "6px",
-            textDecoration: "none",
-            }}
+            border: "none",
+            cursor: "pointer",
+          }}
         >
-            Увійти через Telegram
-        </a>
-        </div>
+          {checking ? "⏳ Очікуємо підтвердження..." : "Увійти через Telegram"}
+        </button>
+      </div>
     </div>
   );
 };
