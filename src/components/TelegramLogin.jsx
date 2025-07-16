@@ -42,7 +42,7 @@ const TelegramLogin = () => {
                 [
                   {
                     text: "Перейти до бота",
-                    url: telegramBotLink,
+                    callback_data: "nextthird",
                   },
                 ],
               ],

@@ -2,60 +2,16 @@ import React from 'react';
 import TelegramManualLogin from '../TelegramManualLogin';
 import './AboutUs.css';
 
-import { LoginButton } from '@telegram-auth/react';
-import TelegramLoginButton from "telegram-login-button";
-
 import { v4 as uuidv4 } from 'uuid';
 
 const token = uuidv4(); // напр. 'abc123-456-def'
 
 export default function AboutUs() {
 
-  // Зберігаємо токен у localStorage або state
-  localStorage.setItem('tg_login_token', token);
-
-  const telegramBotLink = `https://t.me/YOUR_BOT_USERNAME?start=token_${token}`;
-
-  const handleAuth = async (data) => {
-    console.log("🌐 Telegram data:", data);
-  
-    try {
-      const res = await fetch('/api/verify-and-login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-  
-      const result = await res.json();
-      if (result.success) {
-        console.log('✅ Успішна авторизація:', result.user);
-        localStorage.setItem('user', JSON.stringify(result.user)); // або в контекст
-      } else {
-        console.error('❌ Помилка авторизації:', result.message);
-      }
-    } catch (e) {
-      console.error('❌ Server error:', e);
-    }
-  };
-
   return (
     <section className="about-us" id="aboutUs">
       <div className="about-us__container">
         <h2 className="about-us__title">Про нас</h2>
-        <div>
-          <h2>Авторизація через Telegram</h2>
-          <TelegramLoginButton
-            botName="ggggggggggbhhgt_bot"
-            dataOnauth={handleAuth}
-            buttonSize="large"
-            requestAccess="write"
-            lang="uk"
-          />
-        </div>
-        <TelegramManualLogin />
-        <a href={telegramBotLink} target="_blank" rel="noopener noreferrer">
-          Увійти через Telegram
-        </a>
 
         <div className="about-us__content">
           <div className="about-us__left">
