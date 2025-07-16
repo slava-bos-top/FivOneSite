@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 const TelegramLogin = () => {
   const [phone, setPhone] = useState("");
-  const telegramBotLink = "https://t.me/fivone_bot";
+
+  const telegramBotLink = `https://t.me/fivone_bot?start=phone_${phone}`;
 
   const sendToTelegram = async () => {
     if (!phone) {
@@ -70,7 +71,7 @@ const TelegramLogin = () => {
             href={telegramBotLink}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={sendToTelegram}
+            // onClick={sendToTelegram}
             style={{
             textAlign: "center",
             background: "#0088cc",
