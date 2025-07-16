@@ -1,5 +1,4 @@
 import React from 'react';
-import TelegramManualLogin from '../TelegramManualLogin';
 import './AboutUs.css';
 
 import { v4 as uuidv4 } from 'uuid';
