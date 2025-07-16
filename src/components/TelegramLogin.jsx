@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 const TelegramLogin = () => {
   const [phone, setPhone] = useState("");
-
-  const telegramBotLink = `https://t.me/fivone_bot?start=phone_${phone}`;
+  const encodedPhone = `phone_${phone.replace("+", "")}`;
+  const telegramBotLink = `https://t.me/fivone_bot?start=${encodedPhone}`;
 
   const sendToTelegram = async () => {
     if (!phone) {
