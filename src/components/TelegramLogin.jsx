@@ -26,31 +26,33 @@ const TelegramLogin = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxWidth: "300px" }}>
-      <input
-        type="tel"
-        placeholder="+380..."
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        style={{ padding: "8px", fontSize: "16px" }}
-      />
+    <div style={{alignItems: "center", paddingTop: "100px"}}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxWidth: "300px" }}>
+        <input
+            type="tel"
+            placeholder="+380..."
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            style={{ padding: "8px", fontSize: "16px" }}
+        />
 
-      <a
-        href={telegramBotLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={sendToTelegram}
-        style={{
-          textAlign: "center",
-          background: "#0088cc",
-          color: "#fff",
-          padding: "10px",
-          borderRadius: "6px",
-          textDecoration: "none",
-        }}
-      >
-        Увійти через Telegram
-      </a>
+        <a
+            href={telegramBotLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={sendToTelegram}
+            style={{
+            textAlign: "center",
+            background: "#0088cc",
+            color: "#fff",
+            padding: "10px",
+            borderRadius: "6px",
+            textDecoration: "none",
+            }}
+        >
+            Увійти через Telegram
+        </a>
+        </div>
     </div>
   );
 };
