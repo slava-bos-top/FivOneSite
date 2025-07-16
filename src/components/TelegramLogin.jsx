@@ -25,7 +25,7 @@ const TelegramLogin = () => {
       let message = "";
   
       if (checkData.exists) {
-        message = `✅ Користувач намагається увійти з номером: ${phone}\nПідтвердіть вхід у боті`;
+        message = `✅ Ви успішно зайшли у свій кабінет з номером: ${phone}\nПідтвердіть вхід у боті`;
       } else {
         message = `❗ Новий користувач хоче зареєструватись з номером: ${phone}\nПерейдіть у бот /start`;
       }
@@ -35,8 +35,18 @@ const TelegramLogin = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          chat_id: 886330407, // ← твій Telegram user_id
-          text: message,
+            chat_id: 886330407,
+            text: message,
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "Перейти до бота",
+                    url: telegramBotLink,
+                  },
+                ],
+              ],
+            },
         }),
       });
   
