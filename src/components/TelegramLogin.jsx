@@ -4,23 +4,6 @@ const TelegramLogin = () => {
   const [phone, setPhone] = useState("");
   const telegramBotLink = "https://t.me/fivone_bot";
 
-//   const savePhoneToSheet = async (phone) => {
-//     try {
-//       const res = await fetch("/api/forward-to-sheets", {
-//         method: "POST",
-//         body: JSON.stringify({ phone }),
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       });
-  
-//       const result = await res.json();
-//       console.log("📄 Google Sheets result:", result);
-//     } catch (err) {
-//       console.error("❌ Google Sheets error:", err);
-//     }
-//   };
-
   const sendToTelegram = async () => {
     if (!phone) {
       alert("Введіть номер телефону");
