@@ -4,11 +4,30 @@ const TelegramLogin = () => {
   const [phone, setPhone] = useState("");
   const telegramBotLink = "https://t.me/fivone_bot";
 
+  const savePhoneToSheet = async (phone) => {
+    try {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbxIVUAxQdpKz9siQA28WBL4Jnf7kQlkGgddpLnzl5YzAczIwfB4TUvZUVYfaPzS3Wnf/exec", {
+        method: "POST",
+        body: JSON.stringify({ phone }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      const result = await res.json();
+      console.log("📄 Google Sheets result:", result);
+    } catch (err) {
+      console.error("❌ Google Sheets error:", err);
+    }
+  };
+
   const sendToTelegram = async () => {
     if (!phone) {
       alert("Введіть номер телефону");
       return;
     }
+
+    await savePhoneToSheet(phone);
 
     const response = await fetch("/api/send-message", {
       method: "POST",
@@ -26,7 +45,7 @@ const TelegramLogin = () => {
   };
 
   return (
-    <div style={{alignItems: "center", paddingTop: "100px"}}>
+    <div style={{width: "100%", alignItems: "center", paddingTop: "100px"}}>
         <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxWidth: "300px" }}>
         <input
             type="tel"
