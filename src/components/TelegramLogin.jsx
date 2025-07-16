@@ -7,7 +7,7 @@ const TelegramLogin = () => {
   const telegramBotLink = `https://t.me/fivone_bot?start=${encodedPhone}`;
 
   const checkIfPhoneExists = async () => {
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbx2xdYFvKM1X7Hoc6uaHSp4hbE_dmRHyI3ud0N4w1XgGKrB2A68JrYni-iNGPvhNd4O/exec?phone=${phone}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbx2xdYFvKM1X7Hoc6uaHSp4hbE_dmRHyI3ud0N4w1XgGKrB2A68JrYni-iNGPvhNd4O/exec?phone=${encodedPhone}`);
     const data = await res.json();
     return data.confirmed === "true" || data.confirmed === true;
   };
