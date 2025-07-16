@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const { phone } = req.body;
   
     try {
-      const scriptURL = "https://script.google.com/macros/s/AKfycbx6QMMLKcY8YfzUARUjSHTMfrm6JCoUhLbpWkey2k6tj8AV7NAi9DrtA1BybDIFJNA8/exec";
+      const scriptURL = "https://script.google.com/macros/s/AKfycbwpAYzKmXm4qVsY9ph1XCfuZPd7tN3xD-lFhRwm_MdYJdENNBjRlzD1LooMaKLMIsrx/exec";
   
       const response = await fetch(scriptURL, {
         method: "POST",
