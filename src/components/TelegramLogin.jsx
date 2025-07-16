@@ -41,8 +41,8 @@ const TelegramLogin = () => {
               inline_keyboard: [
                 [
                   {
-                    text: "Перейти до бота",
-                    callback_data: "nextthird",
+                    text: "Підтвердити",
+                    callback_data: "toconfirmdata",
                   },
                 ],
               ],
@@ -56,7 +56,7 @@ const TelegramLogin = () => {
   };
 
   return (
-    <div style={{width: "100%", alignItems: "center", paddingTop: "100px"}}>
+    <div style={{width: "100%", alignItems: "center", paddingTop: "100px", display: "flex", justifyContent: "center"}}>
         <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxWidth: "300px" }}>
         <input
             type="tel"
