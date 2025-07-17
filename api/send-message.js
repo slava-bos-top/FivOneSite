@@ -19,6 +19,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         chat_id,
         text,
+        reply_markup,
         parse_mode: "HTML",
       }),
     });

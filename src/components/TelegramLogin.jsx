@@ -51,6 +51,16 @@ const TelegramLogin = () => {
         body: JSON.stringify({
           chat_id: data.userId,
           text: `👋 Вітаємо, ${data.name} ${data.surname}! Ви вже авторизовані.`,
+          reply_markup: {
+            inline_keyboard: [
+              [
+                {
+                  text: "Підтвердити",
+                  callback_data: "comfirmsignIn" // ← будь-яке посилання
+                },
+              ],
+            ],
+          },
         }),
       });
   
