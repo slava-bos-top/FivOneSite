@@ -39,26 +39,14 @@ const TelegramLogin = () => {
       alert("📱 Введіть номер телефону");
       return;
     }
-  
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbyZFxnZV06pB79oViWrYMGgJwfI4uD-0xpaLb_nHA7oaVC3z3YTd2A9BQoH-bPb-xuw/exec?phone=${phone.replace("+", "")}`);
-    const data = await res.json();
-    console.log(data)
-  
-    if (data.confirmed) {
-      // 🔔 Надсилаємо повідомлення в Telegram
-      const text = `👋 Вітаємо, ${data.name} ${data.surname}! Ви вже авторизовані.`;
-      const sendUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${data.userId}&text=${encodeURIComponent(text)}`;
-  
-      try {
-        await fetch(sendUrl);
-        alert("⚠️ Ви вже авторизовані. Повідомлення надіслано у Telegram.");
-      } catch (err) {
-        alert("⚠️ Ви вже авторизовані, але не вдалося надіслати повідомлення.");
-      }
-  
+
+    const exists = await checkIfPhoneExists();
+
+    if (exists) {
+      alert("⚠️ Користувач з таким номером вже зареєстрований.");
       return;
     }
-  
+
     setChecking(true);
     window.open(telegramBotLink, "_blank");
     startConfirmationPolling();
