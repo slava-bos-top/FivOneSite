@@ -56,7 +56,7 @@ const TelegramLogin = () => {
               [
                 {
                   text: "Підтвердити",
-                  url: "https://t.me/fivone_bot",
+                  callback_data: "comfirmsignIn",
                 },
               ],
             ],

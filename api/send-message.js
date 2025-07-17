@@ -3,7 +3,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ success: false, message: 'Method Not Allowed' });
   }
 
-  const { chat_id, text } = req.body;
+  const { chat_id, text, reply_markup } = req.body;
 
   if (!chat_id || !text) {
     return res.status(400).json({ success: false, message: 'chat_id and text are required' });
