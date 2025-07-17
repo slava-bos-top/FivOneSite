@@ -44,6 +44,7 @@ const TelegramLogin = () => {
     const data = await res.json();
   
     if (data.confirmed) {
+      console.log(data.confirmed)
       // Надсилання повідомлення через наш API
       const response = await fetch("/api/send-message", {
         method: "POST",
@@ -68,9 +69,34 @@ const TelegramLogin = () => {
   
       if (result.success) {
         alert("⚠️ Ви вже авторизовані. Повідомлення надіслано у Telegram.");
-      } else {
-        alert("⚠️ Ви вже авторизовані, але повідомлення не надіслано.");
-      }
+        return;
+      } 
+
+      alert("🔄 Очікуємо підтвердження у Telegram...");
+
+        // ⏳ Перевіряємо кожні 3 секунди колонку F
+        const intervalId = setInterval(async () => {
+        const checkRes = await fetch(
+            `https://script.google.com/macros/s/AKfycbwMWa8Z6sehB_O3KZRpiCwoFt5ne_O_ubcwbFVFrXBL2cOtGE1AMPrcodmwzFwYpNgm/exec?phone=${phone.replace("+", "")}`
+        );
+        const checkData = await checkRes.json();
+
+        // Якщо колонка F = 1
+        if (checkData.confirmed === "1") {
+            clearInterval(intervalId); // зупиняємо перевірку
+
+            alert(`✅ Вхід підтверджено! Вітаємо, ${checkData.name} ${checkData.surname}`);
+
+            // 🔄 (Необов’язково) оновлюємо колонку F на "0", якщо маєш API для цього
+            await fetch("/api/set-confirmed-zero", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ phone }),
+            });
+
+            // Далі можна зберегти в локальне сховище або перейти на іншу сторінку
+        }
+        }, 3000); 
   
       return;
     }
