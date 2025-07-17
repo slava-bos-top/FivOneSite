@@ -3,41 +3,33 @@ import React, { useState } from "react";
 const TelegramLogin = () => {
   const [phone, setPhone] = useState("");
   const [checking, setChecking] = useState(false);
+  const encodedPhone = `phone_${phone.replace("+", "")}`;
+  const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${phone.replace("+", "")}`;
 
-  const cleanedPhone = phone.replace("+", "");
-  const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${cleanedPhone}`;
-
-  const checkIfConfirmed = async () => {
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbx3pPIYYnATHzeM95xJKVHVXqbvuOFx3YqyGxJ95mhxwKDfyGM3VM4iQsm8KeaoZKV9/exec?phone=${cleanedPhone}`);
+  const checkIfPhoneExists = async () => {
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbwMWa8Z6sehB_O3KZRpiCwoFt5ne_O_ubcwbFVFrXBL2cOtGE1AMPrcodmwzFwYpNgm/exec?phone=${phone.replace("+", "")}`);
     const data = await res.json();
-    return data.confirmed === "1" ? data : null;
+    return data.confirmed === "true" || data.confirmed === true;
   };
 
-  const resetConfirmedFlag = async () => {
-    await fetch("https://script.google.com/macros/s/AKfycbx3pPIYYnATHzeM95xJKVHVXqbvuOFx3YqyGxJ95mhxwKDfyGM3VM4iQsm8KeaoZKV9/exec", {
-      method: "POST",
-      body: JSON.stringify({ phone: cleanedPhone }),
-      headers: { "Content-Type": "application/json" },
-    });
-  };
-
-  const startPolling = () => {
+  const startConfirmationPolling = () => {
     let attempts = 0;
-    const maxAttempts = 12;
+    const maxAttempts = 12; // ~1 хвилина
 
-    const interval = setInterval(async () => {
-      const userData = await checkIfConfirmed();
+    const intervalId = setInterval(async () => {
+      const exists = await checkIfPhoneExists();
 
-      if (userData) {
-        clearInterval(interval);
-        await resetConfirmedFlag();
+      if (exists) {
+        clearInterval(intervalId);
         setChecking(false);
-        alert(`✅ Вхід підтверджено. Вітаємо, ${userData.name}!`);
-      } else if (++attempts >= maxAttempts) {
-        clearInterval(interval);
+        alert("✅ Реєстрація підтверджена!");
+      } else if (attempts >= maxAttempts) {
+        clearInterval(intervalId);
         setChecking(false);
         alert("⏳ Час підтвердження вийшов. Спробуйте ще раз.");
       }
+
+      attempts++;
     }, 5000);
   };
 
@@ -47,41 +39,46 @@ const TelegramLogin = () => {
       alert("📱 Введіть номер телефону");
       return;
     }
-
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbx3pPIYYnATHzeM95xJKVHVXqbvuOFx3YqyGxJ95mhxwKDfyGM3VM4iQsm8KeaoZKV9/exec?phone=${cleanedPhone}`);
+  
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbwMWa8Z6sehB_O3KZRpiCwoFt5ne_O_ubcwbFVFrXBL2cOtGE1AMPrcodmwzFwYpNgm/exec?phone=${phone.replace("+", "")}`);
     const data = await res.json();
-
-    if (data.confirmed === "0") {
-      // 🔹 Користувач вже існує, але ще не підтвердив вхід
+  
+    if (data.confirmed) {
+      // Надсилання повідомлення через наш API
       const response = await fetch("/api/send-message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chat_id: data.userId,
-          text: `👋 Вітаємо, ${data.name} ${data.surname}! Натисніть кнопку нижче, щоб підтвердити вхід.`,
+          text: `👋 Вітаємо, ${data.name} ${data.surname}! Ви вже авторизовані.`,
           reply_markup: {
             inline_keyboard: [
-              [{ text: "✅ Підтвердити", callback_data: "comfirmsignIn" }],
+              [
+                {
+                  text: "Підтвердити",
+                  callback_data: "comfirmsignIn",
+                },
+              ],
             ],
           },
         }),
       });
-
+  
       const result = await response.json();
+  
       if (result.success) {
-        alert("📨 Повідомлення надіслано у Telegram");
+        alert("⚠️ Ви вже авторизовані. Повідомлення надіслано у Telegram.");
       } else {
-        alert("⚠️ Повідомлення не вдалося надіслати.");
+        alert("⚠️ Ви вже авторизовані, але повідомлення не надіслано.");
       }
-
-      setChecking(true);
-      startPolling();
-    } else {
-      // 🔹 Користувач ще не зареєстрований → ведемо в Telegram
-      setChecking(true);
-      window.open(telegramBotLink, "_blank");
-      startPolling();
+  
+      return;
     }
+  
+    // Якщо не зареєстрований — відкриваємо Telegram
+    setChecking(true);
+    window.open(telegramBotLink, "_blank");
+    startConfirmationPolling();
   };
 
   return (
