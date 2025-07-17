@@ -8,6 +8,7 @@ export default async function handler(req, res) {
     if (!phone) {
       return res.status(400).json({ success: false, message: 'Phone is required' });
     }
+    console.log(phone)
   
     try {
       const scriptUrl = "https://script.google.com/macros/s/AKfycbz5Q7sPscrmBnvUM60qM3135hWZyOMMfNJUrNHu_qQ8qQzY8oeVKfYX_ST8rqbUT0Y/exec";
@@ -24,6 +25,7 @@ export default async function handler(req, res) {
       });
   
       const data = await resGAS.json();
+      console.log(data)
   
       if (data.success) {
         return res.status(200).json({ success: true });
