@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ success: false, message: 'chat_id and text are required' });
   }
 
-  const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+  const BOT_TOKEN = process.env.REACT_APP_BOT_TOKEN;
   const telegramApiUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
   try {
