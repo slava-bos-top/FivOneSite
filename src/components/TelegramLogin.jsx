@@ -72,7 +72,7 @@ const TelegramLogin = () => {
         return;
       }
 
-      alert("🔄 Очікуємо підтвердження у Telegram...");
+      console.log("🔄 Очікуємо підтвердження у Telegram...");
 
         // ⏳ Перевіряємо кожні 3 секунди колонку F
       const intervalId = setInterval(async () => {
@@ -80,6 +80,7 @@ const TelegramLogin = () => {
             `https://script.google.com/macros/s/AKfycbzC5FCDTYMLbsVvgMk2i1EpTHjPSFNbZ6GqRkt_f9ywIH0PP4F6fcGq5myRqRiGpzEf/exec?phone=${phone.replace("+", "")}`
         );
         const checkData = await checkRes.json();
+        console.log(checkData)
 
         // Якщо колонка F = 1
         if (checkData.confirmed === "1" || checkData.confirmed === 1) {
