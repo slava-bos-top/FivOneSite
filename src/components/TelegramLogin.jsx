@@ -5,25 +5,41 @@ const TelegramLogin = () => {
   const [checking, setChecking] = useState(false);
   const encodedPhone = `phone_${phone.replace("+", "")}`;
   const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${phone.replace("+", "")}`;
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbwQpwZqbebaPZ8ohiz5BguOgUanuuSPpCyqkOa7AqS6Oy1eD7yEd_IzCCmhaDuZY8s/exec";
 
   const checkIfPhoneExists = async () => {
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbwQtnZ7WQZ5T2IT-9nakPTaPTe-CeyUE7B9IhL18LnbqU8wgM5r845pVpz-2XuWP43z/exec?phone=${phone.replace("+", "")}`);
+    const res = await fetch(`${GAS_URL}?phone=${phone.replace("+", "")}`);
     const data = await res.json();
-    return data.confirmed === "true" || data.confirmed === true;
+    return data.confirmed === "1" || data.confirmed === 1;
+  };
+
+  const resetConfirmed = async () => {
+    await fetch(GAS_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        phone: phone.replace("+", ""),
+        resetConfirmed: true,
+      }),
+    });
   };
 
   const startConfirmationPolling = () => {
     let attempts = 0;
-    const maxAttempts = 12; // ~1 хвилина
+    const maxAttempts = 60; // 5 хв = 60 спроб по 5 секунд
 
     const intervalId = setInterval(async () => {
-      const exists = await checkIfPhoneExists();
+      const confirmed = await checkIfPhoneExists();
 
-      if (exists) {
+      if (confirmed) {
         clearInterval(intervalId);
         setChecking(false);
         alert("✅ Реєстрація підтверджена!");
-      } else if (attempts >= maxAttempts) {
+        await resetConfirmed();
+        return;
+      }
+
+      if (attempts >= maxAttempts) {
         clearInterval(intervalId);
         setChecking(false);
         alert("⏳ Час підтвердження вийшов. Спробуйте ще раз.");
@@ -39,12 +55,12 @@ const TelegramLogin = () => {
       alert("📱 Введіть номер телефону");
       return;
     }
-  
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbwQtnZ7WQZ5T2IT-9nakPTaPTe-CeyUE7B9IhL18LnbqU8wgM5r845pVpz-2XuWP43z/exec?phone=${phone.replace("+", "")}`);
+
+    const res = await fetch(`${GAS_URL}?phone=${phone.replace("+", "")}`);
     const data = await res.json();
-  
-    if (data.confirmed) {
-      // Надсилання повідомлення через наш API
+
+    if (data.confirmed === "1" || data.confirmed === 1) {
+      // Надсилаємо повідомлення
       const response = await fetch("/api/send-message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -63,19 +79,17 @@ const TelegramLogin = () => {
           },
         }),
       });
-  
+
       const result = await response.json();
-  
+
       if (result.success) {
         alert("⚠️ Ви вже авторизовані. Повідомлення надіслано у Telegram.");
       } else {
         alert("⚠️ Ви вже авторизовані, але повідомлення не надіслано.");
       }
-  
-      return;
     }
-  
-    // Якщо не зареєстрований — відкриваємо Telegram
+
+    // Відкрити Telegram-бота і запустити polling
     setChecking(true);
     window.open(telegramBotLink, "_blank");
     startConfirmationPolling();
