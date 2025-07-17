@@ -24,8 +24,17 @@ export default async function handler(req, res) {
         }),
       });
   
-      const data = await resGAS.json();
-      console.log(data)
+    //   const data = await resGAS.json();
+      const text = await resGAS.text();
+        console.log("RAW response from GAS:", text);
+
+        let data;
+        try {
+            data = JSON.parse(text);
+        } catch (e) {
+            return res.status(500).json({ success: false, message: "Failed to parse GAS response" });
+        }
+    //   console.log(data)
   
       if (data.success) {
         return res.status(200).json({ success: true });
@@ -33,6 +42,7 @@ export default async function handler(req, res) {
         return res.status(500).json({ success: false, message: "Google Apps Script error" });
       }
     } catch (err) {
+      console.error("Server error:", err); 
       return res.status(500).json({ success: false, message: err.message });
     }
   }
