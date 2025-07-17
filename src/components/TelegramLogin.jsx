@@ -7,7 +7,7 @@ const TelegramLogin = () => {
   const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${phone.replace("+", "")}`;
 
   const checkIfPhoneExists = async () => {
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbydkMOhNzyIhhZzGYBdRFQCn48hx27gMkWkqJf7eWuT_ILj6NKWP8MdXWozhk1BOGA/exec?phone=${phone.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbzC5FCDTYMLbsVvgMk2i1EpTHjPSFNbZ6GqRkt_f9ywIH0PP4F6fcGq5myRqRiGpzEf/exec?phone=${phone.replace("+", "")}`);
     const data = await res.json();
     return data.confirmed === "true" || data.confirmed === true;
   };
@@ -40,7 +40,7 @@ const TelegramLogin = () => {
       return;
     }
   
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbydkMOhNzyIhhZzGYBdRFQCn48hx27gMkWkqJf7eWuT_ILj6NKWP8MdXWozhk1BOGA/exec?phone=${phone.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbzC5FCDTYMLbsVvgMk2i1EpTHjPSFNbZ6GqRkt_f9ywIH0PP4F6fcGq5myRqRiGpzEf/exec?phone=${phone.replace("+", "")}`);
     const data = await res.json();
   
     if (data.confirmed) {
@@ -77,7 +77,7 @@ const TelegramLogin = () => {
         // ⏳ Перевіряємо кожні 3 секунди колонку F
       const intervalId = setInterval(async () => {
         const checkRes = await fetch(
-            `https://script.google.com/macros/s/AKfycbydkMOhNzyIhhZzGYBdRFQCn48hx27gMkWkqJf7eWuT_ILj6NKWP8MdXWozhk1BOGA/exec?phone=${phone.replace("+", "")}`
+            `https://script.google.com/macros/s/AKfycbzC5FCDTYMLbsVvgMk2i1EpTHjPSFNbZ6GqRkt_f9ywIH0PP4F6fcGq5myRqRiGpzEf/exec?phone=${phone.replace("+", "")}`
         );
         const checkData = await checkRes.json();
 
@@ -95,6 +95,10 @@ const TelegramLogin = () => {
             });
 
             // Далі можна зберегти в локальне сховище або перейти на іншу сторінку
+            // Можна зробити навігацію або збереження
+            // localStorage.setItem('user', JSON.stringify(checkData));
+            // router.push('/dashboard');
+
         }
       }, 3000); 
   
