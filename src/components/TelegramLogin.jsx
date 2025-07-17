@@ -4,7 +4,7 @@ const TelegramLogin = () => {
   const [phone, setPhone] = useState("");
   const [checking, setChecking] = useState(false);
   const encodedPhone = `phone_${phone.replace("+", "")}`;
-  const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${encodedPhone}`;
+  const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${phone.replace("+", "")}`;
 
   const checkIfPhoneExists = async () => {
     const res = await fetch(`https://script.google.com/macros/s/AKfycbyZFxnZV06pB79oViWrYMGgJwfI4uD-0xpaLb_nHA7oaVC3z3YTd2A9BQoH-bPb-xuw/exec?phone=${phone.replace("+", "")}`);
