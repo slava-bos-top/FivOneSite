@@ -7,7 +7,7 @@ const TelegramLogin = () => {
   const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${phone.replace("+", "")}`;
 
   const checkIfPhoneExists = async () => {
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbyZFxnZV06pB79oViWrYMGgJwfI4uD-0xpaLb_nHA7oaVC3z3YTd2A9BQoH-bPb-xuw/exec?phone=${phone.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbwQtnZ7WQZ5T2IT-9nakPTaPTe-CeyUE7B9IhL18LnbqU8wgM5r845pVpz-2XuWP43z/exec?phone=${phone.replace("+", "")}`);
     const data = await res.json();
     return data.confirmed === "true" || data.confirmed === true;
   };
@@ -39,14 +39,33 @@ const TelegramLogin = () => {
       alert("📱 Введіть номер телефону");
       return;
     }
-
-    const exists = await checkIfPhoneExists();
-
-    if (exists) {
-      alert("⚠️ Користувач з таким номером вже зареєстрований.");
+  
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbwQtnZ7WQZ5T2IT-9nakPTaPTe-CeyUE7B9IhL18LnbqU8wgM5r845pVpz-2XuWP43z/exec?phone=${phone.replace("+", "")}`);
+    const data = await res.json();
+  
+    if (data.confirmed) {
+      // Надсилання повідомлення через наш API
+      const response = await fetch("/api/send-message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: data.userId,
+          text: `👋 Вітаємо, ${data.name} ${data.surname}! Ви вже авторизовані.`,
+        }),
+      });
+  
+      const result = await response.json();
+  
+      if (result.success) {
+        alert("⚠️ Ви вже авторизовані. Повідомлення надіслано у Telegram.");
+      } else {
+        alert("⚠️ Ви вже авторизовані, але повідомлення не надіслано.");
+      }
+  
       return;
     }
-
+  
+    // Якщо не зареєстрований — відкриваємо Telegram
     setChecking(true);
     window.open(telegramBotLink, "_blank");
     startConfirmationPolling();
