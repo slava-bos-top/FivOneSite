@@ -56,7 +56,7 @@ const TelegramLogin = () => {
               [
                 {
                   text: "Підтвердити",
-                  callback_data: "comfirmsignIn" // ← будь-яке посилання
+                  callback_data: "comfirmsignIn",
                 },
               ],
             ],
