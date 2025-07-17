@@ -83,7 +83,7 @@ const TelegramLogin = () => {
         console.log(checkData)
 
         // Якщо колонка F = 1
-        if (checkData.confirmed === "1" || checkData.confirmed === 1) {
+        if (checkData.number === "1" || checkData.number === 1) {
             clearInterval(intervalId); // зупиняємо перевірку
 
             alert(`✅ Вхід підтверджено! Вітаємо, ${checkData.name} ${checkData.surname}`);
