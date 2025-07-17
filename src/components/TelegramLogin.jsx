@@ -75,14 +75,14 @@ const TelegramLogin = () => {
       alert("🔄 Очікуємо підтвердження у Telegram...");
 
         // ⏳ Перевіряємо кожні 3 секунди колонку F
-        const intervalId = setInterval(async () => {
+      const intervalId = setInterval(async () => {
         const checkRes = await fetch(
             `https://script.google.com/macros/s/AKfycbydkMOhNzyIhhZzGYBdRFQCn48hx27gMkWkqJf7eWuT_ILj6NKWP8MdXWozhk1BOGA/exec?phone=${phone.replace("+", "")}`
         );
         const checkData = await checkRes.json();
 
         // Якщо колонка F = 1
-        if (checkData.confirmed === "1") {
+        if (checkData.confirmed === "1" || checkData.confirmed === 1) {
             clearInterval(intervalId); // зупиняємо перевірку
 
             alert(`✅ Вхід підтверджено! Вітаємо, ${checkData.name} ${checkData.surname}`);
@@ -96,7 +96,7 @@ const TelegramLogin = () => {
 
             // Далі можна зберегти в локальне сховище або перейти на іншу сторінку
         }
-        }, 3000); 
+      }, 3000); 
   
       return;
     }
