@@ -9,7 +9,7 @@ const TelegramLogin = () => {
   const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${phone.replace("+", "")}`;
 
   const checkIfPhoneExists = async () => {
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbyQejB8Li7jz5J1KqUx6UOJgbETM7t-96KC7h_5fb_AlY-zx8ZWoxRCpmpTwgq_-7BT/exec?phone=${phone.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbwsVFp2w9V957t3iKE4EsEY6poiBquD2M-Wu712Z-UfKrFBLYp6xD1wrBjufTe_zAwl/exec?phone=${phone.replace("+", "")}`);
     const data = await res.json();
     return data.confirmed === "true" || data.confirmed === true;
   };
@@ -23,7 +23,7 @@ const TelegramLogin = () => {
 
       if (exists) {
         const checkRes = await fetch(
-          `https://script.google.com/macros/s/AKfycbyQejB8Li7jz5J1KqUx6UOJgbETM7t-96KC7h_5fb_AlY-zx8ZWoxRCpmpTwgq_-7BT/exec?phone=${phone.replace("+", "")}`
+          `https://script.google.com/macros/s/AKfycbwsVFp2w9V957t3iKE4EsEY6poiBquD2M-Wu712Z-UfKrFBLYp6xD1wrBjufTe_zAwl/exec?phone=${phone.replace("+", "")}`
         );
         const checkData = await checkRes.json();
         clearInterval(intervalId);
@@ -57,7 +57,7 @@ const TelegramLogin = () => {
       return;
     }
   
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbyQejB8Li7jz5J1KqUx6UOJgbETM7t-96KC7h_5fb_AlY-zx8ZWoxRCpmpTwgq_-7BT/exec?phone=${phone.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbwsVFp2w9V957t3iKE4EsEY6poiBquD2M-Wu712Z-UfKrFBLYp6xD1wrBjufTe_zAwl/exec?phone=${phone.replace("+", "")}`);
     const data = await res.json();
   
     if (data.confirmed) {
@@ -95,7 +95,7 @@ const TelegramLogin = () => {
         // ⏳ Перевіряємо кожні 3 секунди колонку F
       const intervalId = setInterval(async () => {
         const checkRes = await fetch(
-            `https://script.google.com/macros/s/AKfycbyQejB8Li7jz5J1KqUx6UOJgbETM7t-96KC7h_5fb_AlY-zx8ZWoxRCpmpTwgq_-7BT/exec?phone=${phone.replace("+", "")}`
+            `https://script.google.com/macros/s/AKfycbwsVFp2w9V957t3iKE4EsEY6poiBquD2M-Wu712Z-UfKrFBLYp6xD1wrBjufTe_zAwl/exec?phone=${phone.replace("+", "")}`
         );
         const checkData = await checkRes.json();
         console.log(checkData)
