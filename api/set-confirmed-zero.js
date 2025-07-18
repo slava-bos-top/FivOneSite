@@ -3,12 +3,12 @@ export default async function handler(req, res) {
       return res.status(405).json({ success: false, message: 'Method Not Allowed' });
     }
   
-    const { phone } = req.body;
+    const { normalizedPhone } = req.body;
   
-    if (!phone) {
+    if (!normalizedPhone) {
       return res.status(400).json({ success: false, message: 'Phone is required' });
     }
-    console.log(phone)
+    console.log(normalizedPhone)
   
     try {
       const scriptUrl = "https://script.google.com/macros/s/AKfycbyQejB8Li7jz5J1KqUx6UOJgbETM7t-96KC7h_5fb_AlY-zx8ZWoxRCpmpTwgq_-7BT/exec";
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          phone,
+          normalizedPhone,
           action: "resetConfirmed", // дія для Apps Script
         }),
       });

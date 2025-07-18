@@ -81,6 +81,7 @@ const TelegramLogin = () => {
         );
         const checkData = await checkRes.json();
         console.log(checkData)
+        const normalizedPhone = phone.replace("+", "")
 
         // Якщо колонка F = 1
         if (checkData.number === "1" || checkData.number === 1) {
@@ -92,7 +93,7 @@ const TelegramLogin = () => {
             await fetch("/api/set-confirmed-zero", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ phone }),
+            body: JSON.stringify({ normalizedPhone }),
             });
 
             // Далі можна зберегти в локальне сховище або перейти на іншу сторінку
