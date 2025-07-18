@@ -98,9 +98,14 @@ function Header() {
               <li><a href="#reviewMain" className="dropdown_button">Відгуки</a></li>
               <li>
                 {signIn ? (
-                  <div style={{marginLeft: "20px"}}>
-                    <p style={{fontSize: "14px"}}>{name}</p>
-                    <p style={{fontSize: "14px"}}>{surname}</p>
+                  <div style={{marginLeft: "20px", display: "flex", flexDirection: "row"}}>
+                    <div>
+                      <p style={{fontSize: "14px"}}>{name}</p>
+                      <p style={{fontSize: "14px"}}>{surname}</p>
+                    </div>
+                    <div>
+                      <img src={image} alt="phot_user" style={{width: "150px", height: "150px", borderRadius: "50%"}}/>
+                    </div>
                   </div>
                 ) : (
                   <Link to="/login" className="header_nav_button">Зареєструватись</Link>
