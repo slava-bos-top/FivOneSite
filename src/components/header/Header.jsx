@@ -130,11 +130,12 @@ function Header() {
                             whiteSpace: "nowrap",
                             minWidth: "120px",
                             marginTop: "8px",
+                            alignItems: "center"
                           }}
                         >
                           <p style={{ fontSize: "14px", margin: "4px 0" }}>{name}</p>
                           <p style={{ fontSize: "14px", margin: "4px 0" }}>{surname}</p>
-                          <button onClick={handleLogout} style={{ fontSize: "14px" }} className="header_nav_button">Вийти</button>
+                          <button onClick={handleLogout} style={{ fontSize: "14px", marginLeft: 0, marginRight: 0 }} className="header_nav_button">Вийти</button>
                         </div>
                       )}
                     </div>
