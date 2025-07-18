@@ -28,7 +28,8 @@ const TelegramLogin = () => {
         const checkData = await checkRes.json();
         clearInterval(intervalId);
         setChecking(false);
-        alert("✅ Реєстрація підтверджена!");
+        alert("✅ Реєстрація підтверджена!", checkData);
+        console.log(checkData)
         localStorage.setItem("user", JSON.stringify({
           name: checkData.name,
           surname: checkData.surname,
