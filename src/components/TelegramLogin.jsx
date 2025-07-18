@@ -91,9 +91,12 @@ const TelegramLogin = () => {
 
             // 🔄 (Необов’язково) оновлюємо колонку F на "0", якщо маєш API для цього
             await fetch("/api/set-confirmed-zero", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ normalizedPhone }),
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                phone: normalizedPhone,
+                action: "resetConfirmed",
+              }),
             });
 
             // Далі можна зберегти в локальне сховище або перейти на іншу сторінку
