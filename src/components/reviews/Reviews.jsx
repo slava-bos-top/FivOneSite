@@ -67,7 +67,7 @@ const Reviews = () => {
           slidesPerView={1}
         >
           {reviews.map((review, index) => (
-            <SwiperSlide key={index} style={{height: "400px"}}>
+            <SwiperSlide key={index} className="reviews_swiper_slide">
               <div className="review">
                 <img src={review.image} alt={review.name} className="review__image" />
                 <div>

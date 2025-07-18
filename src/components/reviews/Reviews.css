@@ -9,6 +9,9 @@
     align-items: center;
     border-radius: 40px;
   }
+  .reviews_swiper_slide {
+    height: 400px;
+  }
   
   .reviews__title {
     padding-top: 100px;
@@ -166,7 +169,7 @@
 @media screen and (max-width: 468px) {
   .reviews {
     width: 100%;
-    padding: 120px 20px;
+    padding: 100px 20px;
     text-align: center;
     font-family: 'Comfortaa', Arial, sans-serif;
     font-weight: 400;
@@ -185,5 +188,8 @@
     width: 300px;
     font-size: 12px;
     color: #777;
+  }
+  .reviews_swiper_slide {
+    height: 500px;
   }
 }
