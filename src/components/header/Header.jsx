@@ -95,12 +95,12 @@ function Header() {
               <li><a href="#reviewMain" className="dropdown_button">Відгуки</a></li>
               <li>
                 {signIn ? (
-                  <Link to="/login" className="header_nav_button">Зареєструватись</Link>
-                ) : (
                   <div>
                     <p>{name}</p>
                     <p>{surname}</p>
                   </div>
+                ) : (
+                  <Link to="/login" className="header_nav_button">Зареєструватись</Link>
                 )}
               </li>
             </ul>

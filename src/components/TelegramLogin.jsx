@@ -90,7 +90,7 @@ const TelegramLogin = () => {
         if (checkData.number === "1" || checkData.number === 1) {
             clearInterval(intervalId); // зупиняємо перевірку
 
-            alert(`✅ Вхід підтверджено! Вітаємо, ${checkData.name} ${checkData.surname}`);
+            // alert(`✅ Вхід підтверджено! Вітаємо, ${checkData.name} ${checkData.surname}`);
 
             // 🔄 (Необов’язково) оновлюємо колонку F на "0", якщо маєш API для цього
             await fetch("/api/set-confirmed-zero", {
@@ -154,7 +154,12 @@ const TelegramLogin = () => {
             {checking ? "⏳ Очікуємо підтвердження..." : "Увійти через Telegram"}
           </button>
         ) : (
-          <p>Перейдіть до @fivone_bot та підтвердіть вхід</p>
+          <div>
+            <p>Очікуємо підтвердження у Telegram...</p>
+            <p>
+              Перейдіть до <a href="https://t.me/fivone_bot">@fivone_bot</a>
+            </p>
+          </div>
         )}
       </div>
     </div>
