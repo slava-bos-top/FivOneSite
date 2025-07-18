@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { coursesData } from '../Gallery/coursesData';
 import { competitionData } from "../Gallery/competitionData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
