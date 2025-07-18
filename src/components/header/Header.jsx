@@ -11,14 +11,7 @@ function Header() {
   const [name, setName] = useState("")
   const [surname, setSurname] = useState("")
   const [image, setImage] = useState("")
-
-  const handleNavClickAbout = (id) => {
-    window.scrollTo(0, 3700);
-  };
-
-  const handleNavClickReview = (id) => {
-    window.scrollTo(0, 4500);
-  };
+  const [showInfo, setShowInfo] = useState(false);
 
   const toggleMenu = () => setMenuOpen(prev => !prev);
 
@@ -102,13 +95,38 @@ function Header() {
               <li><a href="#reviewMain" className="dropdown_button">Відгуки</a></li>
               <li>
                 {signIn ? (
-                  <div style={{marginLeft: "20px", display: "flex", flexDirection: "row"}}>
-                    <div>
-                      <button style={{fontSize: "14px"}} onClick={handleLogout}>{name}</button>
-                      <p style={{fontSize: "14px"}}>{surname}</p>
-                    </div>
-                    <div>
-                      <img src={image} alt="phot_user" style={{width: "150px", height: "150px", borderRadius: "50%"}}/>
+                  <div style={{ marginLeft: "20px", display: "flex", flexDirection: "row", alignItems: "center" }}>
+                    <div style={{ position: "relative" }}>
+                      <img
+                        src={image}
+                        alt="phot_user"
+                        style={{ width: "80px", height: "80px", borderRadius: "50%", cursor: "pointer" }}
+                        onMouseEnter={() => setShowInfo(true)}
+                        onMouseLeave={() => setShowInfo(false)}
+                      />
+              
+                      {showInfo && (
+                        <div
+                          onMouseEnter={() => setShowInfo(true)}
+                          onMouseLeave={() => setShowInfo(false)}
+                          style={{
+                            position: "absolute",
+                            top: "100%",
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            backgroundColor: "#fff",
+                            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                            padding: "10px",
+                            borderRadius: "8px",
+                            zIndex: 999,
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          <p style={{ fontSize: "14px", margin: "4px 0" }}>{name}</p>
+                          <p style={{ fontSize: "14px", margin: "4px 0" }}>{surname}</p>
+                          <button onClick={handleLogout} style={{ fontSize: "14px" }}>Вийти</button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ) : (
