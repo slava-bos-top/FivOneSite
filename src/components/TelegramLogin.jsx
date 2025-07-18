@@ -163,13 +163,13 @@ const TelegramLogin = () => {
               cursor: "pointer",
             }}
           >
-            {checking ? "⏳ Очікуємо підтвердження..." : "Увійти через Telegram"}
+            {checking ? "⏳ Очікуємо підтвердження..." : "Продовжити у Telegram"}
           </button>
         ) : (
           <div>
             <p>Очікуємо підтвердження у Telegram...</p>
             <p>
-              Перейдіть до <a href="https://t.me/fivone_bot">@fivone_bot</a>
+              Перейдіть до <a href="https://t.me/fivone_bot" target="_blank">@fivone_bot</a>
             </p>
           </div>
         )}
