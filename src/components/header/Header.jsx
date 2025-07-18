@@ -15,6 +15,10 @@ function Header() {
 
   const toggleMenu = () => setMenuOpen(prev => !prev);
 
+  const toggleInfo = () => {
+    setShowInfo((prev) => !prev);
+  };
+
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
@@ -100,26 +104,31 @@ function Header() {
                       <img
                         src={image}
                         alt="phot_user"
-                        style={{ width: "80px", height: "80px", borderRadius: "50%", cursor: "pointer" }}
-                        onMouseEnter={() => setShowInfo(true)}
-                        onMouseLeave={() => setShowInfo(false)}
+                        onClick={toggleInfo}
+                        style={{
+                          width: "60px",
+                          height: "60px",
+                          borderRadius: "50%",
+                          cursor: "pointer",
+                          border: showInfo ? "2px solid #007bff" : "none",
+                        }}
                       />
               
                       {showInfo && (
                         <div
-                          onMouseEnter={() => setShowInfo(true)}
-                          onMouseLeave={() => setShowInfo(false)}
                           style={{
                             position: "absolute",
                             top: "100%",
                             left: "50%",
                             transform: "translateX(-50%)",
                             backgroundColor: "#fff",
-                            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                             padding: "10px",
-                            borderRadius: "8px",
+                            borderRadius: "10px",
                             zIndex: 999,
                             whiteSpace: "nowrap",
+                            minWidth: "120px",
+                            marginTop: "8px",
                           }}
                         >
                           <p style={{ fontSize: "14px", margin: "4px 0" }}>{name}</p>
