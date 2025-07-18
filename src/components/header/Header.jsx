@@ -111,6 +111,7 @@ function Header() {
                           borderRadius: "50%",
                           cursor: "pointer",
                           border: showInfo ? "2px solid #007bff" : "none",
+                          marginTop: "10px"
                         }}
                       />
               
@@ -133,7 +134,7 @@ function Header() {
                         >
                           <p style={{ fontSize: "14px", margin: "4px 0" }}>{name}</p>
                           <p style={{ fontSize: "14px", margin: "4px 0" }}>{surname}</p>
-                          <button onClick={handleLogout} style={{ fontSize: "14px" }}>Вийти</button>
+                          <button onClick={handleLogout} style={{ fontSize: "14px" }} className="header_nav_button">Вийти</button>
                         </div>
                       )}
                     </div>
