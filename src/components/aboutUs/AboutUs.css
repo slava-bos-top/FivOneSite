@@ -128,3 +128,9 @@
       display: none;
     }
   }
+
+  @media screen and (max-width: 468px) {
+    .about-us__title {
+      margin-bottom: 20px;
+    }
+  }
