@@ -36,6 +36,10 @@ function Header() {
       }
     }
   }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setSignIn(false)
+  };
 
   return (
     <header className="header">
@@ -100,7 +104,7 @@ function Header() {
                 {signIn ? (
                   <div style={{marginLeft: "20px", display: "flex", flexDirection: "row"}}>
                     <div>
-                      <p style={{fontSize: "14px"}}>{name}</p>
+                      <button style={{fontSize: "14px"}} onClick={handleLogout}>{name}</button>
                       <p style={{fontSize: "14px"}}>{surname}</p>
                       <p>{image}</p>
                     </div>
