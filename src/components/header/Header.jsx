@@ -10,6 +10,7 @@ function Header() {
   const [signIn, setSignIn] = useState(false)
   const [name, setName] = useState("")
   const [surname, setSurname] = useState("")
+  const [image, setImage] = useState("")
 
   const handleNavClickAbout = (id) => {
     window.scrollTo(0, 3700);
@@ -24,11 +25,13 @@ function Header() {
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
-      const { name, surname, isLoggedIn } = JSON.parse(savedUser);
+      const { name, surname, photo, isLoggedIn } = JSON.parse(savedUser);
       if (isLoggedIn) {
         setSignIn(true)
         setName(name)
         setSurname(surname)
+        setImage(photo)
+        console.log(image)
         // Наприклад, показати імʼя в Header
       }
     }

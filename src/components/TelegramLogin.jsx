@@ -16,15 +16,27 @@ const TelegramLogin = () => {
 
   const startConfirmationPolling = () => {
     let attempts = 0;
-    const maxAttempts = 12; // ~1 хвилина
+    const maxAttempts = 50; // ~1 хвилина
 
     const intervalId = setInterval(async () => {
       const exists = await checkIfPhoneExists();
 
       if (exists) {
+        const checkRes = await fetch(
+          `https://script.google.com/macros/s/AKfycbyQejB8Li7jz5J1KqUx6UOJgbETM7t-96KC7h_5fb_AlY-zx8ZWoxRCpmpTwgq_-7BT/exec?phone=${phone.replace("+", "")}`
+        );
+        const checkData = await checkRes.json();
         clearInterval(intervalId);
         setChecking(false);
         alert("✅ Реєстрація підтверджена!");
+        localStorage.setItem("user", JSON.stringify({
+          name: checkData.name,
+          surname: checkData.surname,
+          photo: checkData.photo,
+          isLoggedIn: true,
+        }));
+
+        window.location.href = "https://fiv-one-site.vercel.app/";
       } else if (attempts >= maxAttempts) {
         clearInterval(intervalId);
         setChecking(false);
@@ -105,6 +117,7 @@ const TelegramLogin = () => {
             localStorage.setItem("user", JSON.stringify({
               name: checkData.name,
               surname: checkData.surname,
+              photo: checkData.photo,
               isLoggedIn: true,
             }));
 
