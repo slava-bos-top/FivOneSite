@@ -182,6 +182,9 @@
 }
 
 @media screen and (max-width: 468px) {
+  .title h2 {
+    font-size: 1.2rem;
+  }
   .mobile-layout {
     gap: 60px;
   }
