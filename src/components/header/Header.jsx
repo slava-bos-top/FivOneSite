@@ -102,6 +102,7 @@ function Header() {
                     <div>
                       <p style={{fontSize: "14px"}}>{name}</p>
                       <p style={{fontSize: "14px"}}>{surname}</p>
+                      <p>{image}</p>
                     </div>
                     <div>
                       <img src={image} alt="phot_user" style={{width: "150px", height: "150px", borderRadius: "50%"}}/>
