@@ -6,6 +6,22 @@ import "./Competition.css"
 
 export default function Competition() {
     const location = useLocation();
+    const [signIn, setSignIn] = useState(false)
+
+    useEffect(() => {
+      const savedUser = localStorage.getItem("user");
+      if (savedUser) {
+        const { isLoggedIn } = JSON.parse(savedUser);
+        if (isLoggedIn) {
+          setSignIn(true)
+          // Наприклад, показати імʼя в Header
+        }
+      }
+    }, []);
+    const handleLogout = () => {
+      localStorage.removeItem("user");
+      setSignIn(false)
+    };
 
     // 🔹 Зберігаємо в localStorage якщо передано через location.state
     useEffect(() => {
@@ -280,11 +296,19 @@ export default function Competition() {
         <footer className='courses_footer'>
           {chemistry === "1" ? (
             <div>
-               <Link to="/registration" className="about__button glowing-button-chemistry">Зареєструватись</Link>
+               {signIn ? (
+                <button className="about__button glowing-button-chemistry" onClick={handleLogout}>Вийти</button>
+               ) : (
+                <Link to="/login" className="about__button glowing-button-chemistry">Зареєструватись</Link>
+               )}
             </div>
           ) : (
             <div>
-                <Link to="/registration" className="about__button glowing-button">Зареєструватись</Link>
+                {signIn ? (
+                    <button className="about__button glowing-button" onClick={handleLogout}>Вийти</button>
+                ) : (
+                    <Link to="/login" className="about__button glowing-button">Зареєструватись</Link>
+                )}
             </div>
           )}
           <div className="courses_footer-bottom">

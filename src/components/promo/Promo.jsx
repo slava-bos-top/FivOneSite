@@ -1,5 +1,6 @@
 import React from 'react';
 import './Promo.css';
+import { useState, useEffect } from "react";
 
 import Wave from "../../img/YellowWave.jpg"
 import { Link } from 'react-router-dom';
@@ -10,6 +11,23 @@ import { Link } from 'react-router-dom';
 // import tgIcon from './images/telegram.png';
 
 export default function Promo() {
+  const [signIn, setSignIn] = useState(false)
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      const { isLoggedIn } = JSON.parse(savedUser);
+      if (isLoggedIn) {
+        setSignIn(true)
+        // Наприклад, показати імʼя в Header
+      }
+    }
+  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setSignIn(false)
+  };
+
   return (
     <section className="promo">
       <div className="promo__left">
@@ -19,7 +37,11 @@ export default function Promo() {
         <img className="promo__logo" data-original="https://static.tildacdn.one/tild3339-3265-4564-b633-613333616634/logo_phrase1.png" src="https://optim.tildacdn.one/tild3339-3265-4564-b633-613333616634/-/format/webp/logo_phrase1.png.webp" alt="Logo" imgfield="tn_img_1589914726250"/>
         <h1>Закохуємо у навчання підлітків, батьків і вчителів</h1>
         {/* <button className="promo__button">Зареєструватись</button> */}
-        <Link to="/registration" className="promo__button">Зареєструватись</Link>
+        {signIn ? (
+          <button className="promo__button" onClick={handleLogout}>Вийти</button>
+        ) : (
+          <Link to="/login" className="promo__button">Зареєструватись</Link>
+        )}
       </div>
 
       <div className="promo__right">

@@ -31,6 +31,22 @@ export default function Courses() {
      } = location.state || {};
 
      const [openIndexes, setOpenIndexes] = useState([]);
+     const [signIn, setSignIn] = useState(false)
+
+     useEffect(() => {
+       const savedUser = localStorage.getItem("user");
+       if (savedUser) {
+         const { isLoggedIn } = JSON.parse(savedUser);
+         if (isLoggedIn) {
+           setSignIn(true)
+           // Наприклад, показати імʼя в Header
+         }
+       }
+     }, []);
+     const handleLogout = () => {
+       localStorage.removeItem("user");
+       setSignIn(false)
+     };
 
      const toggle = (index) => {
        if (openIndexes.includes(index)) {
@@ -204,7 +220,11 @@ export default function Courses() {
 
         <footer className='courses_footer'>
           <div>
-            <Link to="/registration" className="about__button glowing-button">Зареєструватись</Link>
+            {signIn ? (
+              <button className="about__button glowing-button" onClick={handleLogout}>Вийти</button>
+            ) : (
+              <Link to="/login" className="about__button glowing-button">Зареєструватись</Link>
+            )}
           </div>
           <div className="courses_footer-bottom">
             <div className="courses_footer-bottom-block">
