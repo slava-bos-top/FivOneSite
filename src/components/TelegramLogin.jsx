@@ -28,6 +28,7 @@ const TelegramLogin = () => {
         const checkData = await checkRes.json();
         clearInterval(intervalId);
         setChecking(false);
+        console.log(checkData.photo)
         console.log(checkData)
         alert(checkData);
         console.log(checkData)
