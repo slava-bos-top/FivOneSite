@@ -3,6 +3,8 @@ import React, { useState } from "react";
 const TelegramLogin = () => {
   const [phone, setPhone] = useState("");
   const [checking, setChecking] = useState(false);
+
+  const [loginText, setLoginText] = useState(false);
   const encodedPhone = `phone_${phone.replace("+", "")}`;
   const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${phone.replace("+", "")}`;
 
@@ -45,6 +47,7 @@ const TelegramLogin = () => {
   
     if (data.confirmed) {
       console.log(data.confirmed)
+      setLoginText(true)
       // Надсилання повідомлення через наш API
       const response = await fetch("/api/send-message", {
         method: "POST",
@@ -99,6 +102,14 @@ const TelegramLogin = () => {
               }),
             });
 
+            localStorage.setItem("user", JSON.stringify({
+              name: checkData.name,
+              surname: checkData.surname,
+              isLoggedIn: true,
+            }));
+
+            window.location.href = "https://fiv-one-site.vercel.app/";
+
             // Далі можна зберегти в локальне сховище або перейти на іншу сторінку
             // Можна зробити навігацію або збереження
             // localStorage.setItem('user', JSON.stringify(checkData));
@@ -126,22 +137,25 @@ const TelegramLogin = () => {
           onChange={(e) => setPhone(e.target.value)}
           style={{ padding: "8px", fontSize: "16px" }}
         />
-
-        <button
-          onClick={handleLogin}
-          disabled={checking}
-          style={{
-            textAlign: "center",
-            background: "#0088cc",
-            color: "#fff",
-            padding: "10px",
-            borderRadius: "6px",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          {checking ? "⏳ Очікуємо підтвердження..." : "Увійти через Telegram"}
-        </button>
+        {loginText === false ? (
+          <button
+            onClick={handleLogin}
+            disabled={checking}
+            style={{
+              textAlign: "center",
+              background: "#0088cc",
+              color: "#fff",
+              padding: "10px",
+              borderRadius: "6px",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            {checking ? "⏳ Очікуємо підтвердження..." : "Увійти через Telegram"}
+          </button>
+        ) : (
+          <p>Перейдіть до @fivone_bot та підтвердіть вхід</p>
+        )}
       </div>
     </div>
   );

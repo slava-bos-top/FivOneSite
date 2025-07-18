@@ -7,6 +7,9 @@ import { useState } from "react";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [signIn, setSignIn] = useState(false)
+  const [name, setName] = useState("")
+  const [surname, setSurname] = useState("")
 
   const handleNavClickAbout = (id) => {
     window.scrollTo(0, 3700);
@@ -17,6 +20,19 @@ function Header() {
   };
 
   const toggleMenu = () => setMenuOpen(prev => !prev);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      const { name, surname, isLoggedIn } = JSON.parse(savedUser);
+      if (isLoggedIn) {
+        setSignIn(true)
+        setName(name)
+        setSurname(surname)
+        // Наприклад, показати імʼя в Header
+      }
+    }
+  }, []);
 
   return (
     <header className="header">
@@ -78,7 +94,14 @@ function Header() {
 
               <li><a href="#reviewMain" className="dropdown_button">Відгуки</a></li>
               <li>
-                <Link to="/login" className="header_nav_button">Зареєструватись</Link>
+                {signIn ? (
+                  <Link to="/login" className="header_nav_button">Зареєструватись</Link>
+                ) : (
+                  <div>
+                    <p>{name}</p>
+                    <p>{surname}</p>
+                  </div>
+                )}
               </li>
             </ul>
           </nav>
