@@ -182,6 +182,9 @@
 }
 
 @media screen and (max-width: 468px) {
+  .mobile-layout {
+    gap: 60px;
+  }
   .phone-wrapper .phone {
     display: none;
   }

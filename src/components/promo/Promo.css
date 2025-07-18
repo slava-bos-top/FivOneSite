@@ -161,3 +161,11 @@
       z-index: 0;
     }
   }
+
+  @media screen and (max-width: 468px) {
+    .promo__center h1 {
+      font-size: 1.2rem;
+      width: 300px;
+      padding: 15px 0;
+    }
+  }
