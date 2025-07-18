@@ -7,7 +7,7 @@ const TelegramLogin = () => {
   const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${phone.replace("+", "")}`;
 
   const checkIfPhoneExists = async () => {
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbz5Q7sPscrmBnvUM60qM3135hWZyOMMfNJUrNHu_qQ8qQzY8oeVKfYX_ST8rqbUT0Y/exec?phone=${phone.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbx0nPP4VK1R8c-tW4RaylP-JnXa5L6GgDkgCTVZ8Mtg36EK9RlwElL67XkksO1-p9or/exec?phone=${phone.replace("+", "")}`);
     const data = await res.json();
     return data.confirmed === "true" || data.confirmed === true;
   };
@@ -40,7 +40,7 @@ const TelegramLogin = () => {
       return;
     }
   
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbz5Q7sPscrmBnvUM60qM3135hWZyOMMfNJUrNHu_qQ8qQzY8oeVKfYX_ST8rqbUT0Y/exec?phone=${phone.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbx0nPP4VK1R8c-tW4RaylP-JnXa5L6GgDkgCTVZ8Mtg36EK9RlwElL67XkksO1-p9or/exec?phone=${phone.replace("+", "")}`);
     const data = await res.json();
   
     if (data.confirmed) {
@@ -77,7 +77,7 @@ const TelegramLogin = () => {
         // ⏳ Перевіряємо кожні 3 секунди колонку F
       const intervalId = setInterval(async () => {
         const checkRes = await fetch(
-            `https://script.google.com/macros/s/AKfycbz5Q7sPscrmBnvUM60qM3135hWZyOMMfNJUrNHu_qQ8qQzY8oeVKfYX_ST8rqbUT0Y/exec?phone=${phone.replace("+", "")}`
+            `https://script.google.com/macros/s/AKfycbx0nPP4VK1R8c-tW4RaylP-JnXa5L6GgDkgCTVZ8Mtg36EK9RlwElL67XkksO1-p9or/exec?phone=${phone.replace("+", "")}`
         );
         const checkData = await checkRes.json();
         console.log(checkData)
