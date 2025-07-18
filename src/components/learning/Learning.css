@@ -180,3 +180,9 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 468px) {
+  .phone-wrapper .phone {
+    display: none;
+  }
+}

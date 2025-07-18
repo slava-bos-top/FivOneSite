@@ -209,7 +209,7 @@
       position: fixed;
       top: 80px;
       right: 0;
-      width: 55%;
+      width: 45%;
       height: calc(100vh - 80px);
       background-color: white;
       flex-direction: column;
