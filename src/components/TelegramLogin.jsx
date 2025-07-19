@@ -139,41 +139,98 @@ const TelegramLogin = () => {
     startConfirmationPolling();
   };
 
+  const isLoading = checking || loginText;
+
   return (
-    <div style={{ width: "100%", alignItems: "center", paddingTop: "100px", display: "flex", justifyContent: "center" }}>
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxWidth: "300px" }}>
+    <div style={{
+      width: "100%",
+      minHeight: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      background: "linear-gradient(145deg, #e1f3ff, #f3faff)"
+    }}>
+      <div style={{
+        background: "#fff",
+        padding: "30px",
+        borderRadius: "20px",
+        boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "20px",
+        width: "100%",
+        maxWidth: "350px",
+        transition: "all 0.3s ease"
+      }}>
+        <h2 style={{ color: "#0088cc", marginBottom: "10px" }}>Вхід через Telegram</h2>
+
         <input
           type="tel"
           placeholder="+380..."
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          style={{ padding: "8px", fontSize: "16px" }}
+          style={{
+            width: "100%",
+            padding: "12px",
+            fontSize: "16px",
+            borderRadius: "10px",
+            border: "1px solid #ccc",
+            outline: "none",
+            transition: "0.2s",
+          }}
         />
-        {loginText === false ? (
+
+        {isLoading ? (
+          <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+            <div className="loader" />
+            <p style={{ margin: 0, color: "#333" }}>Очікуємо підтвердження у Telegram...</p>
+            <p style={{ fontSize: "14px", margin: 0 }}>
+              Перейдіть до&nbsp;
+              <a href="https://t.me/fivone_bot" target="_blank" rel="noreferrer" style={{ color: "#0088cc" }}>
+                @fivone_bot
+              </a>
+            </p>
+          </div>
+        ) : (
           <button
             onClick={handleLogin}
-            disabled={checking}
+            disabled={!phone.trim()}
             style={{
+              width: "100%",
               textAlign: "center",
               background: "#0088cc",
               color: "#fff",
-              padding: "10px",
-              borderRadius: "6px",
+              padding: "12px",
+              fontSize: "16px",
+              borderRadius: "10px",
               border: "none",
               cursor: "pointer",
+              transition: "0.3s",
+              opacity: !phone.trim() ? 0.5 : 1,
             }}
           >
-            {checking ? "⏳ Очікуємо підтвердження..." : "Продовжити у Telegram"}
+            Продовжити у Telegram
           </button>
-        ) : (
-          <div>
-            <p>Очікуємо підтвердження у Telegram...</p>
-            <p>
-              Перейдіть до <a href="https://t.me/fivone_bot" target="_blank">@fivone_bot</a>
-            </p>
-          </div>
         )}
       </div>
+
+      {/* Loader CSS */}
+      <style>{`
+        .loader {
+          width: 30px;
+          height: 30px;
+          border: 4px solid #f3f3f3;
+          border-top: 4px solid #0088cc;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 };
