@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'react-circular-progressbar/dist/styles.css';
 
 import "./Statistics.css"
