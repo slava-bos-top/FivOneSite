@@ -106,7 +106,7 @@ function Statistics() {
     ];
   
     return (
-      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", backgroundColor: "#FFCE07" }}>
         {marathonsData.map((marathon, index) => {
           const totalLessons = marathon.weeks.flatMap(w => w.lessons).length;
           const completedLessons = marathon.weeks.flatMap(w => w.lessons.filter(l => l.completed)).length;
