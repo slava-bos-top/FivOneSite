@@ -49,7 +49,7 @@ function CircularProgress({ percentage, colors }) {
   const strokeDashoffset = strokeDasharray * (1 - percentage / 100);
 
   return (
-    <svg width="150" height="150" viewBox="10 10 110 110">
+    <svg width="150" height="150" viewBox="-10 -10 110 110">
       <defs>
         <linearGradient id={`grad-${colors[0]}`} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor={colors[0]} />
@@ -69,7 +69,7 @@ function CircularProgress({ percentage, colors }) {
         strokeLinecap="round"
         transform="rotate(-90 50 50)"
       />
-      <text x="50" y="55" textAnchor="middle" fontSize="20" fill="white" fontWeight="bold">
+      <text x="50" y="55" textAnchor="middle" fontSize="20" fill="#000" fontWeight="bold">
         {Math.round(percentage)}%
       </text>
     </svg>
