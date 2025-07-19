@@ -160,11 +160,26 @@ const TelegramLogin = () => {
         alignItems: "center",
         gap: "20px",
         width: "100%",
-        maxWidth: "350px",
+        maxWidth: "400px",
         transition: "all 0.3s ease"
       }}>
+    
+        {/* 🔸 Привітальний текст */}
+        <div style={{
+          backgroundColor: "#FFCE07",
+          padding: "15px",
+          borderRadius: "10px",
+          textAlign: "center",
+          color: "#333",
+          fontWeight: 500,
+          fontSize: "15px",
+          lineHeight: "1.4"
+        }}>
+          Раді бачити тебе серед потенційних студентів наших освітніх програм! Залишилось лише зареєструватися і почати безкоштовно користуватися всіма можливостями, які надає <strong>FivOnе</strong>. Після того, як ти введеш номер телефону, сторінка перенаправить тебе в наш Месенджер <strong>Telegram</strong>. А далі – просто крокуй за нашим ботом, отримуй нові знання та ставай частиною <strong>FivOnе</strong>!
+        </div>
+    
         <h2 style={{ color: "#0088cc", marginBottom: "10px" }}>Вхід через Telegram</h2>
-
+    
         <input
           type="tel"
           placeholder="+380..."
@@ -180,7 +195,7 @@ const TelegramLogin = () => {
             transition: "0.2s",
           }}
         />
-
+    
         {isLoading ? (
           <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
             <div className="loader" />
@@ -214,7 +229,7 @@ const TelegramLogin = () => {
           </button>
         )}
       </div>
-
+    
       {/* Loader CSS */}
       <style>{`
         .loader {
@@ -225,7 +240,7 @@ const TelegramLogin = () => {
           border-radius: 50%;
           animation: spin 1s linear infinite;
         }
-
+    
         @keyframes spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }

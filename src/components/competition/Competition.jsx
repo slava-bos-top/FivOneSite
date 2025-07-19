@@ -121,8 +121,8 @@ export default function Competition() {
                 <span className='competition_container_promo_main_start'>{description}</span>
                 <p className='competition_container_promo_main_text'>{paragraph}</p>
                 <div className='competition_container_promo_main_block'>
-                    <div>
-                        <Link to="/login" className="competition_container_header_button" style={{backgroundColor: backgroundColor, alignItems: "center", textAlign: "center", paddingTop: "10px", paddingBottom: "10px", paddingLeft: "20px", paddingRight: "20px"}}>Зареєструватись</Link>
+                    <div style={{display: "flex", flexDirection: "column"}}>
+                        <Link to="/login" className="competition_container_header_button" style={{backgroundColor: backgroundColor, alignItems: "center", textAlign: "center", paddingTop: "10px", paddingBottom: "10px", paddingLeft: "20px", paddingRight: "20px", borderRadius: "20px"}}>Зареєструватись</Link>
                         <span>3 тижні</span>
                     </div>
                     <p>{AddParagraph}</p>
