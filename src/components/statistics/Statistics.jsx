@@ -5,6 +5,44 @@ import "./Statistics.css"
 
 // Твої дані марафонів
 // Дані
+const marathonsData = [
+    {
+      title: "Марафон 1",
+      weeks: [
+        { lessons: [{ completed: true }, { completed: true }, { completed: false }] },
+        { lessons: [{ completed: true }, { completed: false }, { completed: false }] }
+      ]
+    },
+    {
+      title: "Марафон 2",
+      weeks: [
+        { lessons: [{ completed: true }, { completed: true }] },
+        { lessons: [{ completed: true }, { completed: true }] }
+      ]
+    },
+    {
+        title: "Марафон 3",
+        weeks: [
+          { lessons: [{ completed: true }, { completed: true }, { completed: false }] },
+          { lessons: [{ completed: true }, { completed: false }, { completed: false }] }
+        ]
+    },
+    {
+        title: "Марафон 4",
+        weeks: [
+          { lessons: [{ completed: true }, { completed: true }] },
+          { lessons: [{ completed: true }, { completed: true }] }
+        ]
+    },
+    {
+        title: "Марафон 5",
+        weeks: [
+          { lessons: [{ completed: true }, { completed: true }] },
+          { lessons: [{ completed: true }, { completed: true }] }
+        ]
+    },
+    // ... ще 3 марафони
+  ];
 
 function CircularProgress({ percentage, colors }) {
     const [name, setName] = useState("")
@@ -60,31 +98,31 @@ function CircularProgress({ percentage, colors }) {
         }
       }
 
-        const TOTAL_WEEKS = 2;
-        const TOTAL_TASKS_PER_WEEK = 7;
+      const TOTAL_WEEKS = 2;
+      const TOTAL_TASKS_PER_WEEK = 7;
 
-        const marathons = Array.from({ length: 5 }, (_, index) => {
-            const marathonId = index + 1;
-            const weekStart = marathonId * 2 - 1;
+      const marathons = Array.from({ length: 5 }, (_, index) => {
+          const marathonId = index + 1;
+          const weekStart = marathonId * 2 - 1;
 
-            const weeks = [0, 1].map(i => {
-                const weekKey = `week${weekStart + i}`;
-                const completedTasks = userData?.[weekKey] || 0;
-                return {
-                week: weekStart + i,
-                completedTasks,
-                totalTasks: TOTAL_TASKS_PER_WEEK
-                };
-            });
+          const weeks = [0, 1].map(i => {
+              const weekKey = `week${weekStart + i}`;
+              const completedTasks = userData?.[weekKey] || 0;
+              return {
+              week: weekStart + i,
+              completedTasks,
+              totalTasks: TOTAL_TASKS_PER_WEEK
+              };
+          });
 
-            return {
-                id: marathonId,
-                completedWeeks: userData?.[`maraphone${marathonId}`] || 0,
-                totalWeeks: TOTAL_WEEKS,
-                weeks
-            };
-        });
-        console.log(marathons)
+          return {
+              id: marathonId,
+              completedWeeks: userData?.[`maraphone${marathonId}`] || 0,
+              totalWeeks: TOTAL_WEEKS,
+              weeks
+          };
+      });
+      console.log(marathons)
     }, []);
 
 
