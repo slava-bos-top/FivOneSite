@@ -206,7 +206,6 @@
       margin-top: 100px;
       align-items: center;
     }
-
     .courses_features_block img {
       width: 100px;
       height: 100px;
@@ -222,6 +221,12 @@
       align-items: center;
       flex-direction: column;
       justify-content: center;
+    }
+  }
+
+  @media (max-width: 468px) {
+    .course-program-lesson {
+      width: "400px"
     }
   }
 

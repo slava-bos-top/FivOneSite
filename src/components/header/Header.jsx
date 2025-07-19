@@ -101,19 +101,35 @@ function Header() {
                 {signIn ? (
                   <div style={{ marginLeft: "20px", display: "flex", flexDirection: "row", alignItems: "center" }}>
                     <div style={{ position: "relative" }}>
-                      <img
-                        src={image}
-                        alt="phot_user"
-                        onClick={toggleInfo}
-                        style={{
-                          width: "60px",
-                          height: "60px",
-                          borderRadius: "50%",
-                          cursor: "pointer",
-                          border: showInfo ? "2px solid #007bff" : "none",
-                          marginTop: "10px"
-                        }}
-                      />
+                      {image === "0" ? (
+                        <img
+                          src="https://cdn-icons-png.flaticon.com/512/1177/1177568.png"
+                          alt="phot_user"
+                          onClick={toggleInfo}
+                          style={{
+                            width: "60px",
+                            height: "60px",
+                            borderRadius: "50%",
+                            cursor: "pointer",
+                            border: showInfo ? "2px solid #007bff" : "none",
+                            marginTop: "10px"
+                          }}
+                        />
+                      ) : (
+                        <img
+                          src={image}
+                          alt="phot_user"
+                          onClick={toggleInfo}
+                          style={{
+                            width: "60px",
+                            height: "60px",
+                            borderRadius: "50%",
+                            cursor: "pointer",
+                            border: showInfo ? "2px solid #007bff" : "none",
+                            marginTop: "10px"
+                          }}
+                        />
+                      )}
               
                       {showInfo && (
                         <div
