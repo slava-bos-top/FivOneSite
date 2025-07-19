@@ -83,6 +83,11 @@
   }
 
   @media screen and (max-width: 468px) {
+	.courses-gallery {
+		padding: 1rem 1rem;
+		background: var(--yellow);
+		font-family: 'Comfortaa', sans-serif;
+	  }
 	.course-card__description-gallery {
 		text-align: start;
 		height: 280px;
