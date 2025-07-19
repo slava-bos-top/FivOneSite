@@ -47,7 +47,7 @@ function CircularProgress({ percentage, colors }) {
   const strokeDashoffset = strokeDasharray * (1 - percentage / 100);
 
   return (
-    <svg width="95" height="95" viewBox="0 0 100 100">
+    <svg width="95" height="95" viewBox="0 0 110 110">
       <defs>
         <linearGradient id={`grad-${colors[0]}`} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor={colors[0]} />
@@ -99,40 +99,44 @@ function SplitScreen() {
         flex: 1,
         padding: "20px",
         backgroundColor: "#fff",
-        borderRight: "1px solid #ddd"
+        borderRight: "1px solid #ddd",
+        opacity: 0.7,
+        borderRadius: "30px"
       }}>
-        {selectedMarathon ? (
-          <>
-            <h2>{selectedMarathon.title}</h2>
-            {selectedMarathon.weeks.map((week, wIndex) => {
-              const completed = week.lessons.filter(l => l.completed).length;
-              const percent = (completed / week.lessons.length) * 100;
+        <div style={{padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}}>
+            {selectedMarathon ? (
+            <>
+                <h2>{selectedMarathon.title}</h2>
+                {selectedMarathon.weeks.map((week, wIndex) => {
+                const completed = week.lessons.filter(l => l.completed).length;
+                const percent = (completed / week.lessons.length) * 100;
 
-              return (
-                <div key={wIndex} style={{ marginBottom: "16px" }}>
-                  <p>Тиждень {wIndex + 1}: {completed}/{week.lessons.length}</p>
-                  <div style={{
-                    background: "#ccc",
-                    borderRadius: "5px",
-                    height: "10px",
-                    overflow: "hidden"
-                  }}>
+                return (
+                    <div key={wIndex} style={{ marginBottom: "16px" }}>
+                    <p>Тиждень {wIndex + 1}: {completed}/{week.lessons.length}</p>
                     <div style={{
-                      width: `${percent}%`,
-                      backgroundColor: "#FFCE07",
-                      height: "100%"
-                    }} />
-                  </div>
-                </div>
-              );
-            })}
-          </>
-        ) : (
-          <>
-            <h2>Інструкція</h2>
-            <p>Оберіть один із марафонів справа, щоб побачити детальний прогрес по тижнях.</p>
-          </>
-        )}
+                        background: "#ccc",
+                        borderRadius: "5px",
+                        height: "10px",
+                        overflow: "hidden"
+                    }}>
+                        <div style={{
+                        width: `${percent}%`,
+                        backgroundColor: "#FFCE07",
+                        height: "100%"
+                        }} />
+                    </div>
+                    </div>
+                );
+                })}
+            </>
+            ) : (
+            <>
+                <h2>Інструкція</h2>
+                <p>Оберіть один із марафонів справа, щоб побачити детальний прогрес по тижнях.</p>
+            </>
+          )}
+        </div>
       </div>
 
       {/* Права частина */}
@@ -144,26 +148,30 @@ function SplitScreen() {
         justifyContent: "center",
         alignItems: "flex-start",
         gap: "20px",
-        backgroundColor: "#fff"
+        backgroundColor: "#fff",
+        opacity: 0.7,
+        borderRadius: "30px"
       }}>
-        {marathonsData.map((marathon, index) => {
-          const totalLessons = marathon.weeks.flatMap(w => w.lessons).length;
-          const completedLessons = marathon.weeks.flatMap(w => w.lessons.filter(l => l.completed)).length;
-          const percentage = (completedLessons / totalLessons) * 100;
+        <div style={{padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}}>
+            {marathonsData.map((marathon, index) => {
+            const totalLessons = marathon.weeks.flatMap(w => w.lessons).length;
+            const completedLessons = marathon.weeks.flatMap(w => w.lessons.filter(l => l.completed)).length;
+            const percentage = (completedLessons / totalLessons) * 100;
 
-          return (
-            <div
-              key={index}
-              style={{ cursor: "pointer", textAlign: "center" }}
-              onClick={() => setSelectedMarathon(marathon)}
-            >
-              <CircularProgress percentage={percentage} colors={gradients[index % gradients.length]} />
-              <p style={{ fontWeight: "bold", color: "#000", marginTop: "8px" }}>
-                {marathon.title}
-              </p>
-            </div>
-          );
-        })}
+            return (
+                <div
+                key={index}
+                style={{ cursor: "pointer", textAlign: "center" }}
+                onClick={() => setSelectedMarathon(marathon)}
+                >
+                <CircularProgress percentage={percentage} colors={gradients[index % gradients.length]} />
+                <p style={{ fontWeight: "bold", color: "#000", marginTop: "8px" }}>
+                    {marathon.title}
+                </p>
+                </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
