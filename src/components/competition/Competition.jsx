@@ -108,9 +108,9 @@ export default function Competition() {
             </div>
             <div className="competition_container_header_block2" style={{backgroundColor: backgroundColor}}>
                 <ul className="competition_container_header_list">
-                    <li><Link to="/fivone" className="competition_container_header_button">Про освітній центр</Link></li>
+                    <li><Link to="/" className="competition_container_header_button">Про освітній центр</Link></li>
                     <li><a href="#about_competition" className="competition_container_header_button">Про марафон</a></li>
-                    <li><button className="competition_container_header_button">Зареєструватись</button></li>
+                    <li><Link to="/login" className="competition_container_header_button">Зареєструватись</Link></li>
                     <li><button className="competition_container_header_phone">+380 97 824-33-89</button></li>
                 </ul>
             </div>
@@ -122,7 +122,7 @@ export default function Competition() {
                 <p className='competition_container_promo_main_text'>{paragraph}</p>
                 <div className='competition_container_promo_main_block'>
                     <div>
-                        <button className="competition_container_header_button" style={{backgroundColor: backgroundColor}}>Зареєструватись</button>
+                        <Link to="/login" className="competition_container_header_button" style={{backgroundColor: backgroundColor}}>Зареєструватись</Link>
                         <span>3 тижні</span>
                     </div>
                     <p>{AddParagraph}</p>

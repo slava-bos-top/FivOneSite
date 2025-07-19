@@ -65,7 +65,9 @@ export default function Courses() {
     return (
       <div className='courses' style={{color: `${color}`}}>
         <section className='courses_promo' style={{backgroundImage: `-webkit-gradient(linear, left top, left bottom, from(${backgroundColorOpacity}), to(${backgroundColor}))`}}>
-          <img src="https://optim.tildacdn.one/tild3533-3039-4032-a239-376535663937/-/resize/240x/-/format/webp/logo.png.webp" alt="logo" style={{width: "150px"}} className="courses_promo_logo"/>
+          <Link to="/">
+            <img src="https://optim.tildacdn.one/tild3533-3039-4032-a239-376535663937/-/resize/240x/-/format/webp/logo.png.webp" alt="logo" style={{width: "150px"}} className="courses_promo_logo"/>
+          </Link>
           <h1>{title}</h1>
           <p>{description}</p>
           <p>{AddDescription}</p>
@@ -116,14 +118,14 @@ export default function Courses() {
             <div className="courses_learning__content">
               <div className="courses_learning__left">
                 <div className="courses_learning__item">
-                  <p className='courses_learning__item_text'><strong>Якість</strong><br /> Заняття проходять у реальному часі у додатку Discord — найкращій платформі для відео-, текстової та голосової комунікації</p>
+                  <p className='courses_learning__item_text'><strong>Якість</strong><br /> Заняття проходять в комфортний для вас час на зрозумілій та зручній платформі</p>
                   <div
                     className="courses_learning__icon"
                     style={{ backgroundImage: "url(https://static.tildacdn.one/tild3361-3664-4266-b636-383737653330/7.svg)" }}
                   ></div>
                 </div>
                 <div className="courses_learning__item">
-                  <p className='courses_learning__item_text'><strong>Враження</strong><br /> Усі заняття містять інтерактивні завдання (чат-боти, квізи, опитування, командні проєкти), які допомагають засвоїти матеріал уроку</p>
+                  <p className='courses_learning__item_text'><strong>Враження</strong><br /> Усі заняття містять інтерактивні завдання (чат-боти, квізи, опитування), які допомагають засвоїти матеріал уроку</p>
                   <div className="courses_learning__icon" style={{ backgroundImage: "url(https://static.tildacdn.one/tild3238-3337-4963-b865-643035636263/9.svg)" }}></div>
                 </div>
                 <div className="courses_learning__item">
@@ -139,11 +141,11 @@ export default function Courses() {
               <div className="courses_learning__right">
                 <div className="courses_learning__item">
                   <div className="courses_learning__icon" style={{ backgroundImage: "url(https://static.tildacdn.one/tild3237-3632-4731-b535-626638623130/1.svg)" }}></div>
-                  <p><strong>Підтримка</strong><br /> На занятті учні отримують зворотній зв'язок від лектора, а після — комунікують у Telegram-чаті групи. Вони можуть ставити додаткові запитання та спілкуватись з друзями</p>
+                  <p><strong>Підтримка</strong><br /> На кожному етапі зручний бот підкаже, який наступний крок робити. Крім того, ви зможете відслідковувати свій прогрес.</p>
                 </div>
                 <div className="courses_learning__item">
                   <div className="courses_learning__icon" style={{ backgroundImage: "url(https://static.tildacdn.one/tild6562-6239-4164-b931-336330346162/11.svg)" }}></div>
-                  <p><strong>Гнучкий графік</strong><br /> Заняття проходять ввечері щоп'ятниці з можливістю передивитись запис заняття після завершення уроку</p>
+                  <p><strong>Гнучкий графік</strong><br /> Ви можете отримувати завдання у будь-який зручний час і передивлятись урок стільки разів, скільки це необхідно</p>
                 </div>
                 <div className="courses_learning__item">
                   <div className="courses_learning__icon" style={{ backgroundImage: "url(https://static.tildacdn.one/tild6635-3036-4739-b865-373939393163/5.svg)" }}></div>

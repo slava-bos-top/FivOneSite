@@ -146,6 +146,10 @@
     padding-bottom: 80px;
 }
 
+.courses_features h2 {
+  font-size: 38px;
+}
+
   .courses_features_block {
     display: flex;
     justify-content: space-between;
@@ -225,8 +229,8 @@
   }
 
   @media (max-width: 468px) {
-    .course-program-lesson {
-      width: "400px"
+    .course-program-lesson-info {
+      width: 280px;
     }
   }
 

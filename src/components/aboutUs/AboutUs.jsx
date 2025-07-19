@@ -22,7 +22,7 @@ export default function AboutUs() {
               ></div>
             </div>
             <div className="about-us__item">
-              <p className='about-us__item_text'><strong>Інтерактивне навчання</strong><br /> Кожне заняття наповнене практикою, гейміфікацією та командною роботою</p>
+              <p className='about-us__item_text'><strong>Інтерактивне навчання</strong><br /> Кожне заняття наповнене практикою, гейміфікацією</p>
               <div className="about-us__icon" style={{ backgroundImage: "url(https://static.tildacdn.one/lib/linea/4aeea8a4-1013-bfc8-ffc9-170e8a9f2d4b/weather_last_quarter.svg)" }}></div>
             </div>
             <div className="about-us__item">
