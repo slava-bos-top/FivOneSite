@@ -47,7 +47,7 @@ function CircularProgress({ percentage, colors }) {
   const strokeDashoffset = strokeDasharray * (1 - percentage / 100);
 
   return (
-    <svg width="100" height="100" viewBox="0 0 100 100">
+    <svg width="95" height="95" viewBox="0 0 100 100">
       <defs>
         <linearGradient id={`grad-${colors[0]}`} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor={colors[0]} />
@@ -90,13 +90,15 @@ function SplitScreen() {
       display: "flex",
       height: "100vh",
       fontFamily: "sans-serif",
-      backgroundColor: "#f2f2f2"
+      backgroundColor: "#FFCE07",
+      padding: "20px",
+      columnGap: "20px"
     }}>
       {/* Ліва частина */}
       <div style={{
         flex: 1,
         padding: "20px",
-        backgroundColor: "white",
+        backgroundColor: "#fff",
         borderRight: "1px solid #ddd"
       }}>
         {selectedMarathon ? (
@@ -141,7 +143,8 @@ function SplitScreen() {
         padding: "20px",
         justifyContent: "center",
         alignItems: "flex-start",
-        gap: "20px"
+        gap: "20px",
+        backgroundColor: "#fff"
       }}>
         {marathonsData.map((marathon, index) => {
           const totalLessons = marathon.weeks.flatMap(w => w.lessons).length;
