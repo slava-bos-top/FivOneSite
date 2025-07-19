@@ -106,7 +106,7 @@ function Statistics() {
     ];
   
     return (
-      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", backgroundColor: "#FFCE07" }}>
+      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", backgroundColor: "#fff" }}>
         {marathonsData.map((marathon, index) => {
           const totalLessons = marathon.weeks.flatMap(w => w.lessons).length;
           const completedLessons = marathon.weeks.flatMap(w => w.lessons.filter(l => l.completed)).length;
@@ -116,11 +116,11 @@ function Statistics() {
             <div key={index} style={{ textAlign: "center" }}>
               <div onClick={() => setExpandedIndex(index === expandedIndex ? null : index)} style={{ cursor: "pointer" }}>
                 <CircularProgress percentage={percentage} colors={gradients[index % gradients.length]} />
-                <p style={{ color: "#fff", fontWeight: "bold" }}>{marathon.title}</p>
+                <p style={{ color: "#000", fontWeight: "bold" }}>{marathon.title}</p>
               </div>
   
               {expandedIndex === index && (
-                <div style={{ marginTop: "10px", color: "#fff" }}>
+                <div style={{ marginTop: "10px", color: "#000" }}>
                   {marathon.weeks.map((week, wIndex) => {
                     const completed = week.lessons.filter(l => l.completed).length;
                     const percent = (completed / week.lessons.length) * 100;
