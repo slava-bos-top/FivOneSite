@@ -167,11 +167,11 @@ const TelegramLogin = () => {
         {/* 🔸 Привітальний текст */}
         <div style={{
           backgroundColor: "#FFCE07", 
-          opacity: 0.6,
+          opacity: 0.7,
           padding: "15px",
           borderRadius: "10px",
           textAlign: "center",
-          color: "#fff",
+          color: "#00",
           fontWeight: 500,
           fontSize: "15px",
           lineHeight: "1.4"
@@ -203,7 +203,7 @@ const TelegramLogin = () => {
             <p style={{ margin: 0, color: "#333" }}>Очікуємо підтвердження у Telegram...</p>
             <p style={{ fontSize: "14px", margin: 0 }}>
               Перейдіть до&nbsp;
-              <a href="https://t.me/fivone_bot" target="_blank" rel="noreferrer" style={{ color: "#0088cc" }}>
+              <a href="https://t.me/fivone_bot" target="_blank" rel="noreferrer" style={{ color: "#000" }}>
                 @fivone_bot
               </a>
             </p>
