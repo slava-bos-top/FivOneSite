@@ -157,6 +157,7 @@ function SplitScreen() {
     // },
     // ... ще 3 марафони
   ];
+  console.log(marathonsData)
 
   return (
     <div style={{
