@@ -166,7 +166,8 @@ const TelegramLogin = () => {
     
         {/* 🔸 Привітальний текст */}
         <div style={{
-          backgroundColor: "#0088cc",
+          backgroundColor: "#FFCE07", 
+          opacity: 0.6,
           padding: "15px",
           borderRadius: "10px",
           textAlign: "center",
