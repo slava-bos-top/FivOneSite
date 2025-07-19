@@ -152,7 +152,7 @@ function SplitScreen() {
         backgroundColor: "rgba(255, 255, 255, 0.7)",
         borderRadius: "30px"
       }}>
-        <div style={{width: "100%", height: "100%", padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}} className="statistics__grid-gallery">
+        <div style={{maxWidth: "960px", margin: "0 auto", width: "100%", height: "100%", padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}} className="statistics__grid-gallery">
             {marathonsData.map((marathon, index) => {
             const totalLessons = marathon.weeks.flatMap(w => w.lessons).length;
             const completedLessons = marathon.weeks.flatMap(w => w.lessons.filter(l => l.completed)).length;
