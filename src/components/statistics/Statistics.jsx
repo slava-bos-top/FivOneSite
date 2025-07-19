@@ -98,9 +98,8 @@ function SplitScreen() {
       <div style={{
         flex: 1,
         padding: "20px",
-        backgroundColor: "#fff",
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
         borderRight: "1px solid #ddd",
-        opacity: 0.7,
         borderRadius: "30px"
       }}>
         <div style={{padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}}>
@@ -148,8 +147,7 @@ function SplitScreen() {
         justifyContent: "center",
         alignItems: "flex-start",
         gap: "20px",
-        backgroundColor: "#fff",
-        opacity: 0.7,
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
         borderRadius: "30px"
       }}>
         <div style={{padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}}>
