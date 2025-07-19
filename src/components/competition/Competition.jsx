@@ -123,7 +123,7 @@ export default function Competition() {
                 <div className='competition_container_promo_main_block'>
                     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                         <Link to="/login" className="competition_container_header_button" style={{backgroundColor: backgroundColor, alignItems: "center", textAlign: "center", paddingTop: "10px", paddingBottom: "10px", paddingLeft: "20px", paddingRight: "20px", borderRadius: "20px", marginBottom: "15px"}}>Зареєструватись</Link>
-                        <span style={{width: "80px"}}>3 тижні</span>
+                        <span style={{width: "120px"}}>3 тижні</span>
                     </div>
                     <p>{AddParagraph}</p>
                 </div>

@@ -148,7 +148,7 @@ const TelegramLogin = () => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      background: "linear-gradient(145deg, #e1f3ff, #f3faff)"
+      background: "linear-gradient(145deg, #e1f3ff, #ffce07, #f3faff)"
     }}>
       <div style={{
         background: "#fff",
