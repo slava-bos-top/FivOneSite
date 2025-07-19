@@ -122,7 +122,7 @@ export default function Competition() {
                 <p className='competition_container_promo_main_text'>{paragraph}</p>
                 <div className='competition_container_promo_main_block'>
                     <div>
-                        <Link to="/login" className="competition_container_header_button" style={{backgroundColor: backgroundColor}}>Зареєструватись</Link>
+                        <Link to="/login" className="competition_container_header_button" style={{backgroundColor: backgroundColor, alignItems: "center", textAlign: "center", padding: "10px"}}>Зареєструватись</Link>
                         <span>3 тижні</span>
                     </div>
                     <p>{AddParagraph}</p>
