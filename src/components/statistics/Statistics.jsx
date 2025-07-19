@@ -49,7 +49,7 @@ function CircularProgress({ percentage, colors }) {
   const strokeDashoffset = strokeDasharray * (1 - percentage / 100);
 
   return (
-    <svg width="150" height="150" viewBox="0 0 100 100">
+    <svg width="150" height="150" viewBox="10 10 110 110">
       <defs>
         <linearGradient id={`grad-${colors[0]}`} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor={colors[0]} />
