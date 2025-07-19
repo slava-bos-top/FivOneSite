@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
+import {
+  CircularProgressbarWithChildren,
+  buildStyles
+} from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
+// Дані
 const weeksData = [
   {
     week: 1,
@@ -17,79 +23,83 @@ const weeksData = [
       { title: "Урок 3", completed: true }
     ]
   }
-  // додай інші тижні
 ];
 
-function Statistics() {
-  const [expandedWeek, setExpandedWeek] = useState(null);
+// Функція для загального прогресу
+const calculateOverallProgress = () => {
+  const totalLessons = weeksData.reduce((acc, week) => acc + week.lessons.length, 0);
+  const completedLessons = weeksData.reduce(
+    (acc, week) => acc + week.lessons.filter(l => l.completed).length,
+    0
+  );
+  return Math.round((completedLessons / totalLessons) * 100);
+};
 
-  const completedWeeks = weeksData.filter(week =>
-    week.lessons.every(lesson => lesson.completed)
-  ).length;
+function Statistics() {
+  const [showDetails, setShowDetails] = useState(false);
+  const progress = calculateOverallProgress();
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>📈 Прогрес марафону</h2>
-      <p>✅ Завершено тижнів: {completedWeeks} з {weeksData.length}</p>
-
-      {weeksData.map((week) => {
-        const lessonsCompleted = week.lessons.filter(l => l.completed).length;
-        const isCompleted = lessonsCompleted === week.lessons.length;
-        const isExpanded = expandedWeek === week.week;
-
-        return (
-          <div key={week.week} style={{
-            border: "1px solid #ccc",
-            padding: "10px",
-            borderRadius: "8px",
-            marginBottom: "10px",
-            backgroundColor: isCompleted ? "#e6ffe6" : "#f9f9f9"
-          }}>
-            <div
-              onClick={() =>
-                setExpandedWeek(isExpanded ? null : week.week)
-              }
-              style={{
-                cursor: "pointer",
-                fontWeight: "bold",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center"
-              }}
-            >
-              <span>
-                {isExpanded ? "🔽" : "▶️"} Тиждень {week.week} — {lessonsCompleted}/{week.lessons.length} уроків
-              </span>
+    <div style={{ padding: "20px", maxWidth: "400px", margin: "0 auto" }}>
+      {!showDetails ? (
+        <div onClick={() => setShowDetails(true)} style={{ cursor: 'pointer' }}>
+          <CircularProgressbarWithChildren
+            value={progress}
+            styles={buildStyles({
+              pathColor: 'url(#gradient)',
+              trailColor: '#1e1e2f',
+              strokeLinecap: 'round'
+            })}
+          >
+            <svg style={{ height: 0 }}>
+              <defs>
+                <linearGradient id="gradient">
+                  <stop offset="0%" stopColor="#FFCE07" />
+                  <stop offset="50%" stopColor="#16BAAE" />
+                  <stop offset="100%" stopColor="#E95C28" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div style={{ fontSize: 24, color: 'white', fontWeight: 'bold' }}>
+              {progress}%
             </div>
+            <div style={{ fontSize: 14, color: '#aaa' }}>Натисни для деталей</div>
+          </CircularProgressbarWithChildren>
+        </div>
+      ) : (
+        <div>
+          <h3 style={{ textAlign: 'center' }}>Прогрес по тижнях</h3>
+          {weeksData.map((week) => {
+            const completed = week.lessons.filter(l => l.completed).length;
+            const total = week.lessons.length;
+            const percentage = Math.round((completed / total) * 100);
 
-            {/* Прогрес-бар */}
-            <div style={{
-              height: "8px",
-              backgroundColor: "#ddd",
-              borderRadius: "4px",
-              overflow: "hidden",
-              marginTop: "6px",
-              marginBottom: isExpanded ? "10px" : "0"
-            }}>
-              <div style={{
-                width: `${(lessonsCompleted / week.lessons.length) * 100}%`,
-                height: "100%",
-                backgroundColor: "#4caf50"
-              }} />
-            </div>
-
-            {isExpanded && (
-              <ul style={{ marginTop: "10px" }}>
-                {week.lessons.map((lesson, i) => (
-                  <li key={i}>
-                    {lesson.completed ? "✅" : "❌"} {lesson.title}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        );
-      })}
+            return (
+              <div key={week.week} style={{ marginBottom: '20px' }}>
+                <p><strong>📅 Тиждень {week.week}</strong> — {completed}/{total} уроків</p>
+                <div style={{
+                  background: '#1e1e2f',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  height: '16px'
+                }}>
+                  <div
+                    style={{
+                      width: `${percentage}%`,
+                      height: '100%',
+                      background: 'linear-gradient(to right, var(--yellow), var(--cyan), var(--red))',
+                      transition: 'width 0.5s ease'
+                    }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+          <button onClick={() => setShowDetails(false)} style={{ marginTop: 20 }}>
+            ⬅ Назад
+          </button>
+        </div>
+      )}
     </div>
   );
 }
