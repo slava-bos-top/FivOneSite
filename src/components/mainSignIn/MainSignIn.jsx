@@ -3,7 +3,7 @@ import Footer from '../footer/Footer';
 import Statistics from '../statistics/Statistics';
 import HeaderSignIn from '../headerSignIn/HeaderSignIn';
 
-export default function Main() {
+export default function MainSignIn() {
     const [signIn, setSignIn] = useState(false)
 
     useEffect(() => {
