@@ -10,39 +10,41 @@ import 'swiper/css/pagination';
 
 
 function CircularProgress({ percentage, colors }) {
-    const fromColor = "#FFCE07"
-    const toColor = "#E95C28"
-
-  const strokeDasharray = 283;
-  const strokeDashoffset = strokeDasharray * (1 - percentage / 100);
-
-  return (
-    <svg width="150" height="150" viewBox="-5 -5 110 110">
-      <defs>
-        <linearGradient id={`grad-${fromColor}-${toColor}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFCE07" />
-          <stop offset="100%" stopColor="#E95C28" />
-        </linearGradient>
-      </defs>
-      <circle cx="50" cy="50" r="45" fill="none" stroke="#00008b" strokeWidth="12" />
-      <circle
-        cx="50"
-        cy="50"
-        r="45"
-        fill="none"
-        stroke={`url(#grad-${fromColor}-${toColor})`}
-        strokeWidth="12"
-        strokeDasharray={strokeDasharray}
-        strokeDashoffset={strokeDashoffset}
-        strokeLinecap="round"
-        transform="rotate(-90 50 50)"
-      />
-      <text x="50" y="55" textAnchor="middle" fontSize="20" fill="#00008b" fontWeight="bold">
-        {Math.round(percentage)}%
-      </text>
-    </svg>
-  );
-}
+    const fromColor = colors?.[0] || "#FFCE07";
+    const toColor = colors?.[1] || "#E95C28";
+    const strokeDasharray = 283;
+    const strokeDashoffset = strokeDasharray * (1 - percentage / 100);
+  
+    // 👇 Створюємо унікальний id для градієнта
+    const gradientId = `grad-${fromColor}-${toColor}-${Math.random().toString(36).substr(2, 9)}`;
+  
+    return (
+      <svg width="150" height="150" viewBox="-5 -5 110 110">
+        <defs>
+          <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor={fromColor} />
+            <stop offset="100%" stopColor={toColor} />
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="45" fill="none" stroke="#00008b" strokeWidth="12" />
+        <circle
+          cx="50"
+          cy="50"
+          r="45"
+          fill="none"
+          stroke={`url(#${gradientId})`}
+          strokeWidth="12"
+          strokeDasharray={strokeDasharray}
+          strokeDashoffset={strokeDashoffset}
+          strokeLinecap="round"
+          transform="rotate(-90 50 50)"
+        />
+        <text x="50" y="55" textAnchor="middle" fontSize="20" fill="#00008b" fontWeight="bold">
+          {Math.round(percentage)}%
+        </text>
+      </svg>
+    );
+  }
 
 const gradients = [
   ["#FFCE07", "#E95C28"],
