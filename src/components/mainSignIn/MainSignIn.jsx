@@ -4,6 +4,7 @@ import Statistics from '../statistics/Statistics';
 import HeaderSignIn from '../headerSignIn/HeaderSignIn';
 
 import { Link } from 'react-router-dom';
+import TelegramLogin from '../TelegramLogin';
 
 export default function MainSignIn() {
     const [signIn, setSignIn] = useState(false)
@@ -30,7 +31,7 @@ export default function MainSignIn() {
             </>
         ) : (
             <>
-                <Link to="/login" className="header_nav_button" style={{marginTop: "400px"}}>Зареєструватись</Link>
+                <TelegramLogin />
             </>
         )}
     </div>
