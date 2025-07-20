@@ -131,6 +131,7 @@ function SplitScreen() {
       week1: week1,
       week2: week2,
       week3: week3,
+      exist: true
     },
     {
       title: "Марафон 2",
@@ -142,6 +143,7 @@ function SplitScreen() {
       week1: week4,
       week2: week5,
       week3: week6,
+      exist: true
     },
     {
         title: "Марафон 3",
@@ -153,6 +155,7 @@ function SplitScreen() {
         week1: week7,
         week2: week8,
         week3: week9,
+        exist: true
     },
     {
         title: "Марафон 4",
@@ -164,6 +167,7 @@ function SplitScreen() {
         week1: week10,
         week2: week11,
         week3: week12,
+        exist: true
     },
     {
         title: "Марафон 5",
@@ -171,6 +175,7 @@ function SplitScreen() {
         totalMarathone: 3,
         totalWeek1: 7,
         week1: week13,
+        exist: false
     },
     // {
     //     title: "Марафон 5",
