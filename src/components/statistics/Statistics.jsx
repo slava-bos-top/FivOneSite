@@ -3,8 +3,11 @@ import 'react-circular-progressbar/dist/styles.css';
 
 import './Statistics.css';
 
-// Твої дані марафонів
-// Дані
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 
 function CircularProgress({ percentage, colors }) {
 
@@ -19,7 +22,7 @@ function CircularProgress({ percentage, colors }) {
           <stop offset="100%" stopColor={colors[1]} />
         </linearGradient>
       </defs>
-      <circle cx="50" cy="50" r="45" fill="none" stroke="#1f1f2f" strokeWidth="12" />
+      <circle cx="50" cy="50" r="45" fill="none" stroke="#00008b" strokeWidth="12" />
       <circle
         cx="50"
         cy="50"
@@ -32,7 +35,7 @@ function CircularProgress({ percentage, colors }) {
         strokeLinecap="round"
         transform="rotate(-90 50 50)"
       />
-      <text x="50" y="55" textAnchor="middle" fontSize="20" fill="#000" fontWeight="bold">
+      <text x="50" y="55" textAnchor="middle" fontSize="20" fill="#00008b" fontWeight="bold">
         {Math.round(percentage)}%
       </text>
     </svg>
@@ -120,57 +123,100 @@ function SplitScreen() {
     fetchUserData();
   }, []);
 
+  const handleUserData = async () => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      const { isLoggedIn, phone } = JSON.parse(savedUser);
+      if (isLoggedIn) {
+        setPhone(phone);
+
+        try {
+          const checkRes = await fetch(
+            `https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${phone}`
+          );
+          const checkData = await checkRes.json();
+
+          console.log(checkData);
+
+          setName(checkData.name);
+          setSurname(checkData.surname);
+          setImage(checkData.photo);
+          setMaraphone1(Number(checkData.maraphone1));
+          setMaraphone2(Number(checkData.maraphone2));
+          setMaraphone3(Number(checkData.maraphone3));
+          setMaraphone4(Number(checkData.maraphone4));
+          setMaraphone5(Number(checkData.maraphone5));
+          setWeek1(Number(checkData.week1));
+          setWeek2(Number(checkData.week2));
+          setWeek3(Number(checkData.week3));
+          setWeek4(Number(checkData.week4));
+          setWeek5(Number(checkData.week5));
+          setWeek6(Number(checkData.week6));
+          setWeek7(Number(checkData.week7));
+          setWeek8(Number(checkData.week8));
+          setWeek9(Number(checkData.week9));
+          setWeek10(Number(checkData.week10));
+          setWeek11(Number(checkData.week11));
+          setWeek12(Number(checkData.week12));
+          setWeek13(Number(checkData.week13));
+        } catch (error) {
+          console.error("❌ Помилка при завантаженні даних користувача:", error);
+        }
+      }
+    }
+  };
+
   const marathonsData = [
     {
-      title: "Марафон 1",
+      title: "Марафон з фізики",
       marathone: maraphone1,
       totalMarathone: 3,
       totalWeek1: 7,
-      totalWeek2: 7,
-      totalWeek3: 7,
+      totalWeek2: 6,
+      totalWeek3: 6,
       week1: week1,
       week2: week2,
       week3: week3,
       exist: true
     },
     {
-      title: "Марафон 2",
+      title: "Марафон з хімії",
       marathone: maraphone2,
       totalMarathone: 3,
-      totalWeek1: 7,
-      totalWeek2: 7,
-      totalWeek3: 7,
+      totalWeek1: 6,
+      totalWeek2: 6,
+      totalWeek3: 6,
       week1: week4,
       week2: week5,
       week3: week6,
       exist: true
     },
     {
-        title: "Марафон 3",
+        title: "Марафон з креативності",
         marathone: maraphone3,
         totalMarathone: 3,
         totalWeek1: 7,
         totalWeek2: 7,
-        totalWeek3: 7,
+        totalWeek3: 5,
         week1: week7,
         week2: week8,
         week3: week9,
         exist: true
     },
     {
-        title: "Марафон 4",
+        title: "Марафон з програмування",
         marathone: maraphone4,
         totalMarathone: 3,
-        totalWeek1: 7,
-        totalWeek2: 7,
-        totalWeek3: 7,
+        totalWeek1: 6,
+        totalWeek2: 6,
+        totalWeek3: 6,
         week1: week10,
         week2: week11,
         week3: week12,
         exist: true
     },
     {
-        title: "Марафон 5",
+        title: "Новорічний марафон",
         marathone: maraphone4,
         totalMarathone: 3,
         totalWeek1: 7,
@@ -200,7 +246,7 @@ function SplitScreen() {
         <div style={{ width: "100%", height: "100%", padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}}>
             {selectedMarathon ? (
             <>
-                <h2>{selectedMarathon.title}</h2>
+                <h2 style={{marginBottom: "20px"}}>{selectedMarathon.title}</h2>
 
                 {/* Тиждень 1 */}
                 <div style={{ marginBottom: "16px" }} className="statistics__week-block">
@@ -241,11 +287,12 @@ function SplitScreen() {
                     </div>
                 </div>
                 )}
+                <p>Так тримати! Ти впевнено рухаєшся вперед! Крокуй далі!</p>
             </>
             ) : (
             <>
-                <h2>Інструкція</h2>
-                <p>Оберіть один із марафонів справа, щоб побачити детальний прогрес по тижнях.</p>
+                <h2 style={{marginBottom: "20px"}}>Інструкція</h2>
+                <p style={{fontSize: "20px"}}>Обирай марафон, натискай на діаграму та відслідковуй свій прогрес по тижнях! Зафарбуй всі кружечки жовтим😉 Ми віримо в тебе!</p>
             </>
           )}
         </div>
@@ -264,7 +311,10 @@ function SplitScreen() {
             <div
                 key={index}
                 className="statistics__marathon-card"
-                onClick={() => setSelectedMarathon(marathon)}
+                onClick={() => {
+                    handleUserData()
+                    setSelectedMarathon(marathon)
+                }}
             >
                 <CircularProgress
                 percentage={marathon.exist ? percentage : percentageMini}
@@ -275,6 +325,73 @@ function SplitScreen() {
             );
         })}
         </div>
+      </div>
+      <div className="statistics__slider mobile-only">
+        <Swiper
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          spaceBetween={20}
+          slidesPerView={1}
+        >
+          {marathonsData.map((marathon, index) => {
+            const percentage = ((marathon.week1 + marathon.week2 + marathon.week3) /
+            (marathon.totalWeek1 + marathon.totalWeek2 + marathon.totalWeek3)) * 100;
+            
+            const percentageMini = (marathon.week1 / marathon.totalWeek1) * 100;
+
+            return (<SwiperSlide key={index} className="statistics_swiper_slide">
+              <div
+                className="statistics__marathon-card"
+                onClick={() => setSelectedMarathon(marathon)}
+              >
+                <CircularProgress
+                    percentage={marathon.exist ? percentage : percentageMini}
+                    colors={gradients[index % gradients.length]}
+                />
+                <p className="statistics__marathon-title">{marathon.title}</p>
+
+                {/* Тиждень 1 */}
+                <div style={{ marginBottom: "16px" }} className="statistics__week-block">
+                <p>Тиждень 1: {marathon.week1}/{marathon.totalWeek1}</p>
+                <div className="statistics__progress-bar">
+                    <div style={{
+                    width: `${(marathon.week1 / marathon.totalWeek1) * 100}%`,
+                    backgroundColor: "#FFCE07",
+                    height: "100%"
+                    }} />
+                </div>
+                </div>
+
+                {/* Тиждень 2 */}
+                {marathon.totalWeek2 && (
+                <div style={{ marginBottom: "16px" }} className="statistics__week-block">
+                <p>Тиждень 2: {marathon.week2}/{marathon.totalWeek2}</p>
+                <div className="statistics__progress-bar">
+                    <div style={{
+                    width: `${(marathon.week2 / marathon.totalWeek2) * 100}%`,
+                    backgroundColor: "#FFCE07",
+                    height: "100%"
+                    }} />
+                </div>
+                </div>
+                )}
+
+                {/* Тиждень 3 (якщо він є) */}
+                {marathon.totalWeek3 && (
+                <div style={{ marginBottom: "16px" }} className="statistics__week-block">
+                    <p>Тиждень 3: {marathon.week3}/{marathon.totalWeek3}</p>
+                    <div className="statistics__progress-bar">
+                    <div style={{
+                        width: `${(marathon.week3 / marathon.totalWeek3) * 100}%`,
+                        backgroundColor: "#FFCE07",
+                        height: "100%"
+                    }} />
+                    </div>
+                </div>)}
+              </div>
+            </SwiperSlide>)
+          })}
+        </Swiper>
       </div>
     </div>
   );
