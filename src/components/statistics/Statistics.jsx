@@ -207,7 +207,7 @@ function SplitScreen() {
                 </div>
 
                 {/* Тиждень 2 */}
-                {selectedMarathon.totalWeek3 (
+                {selectedMarathon.totalWeek2 && (
                 <div style={{ marginBottom: "16px" }}>
                 <p>Тиждень 2: {selectedMarathon.week2}/{selectedMarathon.totalWeek2}</p>
                 <div style={{
