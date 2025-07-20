@@ -1,4 +1,6 @@
-.statistics__container {
+
+
+  .statistics__container {
     display: flex;
     height: 80vh;
     font-family: sans-serif;
@@ -53,7 +55,7 @@
     border-radius: 30px;
   }
   
-  .statistics__grid-gallery {
+  /* .statistics__grid-gallery {
     max-width: 1260px;
     margin: 0 auto;
     width: 100%;
@@ -65,6 +67,12 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+  } */
+
+  .statistics__grid-gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 2rem;
   }
   
   .statistics__marathon-card {
