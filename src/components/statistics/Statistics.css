@@ -1,5 +1,7 @@
 
-
+ * {
+    font-family: 'Comfortaa', Arial, sans-serif;
+ }
   .statistics__container {
     display: flex;
     height: 80vh;
