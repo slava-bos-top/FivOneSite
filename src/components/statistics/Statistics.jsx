@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'react-circular-progressbar/dist/styles.css';
 
-import "./Statistics.css"
+import './Statistics.css';
 
 // Твої дані марафонів
 // Дані
@@ -177,14 +177,6 @@ function SplitScreen() {
         week1: week13,
         exist: false
     },
-    // {
-    //     title: "Марафон 5",
-    //     weeks: [
-    //       { lessons: [{ completed: true }, { completed: true }] },
-    //       { lessons: [{ completed: true }, { completed: true }] }
-    //     ]
-    // },
-    // ... ще 3 марафони
   ];
   console.log(marathonsData)
 
@@ -197,7 +189,7 @@ function SplitScreen() {
       padding: "20px",
       columnGap: "20px",
       marginTop: "80px"
-    }}>
+    }} className="statistics__container">
       {/* Ліва частина */}
       <div style={{
         flex: 1,
@@ -205,21 +197,16 @@ function SplitScreen() {
         backgroundColor: "rgba(255, 255, 255, 0.7)",
         borderRight: "1px solid #ddd",
         borderRadius: "30px"
-      }}>
+      }} className="statistics__left">
         <div style={{ width: "100%", height: "100%", padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}}>
             {selectedMarathon ? (
             <>
                 <h2>{selectedMarathon.title}</h2>
 
                 {/* Тиждень 1 */}
-                <div style={{ marginBottom: "16px" }}>
+                <div style={{ marginBottom: "16px" }} className="statistics__week-block">
                 <p>Тиждень 1: {selectedMarathon.week1}/{selectedMarathon.totalWeek1}</p>
-                <div style={{
-                    background: "#ccc",
-                    borderRadius: "5px",
-                    height: "10px",
-                    overflow: "hidden"
-                }}>
+                <div className="statistics__progress-bar">
                     <div style={{
                     width: `${(selectedMarathon.week1 / selectedMarathon.totalWeek1) * 100}%`,
                     backgroundColor: "#FFCE07",
@@ -230,14 +217,9 @@ function SplitScreen() {
 
                 {/* Тиждень 2 */}
                 {selectedMarathon.totalWeek2 && (
-                <div style={{ marginBottom: "16px" }}>
+                <div style={{ marginBottom: "16px" }} className="statistics__week-block">
                 <p>Тиждень 2: {selectedMarathon.week2}/{selectedMarathon.totalWeek2}</p>
-                <div style={{
-                    background: "#ccc",
-                    borderRadius: "5px",
-                    height: "10px",
-                    overflow: "hidden"
-                }}>
+                <div className="statistics__progress-bar">
                     <div style={{
                     width: `${(selectedMarathon.week2 / selectedMarathon.totalWeek2) * 100}%`,
                     backgroundColor: "#FFCE07",
@@ -249,14 +231,9 @@ function SplitScreen() {
 
                 {/* Тиждень 3 (якщо він є) */}
                 {selectedMarathon.totalWeek3 && (
-                <div style={{ marginBottom: "16px" }}>
+                <div style={{ marginBottom: "16px" }} className="statistics__week-block">
                     <p>Тиждень 3: {selectedMarathon.week3}/{selectedMarathon.totalWeek3}</p>
-                    <div style={{
-                    background: "#ccc",
-                    borderRadius: "5px",
-                    height: "10px",
-                    overflow: "hidden"
-                    }}>
+                    <div className="statistics__progress-bar">
                     <div style={{
                         width: `${(selectedMarathon.week3 / selectedMarathon.totalWeek3) * 100}%`,
                         backgroundColor: "#FFCE07",
@@ -276,60 +253,28 @@ function SplitScreen() {
       </div>
 
       {/* Права частина */}
-      <div style={{
-        flex: 1,
-        display: "flex",
-        flexWrap: "wrap",
-        padding: "20px",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        gap: "20px",
-        backgroundColor: "rgba(255, 255, 255, 0.7)",
-        borderRadius: "30px"
-      }}>
-        <div style={{maxWidth: "1260px", margin: "0 auto", width: "100%", height: "100%", padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}} className="statistics__grid-gallery">
-            {marathonsData.map((marathon, index) => {
-                const percentage = ((marathon.week1 + marathon.week2 + marathon.week3) / (marathon.totalWeek1 + marathon.totalWeek2 + marathon.totalWeek3)) * 100;
-                const percentageMini = ((marathon.week1) / (marathon.totalWeek1)) * 100;
+      <div className="statistics__right">
+        <div className="statistics__grid-gallery">
+        {marathonsData.map((marathon, index) => {
+            const percentage = ((marathon.week1 + marathon.week2 + marathon.week3) /
+            (marathon.totalWeek1 + marathon.totalWeek2 + marathon.totalWeek3)) * 100;
 
-                return (
-                    <>
-                        {marathon.exist ? (
-                            <div
-                                key={index}
-                                style={{ cursor: "pointer", textAlign: "center" }}
-                                onClick={() => setSelectedMarathon(marathon)}
-                                >
-                                <CircularProgress percentage={percentage} colors={gradients[index % gradients.length]} />
-                                <p style={{ fontWeight: "bold", color: "#000", marginTop: "8px" }}>
-                                    {marathon.title}
-                                </p>
-                            </div>
-                        ) : (
-                            <div
-                                key={index}
-                                style={{ cursor: "pointer", textAlign: "center" }}
-                                onClick={() => setSelectedMarathon(marathon)}
-                                >
-                                <CircularProgress percentage={percentageMini} colors={gradients[index % gradients.length]} />
-                                <p style={{ fontWeight: "bold", color: "#000", marginTop: "8px" }}>
-                                    {marathon.title}
-                                </p>
-                            </div>
-                        )}
-                    </>
-                );
-            })}
-            {/* <div
+            const percentageMini = (marathon.week1 / marathon.totalWeek1) * 100;
+
+            return (
+            <div
                 key={index}
-                style={{ cursor: "pointer", textAlign: "center" }}
+                className="statistics__marathon-card"
                 onClick={() => setSelectedMarathon(marathon)}
             >
-                <CircularProgress percentage={(maraphone1 / 3) * 100} colors={gradients[index % gradients.length]} />
-                <p style={{ fontWeight: "bold", color: "#000", marginTop: "8px" }}>
-                    Марафон 1
-                </p>
-            </div> */}
+                <CircularProgress
+                percentage={marathon.exist ? percentage : percentageMini}
+                colors={gradients[index % gradients.length]}
+                />
+                <p className="statistics__marathon-title">{marathon.title}</p>
+            </div>
+            );
+        })}
         </div>
       </div>
     </div>
