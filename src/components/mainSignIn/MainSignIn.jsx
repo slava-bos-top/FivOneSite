@@ -30,7 +30,7 @@ export default function MainSignIn() {
             </>
         ) : (
             <>
-                <Link to="/login" className="header_nav_button" style={{marginTop: "45%"}}>Зареєструватись</Link>
+                <Link to="/login" className="header_nav_button" style={{marginTop: "400px"}}>Зареєструватись</Link>
             </>
         )}
     </div>
