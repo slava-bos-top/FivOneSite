@@ -77,6 +77,7 @@ function SplitScreen() {
     if (savedUser) {
       const { name, surname, photo, isLoggedIn, maraphone1, maraphone2, maraphone3, maraphone4, maraphone5, week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13 } = JSON.parse(savedUser);
       if (isLoggedIn) {
+        console.log(maraphone1)
         setName(name)
         setSurname(surname)
         setImage(photo)
