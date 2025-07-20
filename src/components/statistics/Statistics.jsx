@@ -293,7 +293,7 @@ function SplitScreen() {
                 const percentageMini = ((marathon.week1) / (marathon.totalWeek1)) * 100;
 
 
-                {marathon.week3 ? (
+                {marathon.exist ? (
                     <div
                         key={index}
                         style={{ cursor: "pointer", textAlign: "center" }}
