@@ -36,6 +36,7 @@ function Header() {
   const handleLogout = () => {
     localStorage.removeItem("user");
     setSignIn(false)
+    window.location.href = "https://fiv-one-site.vercel.app/";
   };
 
   return (

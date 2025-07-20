@@ -53,7 +53,7 @@ const TelegramLogin = () => {
           isLoggedIn: true,
         }));
 
-        window.location.href = "https://fiv-one-site.vercel.app/";
+        window.location.href = "https://fiv-one-site.vercel.app/statistics";
       } else if (attempts >= maxAttempts) {
         clearInterval(intervalId);
         setChecking(false);
@@ -156,7 +156,7 @@ const TelegramLogin = () => {
               isLoggedIn: true,
             }));
 
-            window.location.href = "https://fiv-one-site.vercel.app/";
+            window.location.href = "https://fiv-one-site.vercel.app/statistics";
 
             // Далі можна зберегти в локальне сховище або перейти на іншу сторінку
             // Можна зробити навігацію або збереження
