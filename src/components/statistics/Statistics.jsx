@@ -17,9 +17,9 @@ function CircularProgress({ percentage, colors }) {
   return (
     <svg width="150" height="150" viewBox="-5 -5 110 110">
       <defs>
-        <linearGradient id={`grad-${colors[0]}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={colors[0]} />
-          <stop offset="100%" stopColor={colors[1]} />
+        <linearGradient id={`grad-${colors}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={colors} />
+          <stop offset="100%" stopColor={colors} />
         </linearGradient>
       </defs>
       <circle cx="50" cy="50" r="45" fill="none" stroke="#00008b" strokeWidth="12" />
@@ -28,7 +28,7 @@ function CircularProgress({ percentage, colors }) {
         cy="50"
         r="45"
         fill="none"
-        stroke={`url(#grad-${colors[0]})`}
+        stroke={`url(#grad-${colors})`}
         strokeWidth="12"
         strokeDasharray={strokeDasharray}
         strokeDashoffset={strokeDashoffset}
