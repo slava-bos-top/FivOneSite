@@ -181,9 +181,23 @@ function SplitScreen() {
   console.log(marathonsData)
 
   return (
-    <div className="statistics__container">
+    <div style={{
+      display: "flex",
+      height: "80vh",
+      fontFamily: "sans-serif",
+      backgroundColor: "#FFCE07",
+      padding: "20px",
+      columnGap: "20px",
+      marginTop: "80px"
+    }} className="statistics__container">
       {/* Ліва частина */}
-      <div className="statistics__left">
+      <div style={{
+        flex: 1,
+        padding: "20px",
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
+        borderRight: "1px solid #ddd",
+        borderRadius: "30px"
+      }} className="statistics__left">
         <div style={{ width: "100%", height: "100%", padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}}>
             {selectedMarathon ? (
             <>
