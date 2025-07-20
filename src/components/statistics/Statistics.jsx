@@ -74,42 +74,50 @@ function SplitScreen() {
   const [week13, setWeek13] = useState(2)
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      const { isLoggedIn, phone } = JSON.parse(savedUser);
-      if (isLoggedIn) {
-        setPhone(phone)
-        // Наприклад, показати імʼя в Header
+    const fetchUserData = async () => {
+      const savedUser = localStorage.getItem("user");
+      if (savedUser) {
+        const { isLoggedIn, phone } = JSON.parse(savedUser);
+        if (isLoggedIn) {
+          setPhone(phone);
+  
+          try {
+            const checkRes = await fetch(
+              `https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${phone}`
+            );
+            const checkData = await checkRes.json();
+  
+            console.log(checkData);
+  
+            setName(checkData.name);
+            setSurname(checkData.surname);
+            setImage(checkData.photo);
+            setMaraphone1(Number(checkData.maraphone1));
+            setMaraphone2(Number(checkData.maraphone2));
+            setMaraphone3(Number(checkData.maraphone3));
+            setMaraphone4(Number(checkData.maraphone4));
+            setMaraphone5(Number(checkData.maraphone5));
+            setWeek1(Number(checkData.week1));
+            setWeek2(Number(checkData.week2));
+            setWeek3(Number(checkData.week3));
+            setWeek4(Number(checkData.week4));
+            setWeek5(Number(checkData.week5));
+            setWeek6(Number(checkData.week6));
+            setWeek7(Number(checkData.week7));
+            setWeek8(Number(checkData.week8));
+            setWeek9(Number(checkData.week9));
+            setWeek10(Number(checkData.week10));
+            setWeek11(Number(checkData.week11));
+            setWeek12(Number(checkData.week12));
+            setWeek13(Number(checkData.week13));
+          } catch (error) {
+            console.error("❌ Помилка при завантаженні даних користувача:", error);
+          }
+        }
       }
-    }
-
-    const checkRes = await fetch(
-        `https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${phone}`
-    );
-    const checkData = await checkRes.json();
-    console.log(checkData)
-
-    setName(checkData.name)
-    setSurname(checkData.surname)
-    setImage(checkData.photo)
-    setMaraphone1(Number(checkData.maraphone1))
-    setMaraphone2(Number(checkData.maraphone2))
-    setMaraphone3(Number(checkData.maraphone3))
-    setMaraphone4(Number(checkData.maraphone4))
-    setMaraphone5(Number(checkData.maraphone5))
-    setWeek1(Number(checkData.week1)) //
-    setWeek2(Number(checkData.week2)) //
-    setWeek3(Number(checkData.week3)) 
-    setWeek4(Number(checkData.week4))
-    setWeek5(Number(checkData.week5))
-    setWeek6(Number(checkData.week6))
-    setWeek7(Number(checkData.week7))
-    setWeek8(Number(checkData.week8))
-    setWeek9(Number(checkData.week9))
-    setWeek10(Number(checkData.week10))
-    setWeek11(Number(checkData.week11))
-    setWeek12(Number(checkData.week12))
-    setWeek13(Number(checkData.week13))
+    };
+  
+    fetchUserData();
   }, []);
 
   const marathonsData = [
