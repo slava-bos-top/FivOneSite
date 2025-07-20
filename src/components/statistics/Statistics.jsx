@@ -175,7 +175,7 @@ function SplitScreen() {
       backgroundColor: "#FFCE07",
       padding: "20px",
       columnGap: "20px",
-      marginTop: "200px"
+      marginTop: "80px"
     }}>
       {/* Ліва частина */}
       <div style={{
