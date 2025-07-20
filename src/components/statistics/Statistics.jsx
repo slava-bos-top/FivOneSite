@@ -76,6 +76,8 @@ function SplitScreen() {
   const [week12, setWeek12] = useState(0)
   const [week13, setWeek13] = useState(0)
 
+  const gradientColors = ["#FFCE07", "#E95C28"];
+
   useEffect(() => {
     const fetchUserData = async () => {
       const savedUser = localStorage.getItem("user");
@@ -349,7 +351,7 @@ function SplitScreen() {
               >
                 <CircularProgress
                     percentage={marathon.exist ? percentage : percentageMini}
-                    colors={gradients[index % gradients.length]}
+                    colors={gradientColors}
                 />
                 <p className="statistics__marathon-title">{marathon.title}</p>
 
