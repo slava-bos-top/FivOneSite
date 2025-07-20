@@ -288,6 +288,9 @@ function SplitScreen() {
                 </div>
                 )}
                 <p>Так тримати! Ти впевнено рухаєшся вперед! Крокуй далі!</p>
+                <div style={{alignItems: "center", display: "flex", justifyContent: "center", marginTop: "20px"}}>
+                    <a href="#!" className="header_nav_button" style={{marginLeft: "0"}}>Перейти до телеграм</a>
+                </div>
             </>
             ) : (
             <>
