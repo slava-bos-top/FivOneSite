@@ -10,6 +10,8 @@ import 'swiper/css/pagination';
 
 
 function CircularProgress({ percentage, colors }) {
+    const fromColor = "#FFCE07"
+    const toColor = "#E95C28"
 
   const strokeDasharray = 283;
   const strokeDashoffset = strokeDasharray * (1 - percentage / 100);
@@ -17,9 +19,9 @@ function CircularProgress({ percentage, colors }) {
   return (
     <svg width="150" height="150" viewBox="-5 -5 110 110">
       <defs>
-        <linearGradient id={`grad-${colors}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={colors} />
-          <stop offset="100%" stopColor={colors} />
+        <linearGradient id={`grad-${fromColor}-${toColor}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={fromColor} />
+          <stop offset="100%" stopColor={toColor} />
         </linearGradient>
       </defs>
       <circle cx="50" cy="50" r="45" fill="none" stroke="#00008b" strokeWidth="12" />
@@ -28,7 +30,7 @@ function CircularProgress({ percentage, colors }) {
         cy="50"
         r="45"
         fill="none"
-        stroke={`url(#grad-${colors})`}
+        stroke={`url(#grad-${fromColor}-${toColor})`}
         strokeWidth="12"
         strokeDasharray={strokeDasharray}
         strokeDashoffset={strokeDashoffset}
@@ -227,6 +229,9 @@ function SplitScreen() {
     },
   ];
   console.log(marathonsData)
+
+  const fromColor = "#FFCE07"
+  const toColor = "#E95C28"
 
   return (
     <div style={{
