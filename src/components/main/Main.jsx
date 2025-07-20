@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React, { useState, useEffect } from 'react'
 import Header from '../header/Header';
 import Promo from '../promo/Promo';
 import Gallery from '../Gallery/Gallery';
