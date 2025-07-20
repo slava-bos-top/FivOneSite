@@ -20,8 +20,8 @@ function CircularProgress({ percentage, colors }) {
     <svg width="150" height="150" viewBox="-5 -5 110 110">
       <defs>
         <linearGradient id={`grad-${fromColor}-${toColor}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={fromColor} />
-          <stop offset="100%" stopColor={toColor} />
+          <stop offset="0%" stopColor="#FFCE07" />
+          <stop offset="100%" stopColor="#E95C28" />
         </linearGradient>
       </defs>
       <circle cx="50" cy="50" r="45" fill="none" stroke="#00008b" strokeWidth="12" />
