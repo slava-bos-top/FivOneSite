@@ -134,6 +134,7 @@ const TelegramLogin = () => {
             localStorage.setItem("user", JSON.stringify({
               name: checkData.name,
               surname: checkData.surname,
+              phone: checkData.phone,
               photo: checkData.photo,
               maraphone1: checkData.maraphone1,
               maraphone2: checkData.maraphone2,

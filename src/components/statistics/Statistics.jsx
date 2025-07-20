@@ -49,6 +49,7 @@ const gradients = [
 
 function SplitScreen() {
   const [selectedMarathon, setSelectedMarathon] = useState(null);
+  const [phone, setPhone] = useState("")
 
   const [name, setName] = useState("")
   const [surname, setSurname] = useState("")
@@ -75,33 +76,65 @@ function SplitScreen() {
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
-      const { name, surname, photo, isLoggedIn, maraphone1, maraphone2, maraphone3, maraphone4, maraphone5, week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13 } = JSON.parse(savedUser);
+      const { isLoggedIn, phone } = JSON.parse(savedUser);
       if (isLoggedIn) {
-        console.log(maraphone1)
-        setName(name)
-        setSurname(surname)
-        setImage(photo)
-        setMaraphone1(Number(maraphone1))
-        setMaraphone2(Number(maraphone2))
-        setMaraphone3(Number(maraphone3))
-        setMaraphone4(Number(maraphone4))
-        setMaraphone5(Number(maraphone5))
-        setWeek1(Number(week1)) //
-        setWeek2(Number(week2)) //
-        setWeek3(Number(week3)) 
-        setWeek4(Number(week4))
-        setWeek5(Number(week5))
-        setWeek6(Number(week6))
-        setWeek7(Number(week7))
-        setWeek8(Number(week8))
-        setWeek9(Number(week9))
-        setWeek10(Number(week10))
-        setWeek11(Number(week11))
-        setWeek12(Number(week12))
-        setWeek13(Number(week13))
+        setPhone(phone)
         // Наприклад, показати імʼя в Header
       }
     }
+
+    const checkRes = await fetch(
+        `https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${phone}`
+    );
+    const checkData = await checkRes.json();
+    console.log(checkData)
+
+    localStorage.setItem("user", JSON.stringify({
+          name: checkData.name,
+          surname: checkData.surname,
+          photo: checkData.photo,
+          maraphone1: checkData.maraphone1,
+          maraphone2: checkData.maraphone2,
+          maraphone3: checkData.maraphone3,
+          maraphone4: checkData.maraphone4,
+          maraphone5: checkData.maraphone5,
+          week1: checkData.week1,    
+          week2: checkData.week2,   
+          week3: checkData.week3,   
+          week4: checkData.week4,   
+          week5: checkData.week5,   
+          week6: checkData.week6,   
+          week7: checkData.week7,   
+          week8: checkData.week8,   
+          week9: checkData.week9,   
+          week10: checkData.week10,   
+          week11: checkData.week11,   
+          week12: checkData.week12,   
+          week13: checkData.week13, 
+          isLoggedIn: true,
+    }));
+
+    setName(checkData.name)
+    setSurname(checkData.surname)
+    setImage(checkData.photo)
+    setMaraphone1(Number(checkData.maraphone1))
+    setMaraphone2(Number(checkData.maraphone2))
+    setMaraphone3(Number(checkData.maraphone3))
+    setMaraphone4(Number(checkData.maraphone4))
+    setMaraphone5(Number(checkData.maraphone5))
+    setWeek1(Number(checkData.week1)) //
+    setWeek2(Number(checkData.week2)) //
+    setWeek3(Number(checkData.week3)) 
+    setWeek4(Number(checkData.week4))
+    setWeek5(Number(checkData.week5))
+    setWeek6(Number(checkData.week6))
+    setWeek7(Number(checkData.week7))
+    setWeek8(Number(checkData.week8))
+    setWeek9(Number(checkData.week9))
+    setWeek10(Number(checkData.week10))
+    setWeek11(Number(checkData.week11))
+    setWeek12(Number(checkData.week12))
+    setWeek13(Number(checkData.week13))
   }, []);
 
   const marathonsData = [
