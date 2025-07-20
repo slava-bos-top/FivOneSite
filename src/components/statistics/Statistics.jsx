@@ -181,61 +181,59 @@ function SplitScreen() {
             {selectedMarathon ? (
             <>
                 <h2>{selectedMarathon.title}</h2>
-                {selectedMarathon.map((week, wIndex) => {
-                const percent1 = (week.week1 / week.totalWeek1) * 100;
-                const percent2 = (week.week2 / week.totalWeek2) * 100;
-                const percent3 = (week.week3 / week.totalWeek3) * 100;
 
-                return (
-                    <div key={wIndex}>
-                        <div style={{ marginBottom: "16px" }}>
-                            <p>Тиждень 1: {week.week1}/{week.totalWeek1}</p>
-                            <div style={{
-                                background: "#ccc",
-                                borderRadius: "5px",
-                                height: "10px",
-                                overflow: "hidden"
-                            }}>
-                                <div style={{
-                                width: `${percent1}%`,
-                                backgroundColor: "#FFCE07",
-                                height: "100%"
-                                }} />
-                            </div>
-                        </div>
-                        <div style={{ marginBottom: "16px" }}>
-                            <p>Тиждень 2: {week.week2}/{week.totalWeek2}</p>
-                            <div style={{
-                                background: "#ccc",
-                                borderRadius: "5px",
-                                height: "10px",
-                                overflow: "hidden"
-                            }}>
-                                <div style={{
-                                width: `${percent2}%`,
-                                backgroundColor: "#FFCE07",
-                                height: "100%"
-                                }} />
-                            </div>
-                        </div>
-                        <div style={{ marginBottom: "16px" }}>
-                            <p>Тиждень 3: {week.week3}/{week.totalWeek3}</p>
-                            <div style={{
-                                background: "#ccc",
-                                borderRadius: "5px",
-                                height: "10px",
-                                overflow: "hidden"
-                            }}>
-                                <div style={{
-                                width: `${percent3}%`,
-                                backgroundColor: "#FFCE07",
-                                height: "100%"
-                                }} />
-                            </div>
-                        </div>
+                {/* Тиждень 1 */}
+                <div style={{ marginBottom: "16px" }}>
+                <p>Тиждень 1: {selectedMarathon.week1}/{selectedMarathon.totalWeek1}</p>
+                <div style={{
+                    background: "#ccc",
+                    borderRadius: "5px",
+                    height: "10px",
+                    overflow: "hidden"
+                }}>
+                    <div style={{
+                    width: `${(selectedMarathon.week1 / selectedMarathon.totalWeek1) * 100}%`,
+                    backgroundColor: "#FFCE07",
+                    height: "100%"
+                    }} />
+                </div>
+                </div>
+
+                {/* Тиждень 2 */}
+                <div style={{ marginBottom: "16px" }}>
+                <p>Тиждень 2: {selectedMarathon.week2}/{selectedMarathon.totalWeek2}</p>
+                <div style={{
+                    background: "#ccc",
+                    borderRadius: "5px",
+                    height: "10px",
+                    overflow: "hidden"
+                }}>
+                    <div style={{
+                    width: `${(selectedMarathon.week2 / selectedMarathon.totalWeek2) * 100}%`,
+                    backgroundColor: "#FFCE07",
+                    height: "100%"
+                    }} />
+                </div>
+                </div>
+
+                {/* Тиждень 3 (якщо він є) */}
+                {selectedMarathon.totalWeek3 && (
+                <div style={{ marginBottom: "16px" }}>
+                    <p>Тиждень 3: {selectedMarathon.week3}/{selectedMarathon.totalWeek3}</p>
+                    <div style={{
+                    background: "#ccc",
+                    borderRadius: "5px",
+                    height: "10px",
+                    overflow: "hidden"
+                    }}>
+                    <div style={{
+                        width: `${(selectedMarathon.week3 / selectedMarathon.totalWeek3) * 100}%`,
+                        backgroundColor: "#FFCE07",
+                        height: "100%"
+                    }} />
                     </div>
-                );
-                })}
+                </div>
+                )}
             </>
             ) : (
             <>
