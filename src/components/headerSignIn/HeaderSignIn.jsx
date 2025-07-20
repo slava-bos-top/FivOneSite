@@ -188,24 +188,10 @@ function HeaderSignIn() {
                             />
                         )}
                             <div
-                            style={{
-                                position: "absolute",
-                                top: "100%",
-                                left: "50%",
-                                transform: "translateX(-50%)",
-                                backgroundColor: "#fff",
-                                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                                padding: "10px",
-                                borderRadius: "10px",
-                                zIndex: 999,
-                                whiteSpace: "nowrap",
-                                minWidth: "120px",
-                                marginTop: "8px",
-                                alignItems: "center"
-                            }}
+                                className="header-sign-in-profile-block"
                             >
-                            <p style={{ fontSize: "14px", margin: "4px 0" }}>{name}</p>
-                            <p style={{ fontSize: "14px", margin: "4px 0" }}>{surname}</p>
+                                <p style={{ fontSize: "14px", margin: "4px 0" }}>{name}</p>
+                                <p style={{ fontSize: "14px", margin: "4px 0" }}>{surname}</p>
                             </div>
                         </div>
                         <button onClick={handleLogout} style={{ fontSize: "14px", marginLeft: 0, marginRight: 0 }} className="header_nav_button">Вийти</button>
