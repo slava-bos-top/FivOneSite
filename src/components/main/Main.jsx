@@ -39,7 +39,6 @@ export default function Main() {
           <Header />
           <Promo />
           <Gallery />
-          <Statistics />
           <AboutUs/>
           <Learning />
           <Reviews/>
