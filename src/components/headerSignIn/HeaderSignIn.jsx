@@ -100,7 +100,7 @@ function HeaderSignIn() {
               <li>
                 {signIn ? (
                   <div style={{ marginLeft: "20px", display: "flex", flexDirection: "row", alignItems: "center" }}>
-                    <div style={{ position: "relative" }}>
+                    <div style={{ position: "relative" }} className="header-sign-in">
                       {image === "0" ? (
                         <img
                           src="https://cdn-icons-png.flaticon.com/512/1177/1177568.png"
@@ -154,6 +154,61 @@ function HeaderSignIn() {
                           <button onClick={handleLogout} style={{ fontSize: "14px", marginLeft: 0, marginRight: 0 }} className="header_nav_button">Вийти</button>
                         </div>
                       )}
+                    </div>
+
+                    <div className="header-sign-in-profile-mobile">
+                        <div style={{ position: "relative" }} className="header-sign-in-profile">
+                            {image === "0" ? (
+                            <img
+                            src="https://cdn-icons-png.flaticon.com/512/1177/1177568.png"
+                            alt="phot_user"
+                            onClick={toggleInfo}
+                            style={{
+                                width: "60px",
+                                height: "60px",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                                border: "none",
+                                marginTop: "10px"
+                            }}
+                            />
+                        ) : (
+                            <img
+                            src={image}
+                            alt="phot_user"
+                            onClick={toggleInfo}
+                            style={{
+                                width: "60px",
+                                height: "60px",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                                border: "none",
+                                marginTop: "10px"
+                            }}
+                            />
+                        )}
+                            <div
+                            style={{
+                                position: "absolute",
+                                top: "100%",
+                                left: "50%",
+                                transform: "translateX(-50%)",
+                                backgroundColor: "#fff",
+                                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                                padding: "10px",
+                                borderRadius: "10px",
+                                zIndex: 999,
+                                whiteSpace: "nowrap",
+                                minWidth: "120px",
+                                marginTop: "8px",
+                                alignItems: "center"
+                            }}
+                            >
+                            <p style={{ fontSize: "14px", margin: "4px 0" }}>{name}</p>
+                            <p style={{ fontSize: "14px", margin: "4px 0" }}>{surname}</p>
+                            </div>
+                        </div>
+                        <button onClick={handleLogout} style={{ fontSize: "14px", marginLeft: 0, marginRight: 0 }} className="header_nav_button">Вийти</button>
                     </div>
                   </div>
                 ) : (

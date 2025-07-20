@@ -161,6 +161,14 @@
     display: flex;
     align-items: center;
   }
+  .header-sign-in-profile-mobile {
+    display: none;
+  }
+  .header-sign-in-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 
   @media (max-width: 1324px) {
     .header_row {
@@ -257,6 +265,12 @@
       color: #000; 
       padding: 25px 10px;    
       text-align: start;  
+  }
+  .header-sign-in {
+    display: none;
+  }
+  .header-sign-in-profile-mobile {
+    display: block;
   }
 }
 
