@@ -292,30 +292,33 @@ function SplitScreen() {
                 const percentage = ((marathon.week1 + marathon.week2 + marathon.week3) / (marathon.totalWeek1 + marathon.totalWeek2 + marathon.totalWeek3)) * 100;
                 const percentageMini = ((marathon.week1) / (marathon.totalWeek1)) * 100;
 
-
-                {marathon.exist ? (
-                    <div
-                        key={index}
-                        style={{ cursor: "pointer", textAlign: "center" }}
-                        onClick={() => setSelectedMarathon(marathon)}
-                        >
-                        <CircularProgress percentage={percentage} colors={gradients[index % gradients.length]} />
-                        <p style={{ fontWeight: "bold", color: "#000", marginTop: "8px" }}>
-                            {marathon.title}
-                        </p>
-                    </div>
-                ) : (
-                    <div
-                        key={index}
-                        style={{ cursor: "pointer", textAlign: "center" }}
-                        onClick={() => setSelectedMarathon(marathon)}
-                        >
-                        <CircularProgress percentage={percentageMini} colors={gradients[index % gradients.length]} />
-                        <p style={{ fontWeight: "bold", color: "#000", marginTop: "8px" }}>
-                            {marathon.title}
-                        </p>
-                    </div>
-                )}
+                return (
+                    <>
+                        {marathon.exist ? (
+                            <div
+                                key={index}
+                                style={{ cursor: "pointer", textAlign: "center" }}
+                                onClick={() => setSelectedMarathon(marathon)}
+                                >
+                                <CircularProgress percentage={percentage} colors={gradients[index % gradients.length]} />
+                                <p style={{ fontWeight: "bold", color: "#000", marginTop: "8px" }}>
+                                    {marathon.title}
+                                </p>
+                            </div>
+                        ) : (
+                            <div
+                                key={index}
+                                style={{ cursor: "pointer", textAlign: "center" }}
+                                onClick={() => setSelectedMarathon(marathon)}
+                                >
+                                <CircularProgress percentage={percentageMini} colors={gradients[index % gradients.length]} />
+                                <p style={{ fontWeight: "bold", color: "#000", marginTop: "8px" }}>
+                                    {marathon.title}
+                                </p>
+                            </div>
+                        )}
+                    </>
+                );
             })}
             {/* <div
                 key={index}
