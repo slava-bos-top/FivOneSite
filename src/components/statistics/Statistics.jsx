@@ -149,6 +149,13 @@ function SplitScreen() {
         week2: week11,
         week3: week12,
     },
+    {
+        title: "Марафон 5",
+        marathone: maraphone4,
+        totalMarathone: 3,
+        totalWeek1: 7,
+        week1: week13,
+    },
     // {
     //     title: "Марафон 5",
     //     weeks: [
@@ -200,6 +207,7 @@ function SplitScreen() {
                 </div>
 
                 {/* Тиждень 2 */}
+                {selectedMarathon.totalWeek3 (
                 <div style={{ marginBottom: "16px" }}>
                 <p>Тиждень 2: {selectedMarathon.week2}/{selectedMarathon.totalWeek2}</p>
                 <div style={{
@@ -215,6 +223,7 @@ function SplitScreen() {
                     }} />
                 </div>
                 </div>
+                )}
 
                 {/* Тиждень 3 (якщо він є) */}
                 {selectedMarathon.totalWeek3 && (
