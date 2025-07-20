@@ -59,7 +59,7 @@ function Header() {
 
           <nav className={`header_nav ${menuOpen ? "open" : ""}`}>
             <ul className="header_nav_list">
-              <li><Link to="/" className="dropdown_button">На головну</Link></li>
+              <li><a href="#aboutUs" className="dropdown_button">Про центр</a></li>
 
               <li className="dropdown">
                 <button className="dropdown_button">Наші курси</button>
@@ -96,6 +96,8 @@ function Header() {
                   ))}
                 </ul>
               </li>
+
+              <li><a href="#reviewMain" className="dropdown_button">Відгуки</a></li>
 
               <li>
                 {signIn ? (
@@ -210,4 +212,3 @@ function Header() {
 }
 
 export default Header;
-
