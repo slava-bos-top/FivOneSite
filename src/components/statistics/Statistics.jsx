@@ -284,7 +284,7 @@ function SplitScreen() {
       }}>
         <div style={{maxWidth: "1260px", margin: "0 auto", width: "100%", height: "100%", padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}} className="statistics__grid-gallery">
             {marathonsData.map((marathon, index) => {
-                const percentage = (marathon.marathone / marathon.totalMarathone) * 100;
+                const percentage = ((marathon.week1 + marathon.week2 + marathon.week3) / (marathon.totalWeek1 + marathon.totalWeek2 + marathon.totalWeek3)) * 100;
 
                 return (
                     <div

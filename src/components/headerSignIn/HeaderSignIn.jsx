@@ -59,6 +59,7 @@ function HeaderSignIn() {
 
           <nav className={`header_nav ${menuOpen ? "open" : ""}`}>
             <ul className="header_nav_list">
+              <li><Link to="/" className="dropdown_button">На головну</Link></li>
 
               <li className="dropdown">
                 <button className="dropdown_button">Наші курси</button>
