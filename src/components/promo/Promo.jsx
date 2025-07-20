@@ -37,11 +37,7 @@ export default function Promo() {
         <img className="promo__logo" data-original="https://static.tildacdn.one/tild3339-3265-4564-b633-613333616634/logo_phrase1.png" src="https://optim.tildacdn.one/tild3339-3265-4564-b633-613333616634/-/format/webp/logo_phrase1.png.webp" alt="Logo" imgfield="tn_img_1589914726250"/>
         <h1>Закохуємо у навчання підлітків, батьків і вчителів</h1>
         {/* <button className="promo__button">Зареєструватись</button> */}
-        {signIn ? (
-          <button className="promo__button" onClick={handleLogout}>Вийти</button>
-        ) : (
           <Link to="/login" className="promo__button">Зареєструватись</Link>
-        )}
       </div>
 
       <div className="promo__right">
