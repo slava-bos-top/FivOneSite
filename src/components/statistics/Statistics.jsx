@@ -323,7 +323,7 @@ function SplitScreen() {
             >
                 <CircularProgress
                 percentage={marathon.exist ? percentage : percentageMini}
-                colors={gradients[index % gradients.length]}
+                colors={gradientColors}
                 />
                 <p className="statistics__marathon-title">{marathon.title}</p>
             </div>
