@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Courses from './components/courses/Courses';
 import Competition from './components/competition/Competition';
 import Main from './components/main/Main';
+import MainSignIn from './components/mainSignIn/MainSignIn';
 import TelegramLogin from './components/TelegramLogin';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <div className='App' style={{width: "100%"}}>
       <Routes>
         <Route path="/" element={<Main />} className="fivone"/>
+        <Route path="/statistics" element={<MainSignIn />}/>
         <Route path="/course" element={<Courses />} />
         <Route path="/marathon" element={<Competition />} />
         <Route path='/login' element={<TelegramLogin />} />
