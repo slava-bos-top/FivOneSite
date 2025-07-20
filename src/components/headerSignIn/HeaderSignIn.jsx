@@ -194,7 +194,7 @@ function HeaderSignIn() {
                                 <p style={{ fontSize: "14px", margin: "4px 0" }}>{surname}</p>
                             </div>
                         </div>
-                        <button onClick={handleLogout} style={{ fontSize: "14px", marginLeft: -20, marginRight: 0 }} className="header_nav_button">Вийти</button>
+                        <button onClick={handleLogout} style={{ fontSize: "14px", marginLeft: -40, marginRight: 0 }} className="header_nav_button">Вийти</button>
                     </div>
                   </div>
                 ) : (

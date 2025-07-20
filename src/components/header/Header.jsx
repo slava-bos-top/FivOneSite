@@ -59,7 +59,7 @@ function Header() {
 
           <nav className={`header_nav ${menuOpen ? "open" : ""}`}>
             <ul className="header_nav_list">
-              <li><a href="#aboutUs" className="dropdown_button">Про центр</a></li>
+              <li><Link to="/" className="dropdown_button">На головну</Link></li>
 
               <li className="dropdown">
                 <button className="dropdown_button">Наші курси</button>
@@ -97,11 +97,10 @@ function Header() {
                 </ul>
               </li>
 
-              <li><a href="#reviewMain" className="dropdown_button">Відгуки</a></li>
               <li>
                 {signIn ? (
                   <div style={{ marginLeft: "20px", display: "flex", flexDirection: "row", alignItems: "center" }}>
-                    <div style={{ position: "relative" }}>
+                    <div style={{ position: "relative" }} className="header-sign-in">
                       {image === "0" ? (
                         <img
                           src="https://cdn-icons-png.flaticon.com/512/1177/1177568.png"
@@ -156,6 +155,47 @@ function Header() {
                         </div>
                       )}
                     </div>
+
+                    <div className="header-sign-in-profile-mobile">
+                        <div style={{ position: "relative" }} className="header-sign-in-profile">
+                            {image === "0" ? (
+                            <img
+                            src="https://cdn-icons-png.flaticon.com/512/1177/1177568.png"
+                            alt="phot_user"
+                            onClick={toggleInfo}
+                            style={{
+                                width: "60px",
+                                height: "60px",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                                border: "none",
+                                marginTop: "10px"
+                            }}
+                            />
+                        ) : (
+                            <img
+                            src={image}
+                            alt="phot_user"
+                            onClick={toggleInfo}
+                            style={{
+                                width: "60px",
+                                height: "60px",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                                border: "none",
+                                marginTop: "10px"
+                            }}
+                            />
+                        )}
+                            <div
+                                className="header-sign-in-profile-block"
+                            >
+                                <p style={{ fontSize: "14px", margin: "4px 0" }}>{name}</p>
+                                <p style={{ fontSize: "14px", margin: "4px 0" }}>{surname}</p>
+                            </div>
+                        </div>
+                        <button onClick={handleLogout} style={{ fontSize: "14px", marginLeft: -40, marginRight: 0 }} className="header_nav_button">Вийти</button>
+                    </div>
                   </div>
                 ) : (
                   <Link to="/login" className="header_nav_button">Зареєструватись</Link>
@@ -170,3 +210,4 @@ function Header() {
 }
 
 export default Header;
+
