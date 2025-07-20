@@ -89,31 +89,6 @@ function SplitScreen() {
     const checkData = await checkRes.json();
     console.log(checkData)
 
-    localStorage.setItem("user", JSON.stringify({
-          name: checkData.name,
-          surname: checkData.surname,
-          photo: checkData.photo,
-          maraphone1: checkData.maraphone1,
-          maraphone2: checkData.maraphone2,
-          maraphone3: checkData.maraphone3,
-          maraphone4: checkData.maraphone4,
-          maraphone5: checkData.maraphone5,
-          week1: checkData.week1,    
-          week2: checkData.week2,   
-          week3: checkData.week3,   
-          week4: checkData.week4,   
-          week5: checkData.week5,   
-          week6: checkData.week6,   
-          week7: checkData.week7,   
-          week8: checkData.week8,   
-          week9: checkData.week9,   
-          week10: checkData.week10,   
-          week11: checkData.week11,   
-          week12: checkData.week12,   
-          week13: checkData.week13, 
-          isLoggedIn: true,
-    }));
-
     setName(checkData.name)
     setSurname(checkData.surname)
     setImage(checkData.photo)
