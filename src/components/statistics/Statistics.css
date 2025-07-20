@@ -93,13 +93,23 @@
   }
 
   @media (max-width: 1024px) {
+    .statistics__container {
+        display: flex;
+        height: 120vh;
+        font-family: sans-serif;
+        background-color: #FFCE07;
+        padding: 20px;
+        column-gap: 20px;
+        margin-top: 80px;
+      }
+      
     .statistics__grid-gallery {
-        max-width: 960px;
+        max-width: 860px;
         width: 100%;
         height: 100%;
         background-color: #fff;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 2rem;
         border-radius: 30px;
         padding: 20px

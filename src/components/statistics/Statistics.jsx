@@ -183,7 +183,6 @@ function SplitScreen() {
   return (
     <div style={{
       display: "flex",
-      height: "80vh",
       fontFamily: "sans-serif",
       backgroundColor: "#FFCE07",
       padding: "20px",
