@@ -15,6 +15,7 @@ const TelegramLogin = () => {
   };
 
   const startConfirmationPolling = () => {
+    console.log("registration")
     let attempts = 0;
     const maxAttempts = 50; // ~1 хвилина
 
