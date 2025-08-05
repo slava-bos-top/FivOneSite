@@ -5,6 +5,7 @@ const TelegramLogin = () => {
   const [checking, setChecking] = useState(false);
 
   const [loginText, setLoginText] = useState(false);
+  const [registrationLink, setRegistrationLink] = useState(false);
   const encodedPhone = `phone_${phone.replace("+", "")}`;
   const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${phone.replace("+", "")}`;
 
@@ -15,7 +16,7 @@ const TelegramLogin = () => {
   };
 
   const startConfirmationPolling = () => {
-    console.log("registration")
+    setRegistrationLink(true)
     let attempts = 0;
     const maxAttempts = 50; // ~1 хвилина
 
@@ -242,9 +243,15 @@ const TelegramLogin = () => {
             <p style={{ margin: 0, color: "#333" }}>Очікуємо підтвердження у Telegram...</p>
             <p style={{ fontSize: "14px", margin: 0 }}>
               Перейдіть до&nbsp;
-              <a href="https://t.me/fivone_bot" target="_blank" rel="noreferrer" style={{ color: "#000" }}>
-                @fivone_bot
-              </a>
+              {registrationLink ? (
+                <a href={telegramBotLink} target="_blank" rel="noreferrer" style={{ color: "#000" }}>
+                  @fivone_bot
+                </a>
+              ) : (
+                <a href="https://t.me/fivone_bot" target="_blank" rel="noreferrer" style={{ color: "#000" }}>
+                  @fivone_bot
+                </a>
+              )}
             </p>
           </div>
         ) : (
