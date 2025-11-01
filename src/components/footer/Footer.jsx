@@ -33,8 +33,6 @@ const Footer = () => {
 
             <div className="footer-middle">
                 <p>Контакти</p>
-                <p>+38 097 824 33 89</p>
-                <p>fivone.education@gmail.com</p>
                 <div className="footer-icons-gray">
                     <i className="fab fa-facebook-f"></i>
                     <i className="fab fa-instagram"></i>

@@ -204,21 +204,6 @@ const TelegramLogin = () => {
         transition: "all 0.3s ease"
       }}>
     
-        {/* 🔸 Привітальний текст */}
-        <div style={{
-          backgroundColor: "#FFCE07", 
-          opacity: 0.7,
-          padding: "15px",
-          borderRadius: "10px",
-          textAlign: "center",
-          color: "#00",
-          fontWeight: 500,
-          fontSize: "15px",
-          lineHeight: "1.4"
-        }}>
-          Раді бачити тебе серед потенційних студентів наших освітніх програм! Залишилось лише зареєструватися і почати безкоштовно користуватися всіма можливостями, які надає <strong>FivOnе</strong>. Після того, як ти введеш номер телефону до якого прив'язаний телеграм, сторінка перенаправить тебе в наш Месенджер <strong>Telegram</strong>. А далі – просто крокуй за нашим ботом, отримуй нові знання та ставай частиною <strong>FivOnе</strong>!
-        </div>
-    
         <h2 style={{ color: "#0088cc", marginBottom: "10px" }}>Вхід через Telegram</h2>
     
         <input

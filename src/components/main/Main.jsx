@@ -6,7 +6,6 @@ import AboutUs from '../aboutUs/AboutUs';
 import Learning from '../learning/Learning';
 import Reviews from '../reviews/Reviews';
 import Footer from '../footer/Footer';
-import Statistics from '../statistics/Statistics';
 
 export default function Main() {
 
