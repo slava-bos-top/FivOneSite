@@ -208,9 +208,17 @@ const TelegramLogin = () => {
     
         <input
           type="tel"
-          placeholder="+380..."
+          placeholder="380XXXXXXXXX"
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={(e) => {
+            // Дозволяємо тільки цифри
+            const cleaned = e.target.value.replace(/\D/g, "");
+
+            // Обмежимо довжину, щоб не вводили забагато символів
+            if (cleaned.length <= 12) {
+              setPhone(cleaned);
+            }
+          }}
           style={{
             width: "100%",
             padding: "12px",

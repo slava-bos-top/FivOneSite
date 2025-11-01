@@ -12,10 +12,10 @@ const Footer = () => {
                 пишіть або дзвоніть нам
             </p>
         </div>
-        <p className="footer-link-one">+38 097 824 33 89</p>
+        {/* <p className="footer-link-one">+38 097 824 33 89</p>
         <p className="footer-link-two">
           fivone.education@gmail.com
-        </p>
+        </p> */}
         <div className="footer-icons">
           <a href="#https://www.facebook.com/fivone.education"><i className="fab fa-facebook"></i></a>
           <a href="#https://www.instagram.com/fivone.education/#"><i className="fab fa-instagram"></i></a>
