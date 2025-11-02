@@ -233,7 +233,7 @@ const TelegramLogin = () => {
               borderRadius: "10px",
               border: "1px solid #ccc",
               fontSize: "16px",
-              width: "90px",
+              width: "89px",
               background: "#f9f9f9",
             }}
           >
