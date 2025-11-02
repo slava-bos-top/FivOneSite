@@ -278,7 +278,7 @@ export default function Competition() {
                     </div>
                 </div>
                 <div className='competition_creator_container_block'>
-                    <img src={imgCreator} alt='img_creator'/>
+                    <img src={imgCreator} alt=''/>
                     <div>
                         <h4>{titleCreator}</h4>
                         <p>{mainCreator}</p>
