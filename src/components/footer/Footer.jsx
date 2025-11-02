@@ -8,11 +8,12 @@ const Footer = () => {
         <h2>Контакти</h2>
         <div className="footer-section-text">
             <p>
-                Наші контакти
+                Ми любимо спілкуватися. Тому, якщо у вас виникли будь-які запитання,
+                дзвоніть нам
             </p>
         </div>
-        {/* <p className="footer-link-one">+38 097 824 33 89</p>
-        <p className="footer-link-two">
+        <p className="footer-link-one">+38 097 824 33 89</p>
+        {/* <p className="footer-link-two">
           fivone.education@gmail.com
         </p> */}
         <div className="footer-icons">

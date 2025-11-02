@@ -10,10 +10,10 @@ const TelegramLogin = () => {
   const [loginText, setLoginText] = useState(false);
   const [registrationLink, setRegistrationLink] = useState(false);
   const encodedPhone = `phone_${phone.replace("+", "")}`;
-  const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${phone.replace("+", "")}`;
+  const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${fullPhone.replace("+", "")}`;
 
   const checkIfPhoneExists = async () => {
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${phone.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${fullPhone.replace("+", "")}`);
     const data = await res.json();
     return data.confirmed === "true" || data.confirmed === true;
   };
