@@ -233,7 +233,7 @@ const TelegramLogin = () => {
               borderRadius: "10px",
               border: "1px solid #ccc",
               fontSize: "16px",
-              width: "20%",
+              width: "90px",
               background: "#f9f9f9",
             }}
           >
@@ -311,7 +311,7 @@ const TelegramLogin = () => {
             <option value="+90">+90 Туреччина</option>
             <option value="+91">+91 Індія</option>
             <option value="+94">+94 Шрі-Ланка</option>
-            <option value="+95">+95  М’янма</option>
+            <option value="+95">+95 М’янма</option>
             <option value="+971">+971 ОАЕ</option>
             <option value="+972">+972 Ізраїль</option>
             <option value="+973">+973 Бахрейн</option>
