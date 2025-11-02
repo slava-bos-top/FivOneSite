@@ -3,14 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import './Gallery.css';
 
 import logo from "./../../img/logo.jpg"
-import course1 from "./../../img/course1.png"
+import course1 from "./../../img/course1.jpg"
 import course2 from "./../../img/course2.png"
 import course3 from "./../../img/course3.png"
-import course4 from "./../../img/course4.png"
-import course5 from "./../../img/course5.png"
-import course6 from "./../../img/course6.png"
-import course7 from "./../../img/course7.png"
-import course8 from "./../../img/course8.png"
 
 import soundGif from './images/sound.gif';
 import audio from "./media/ambient.mp3";
@@ -25,9 +20,9 @@ const coursesDataBlock = [
       'більше 15 експериментів',
       'більше 50 інтерактивів'
     ],
-    image: course6,
+    image: course1,
     logo: logo,
-    color: '#FFCE07',
+    color: '#16BAAE',
     number: 0
   },
   {
