@@ -332,7 +332,7 @@ const TelegramLogin = () => {
             value={phone}
             onChange={(e) => {
               const cleaned = e.target.value.replace(/\D/g, "");
-              if (cleaned.length <= 12) setPhone(cleaned);
+              if (cleaned.length <= 9) setPhone(cleaned);
             }}
             style={{
               flex: 1,
