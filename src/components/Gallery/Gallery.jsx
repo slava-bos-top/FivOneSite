@@ -102,7 +102,7 @@ const marathonsDataBlock = [
     image: marathon4,
     logo: logo,
     color: '#E95C28',
-    number: 2
+    number: 3
   },
 ];
 
