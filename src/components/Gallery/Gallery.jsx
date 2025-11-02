@@ -16,6 +16,7 @@ import soundGif from './images/sound.gif';
 import audio from "./media/ambient.mp3";
 
 import { coursesData } from './coursesData';
+import { competitionData } from './competitionData';
 
 const coursesDataBlock = [
   {
@@ -154,7 +155,7 @@ export default function Gallery() {
         </section>
         <section className="courses-gallery">
           <div className="courses__header-gallery">
-            <h2>Наші курси</h2>
+            <h2>Наші марафони</h2>
           </div>
 
           <div className="courses__grid-gallery">
@@ -168,7 +169,7 @@ export default function Gallery() {
                     <p className="course-card__description_one-gallery">{course.description}</p>
                     <p className="course-card__description_two-gallery">{course.details}</p>
                   </div>
-                  <Link to="/course" state={coursesData[course.number]} className="course-card__button-gallery" style={{background: course.color}}>
+                  <Link to="/marathon" state={competitionData[course.number]} className="course-card__button-gallery" style={{background: course.color}}>
                     Дізнатися більше
                   </Link>
                 </div>
