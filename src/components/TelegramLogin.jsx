@@ -10,10 +10,10 @@ const TelegramLogin = () => {
   const [loginText, setLoginText] = useState(false);
   const [registrationLink, setRegistrationLink] = useState(false);
   const encodedPhone = `phone_${phone.replace("+", "")}`;
-  const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${fullPhone.replace("+", "")}`;
+  const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${`${countryCode}${phone}`.replace("+", "")}`;
 
   const checkIfPhoneExists = async () => {
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${fullPhone.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`);
     const data = await res.json();
     return data.confirmed === "true" || data.confirmed === true;
   };
@@ -28,7 +28,7 @@ const TelegramLogin = () => {
 
       if (exists) {
         const checkRes = await fetch(
-          `https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${phone.replace("+", "")}`
+          `https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`
         );
         const checkData = await checkRes.json();
         clearInterval(intervalId);
@@ -83,8 +83,9 @@ const TelegramLogin = () => {
       return;
     }
     setFullPhone(`${countryCode}${phone}`);
+    console.log(fullPhone);
   
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${fullPhone.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`);
     const data = await res.json();
   
     if (data.confirmed) {
@@ -122,7 +123,7 @@ const TelegramLogin = () => {
         // ⏳ Перевіряємо кожні 3 секунди колонку F
       const intervalId = setInterval(async () => {
         const checkRes = await fetch(
-            `https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${fullPhone.replace("+", "")}`
+            `https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`
         );
         const checkData = await checkRes.json();
         console.log(checkData)
