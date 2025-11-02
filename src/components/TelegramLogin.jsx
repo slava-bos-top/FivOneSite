@@ -4,6 +4,8 @@ const TelegramLogin = () => {
   const [phone, setPhone] = useState("");
   const [checking, setChecking] = useState(false);
 
+  const [countryCode, setCountryCode] = useState("+380"); // код країни
+
   const [loginText, setLoginText] = useState(false);
   const [registrationLink, setRegistrationLink] = useState(false);
   const encodedPhone = `phone_${phone.replace("+", "")}`;
@@ -68,13 +70,20 @@ const TelegramLogin = () => {
   };
 
   const handleLogin = async (e) => {
+
     e.preventDefault();
     if (!phone) {
       alert("📱 Введіть номер телефону");
       return;
     }
+
+    if (phone.length < 7) {
+      alert("Введіть коректний номер телефону");
+      return;
+    }
+    const fullPhone = `${countryCode}${phone}`;
   
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${phone.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${fullPhone.replace("+", "")}`);
     const data = await res.json();
   
     if (data.confirmed) {
@@ -112,7 +121,7 @@ const TelegramLogin = () => {
         // ⏳ Перевіряємо кожні 3 секунди колонку F
       const intervalId = setInterval(async () => {
         const checkRes = await fetch(
-            `https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${phone.replace("+", "")}`
+            `https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${fullPhone.replace("+", "")}`
         );
         const checkData = await checkRes.json();
         console.log(checkData)
@@ -206,29 +215,52 @@ const TelegramLogin = () => {
     
         <h2 style={{ color: "#0088cc", marginBottom: "10px" }}>Вхід через Telegram</h2>
     
-        <input
-          type="tel"
-          placeholder="380XXXXXXXXX"
-          value={phone}
-          onChange={(e) => {
-            // Дозволяємо тільки цифри
-            const cleaned = e.target.value.replace(/\D/g, "");
-
-            // Обмежимо довжину, щоб не вводили забагато символів
-            if (cleaned.length <= 12) {
-              setPhone(cleaned);
-            }
-          }}
+         {/* Вибір коду країни + поле телефону */}
+         <div
           style={{
+            display: "flex",
+            gap: "10px",
             width: "100%",
-            padding: "12px",
-            fontSize: "16px",
-            borderRadius: "10px",
-            border: "1px solid #ccc",
-            outline: "none",
-            transition: "0.2s",
           }}
-        />
+        >
+          <select
+            value={countryCode}
+            onChange={(e) => setCountryCode(e.target.value)}
+            style={{
+              padding: "12px",
+              borderRadius: "10px",
+              border: "1px solid #ccc",
+              fontSize: "16px",
+              width: "35%",
+              background: "#f9f9f9",
+            }}
+          >
+            <option value="+380">🇺🇦 +380</option>
+            <option value="+48">🇵🇱 +48</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+44">🇬🇧 +44</option>
+            <option value="+420">🇨🇿 +420</option>
+            <option value="+49">🇩🇪 +49</option>
+            <option value="+560">🇨🇱 +560</option>
+          </select>
+
+          <input
+            type="tel"
+            placeholder="номер без коду"
+            value={phone}
+            onChange={(e) => {
+              const cleaned = e.target.value.replace(/\D/g, "");
+              if (cleaned.length <= 12) setPhone(cleaned);
+            }}
+            style={{
+              flex: 1,
+              padding: "12px",
+              fontSize: "16px",
+              borderRadius: "10px",
+              border: "1px solid #ccc",
+            }}
+          />
+        </div>
     
         {isLoading ? (
           <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
