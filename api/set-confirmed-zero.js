@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     console.log(phone)
   
     try {
-      const scriptUrl = "https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec";
+      const scriptUrl = "https://script.google.com/macros/s/AKfycbyJXPjYjE752RwwDLgUZ6Av8WzXjo66i_WXuhKuqxjzx8M2WSVHMIpFVEC9ZqPccZw/exec";
   
       const resGAS = await fetch(scriptUrl, {
         method: "POST",

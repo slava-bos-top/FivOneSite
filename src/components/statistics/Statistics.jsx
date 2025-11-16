@@ -56,6 +56,7 @@ const gradients = [
 
 function SplitScreen() {
   const [selectedMarathon, setSelectedMarathon] = useState(null);
+  const [selectedCourse, setSelectedCourse] = useState(null);
   const [phone, setPhone] = useState("")
 
   const [name, setName] = useState("")
@@ -79,6 +80,9 @@ function SplitScreen() {
   const [week11, setWeek11] = useState(0)
   const [week12, setWeek12] = useState(0)
   const [week13, setWeek13] = useState(0)
+  const [course1, setCourse1] = useState(0)
+  const [course2, setCourse2] = useState(0)
+  const [course3, setCourse3] = useState(0)
 
   const gradientColors = ["#FFCE07", "#E95C28"];
 
@@ -92,7 +96,7 @@ function SplitScreen() {
   
           try {
             const checkRes = await fetch(
-              `https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${phone}`
+              `https://script.google.com/macros/s/AKfycbyJXPjYjE752RwwDLgUZ6Av8WzXjo66i_WXuhKuqxjzx8M2WSVHMIpFVEC9ZqPccZw/exec?phone=${phone}`
             );
             const checkData = await checkRes.json();
   
@@ -119,8 +123,11 @@ function SplitScreen() {
             setWeek11(Number(checkData.week11));
             setWeek12(Number(checkData.week12));
             setWeek13(Number(checkData.week13));
+            setCourse1(Number(checkData.course1));
+            setCourse2(Number(checkData.course2));
+            setCourse3(Number(checkData.course3));
           } catch (error) {
-            console.error("❌ Помилка при завантаженні даних користувача:", error);
+            console.error("Помилка при завантаженні даних користувача:", error);
           }
         }
       }
@@ -138,7 +145,7 @@ function SplitScreen() {
 
         try {
           const checkRes = await fetch(
-            `https://script.google.com/macros/s/AKfycbyNKzfJN-ghkSbcBCXhMzow-GZeQ81JTrdzZgZ9AUqQRaierqDTddPxuupT2bdj7M_q/exec?phone=${phone}`
+            `https://script.google.com/macros/s/AKfycbyJXPjYjE752RwwDLgUZ6Av8WzXjo66i_WXuhKuqxjzx8M2WSVHMIpFVEC9ZqPccZw/exec?phone=${phone}`
           );
           const checkData = await checkRes.json();
 
@@ -165,8 +172,11 @@ function SplitScreen() {
           setWeek11(Number(checkData.week11));
           setWeek12(Number(checkData.week12));
           setWeek13(Number(checkData.week13));
+          setCourse1(Number(checkData.course1));
+          setCourse2(Number(checkData.course2));
+          setCourse3(Number(checkData.course3));
         } catch (error) {
-          console.error("❌ Помилка при завантаженні даних користувача:", error);
+          console.error("Помилка при завантаженні даних користувача:", error);
         }
       }
     }
@@ -228,6 +238,24 @@ function SplitScreen() {
         totalWeek1: 7,
         week1: week13,
         exist: false
+    },
+  ];
+
+  const coursesData = [
+    {
+      title: "Курс “Фізика навколо нас”",
+      course: course1,
+      totalCourse: 10,
+    },
+    {
+      title: "Курс “Старт програмування”",
+      course: course2,
+      totalCourse: 10,
+    },
+    {
+      title: "Курс “Розвиток креативності”",
+      course: course3,
+      totalCourse: 10,
     },
   ];
   console.log(marathonsData)
@@ -400,6 +428,57 @@ function SplitScreen() {
                     }} />
                     </div>
                 </div>)}
+              </div>
+            </SwiperSlide>)
+          })}
+        </Swiper>
+      </div>
+
+      {/* Права частина */}
+      <div className="statistics__right">
+        <div className="statistics__grid-gallery">
+        {coursesData.map((courses, index) => {
+            const percentage = ((courses.course) / (courses.totalCourse)) * 100;
+
+            return (
+            <div
+                key={index}
+                className="statistics__marathon-card"
+                onClick={() => {
+                    handleUserData()
+                    setSelectedMarathon(marathon)
+                }}
+            >
+                <CircularProgress
+                percentage={percentage}
+                colors={gradientColors}
+                />
+                <p className="statistics__marathon-title">{courses.title}</p>
+            </div>
+            );
+        })}
+        </div>
+      </div>
+      <div className="statistics__slider mobile-only">
+        <Swiper
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          spaceBetween={20}
+          slidesPerView={1}
+        >
+          {coursesData.map((courses, index) => {
+            const percentage = ((courses.course) / (courses.totalCourse)) * 100;
+
+            return (<SwiperSlide key={index} className="statistics_swiper_slide">
+              <div
+                className="statistics__marathon-card"
+                onClick={() => setSelectedMarathon(marathon)}
+              >
+                <CircularProgress
+                    percentage={percentage}
+                    colors={gradientColors}
+                />
+                <p className="statistics__marathon-title">{courses.title}</p>
               </div>
             </SwiperSlide>)
           })}
