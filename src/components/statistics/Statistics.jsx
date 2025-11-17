@@ -435,8 +435,15 @@ function SplitScreen() {
           </Swiper>
         </div>
       </div>
-      
-      <div>
+
+      <div style={{
+        display: "flex",
+        fontFamily: "sans-serif",
+        backgroundColor: "#FFCE07",
+        padding: "20px",
+        columnGap: "20px",
+        marginTop: "80px"
+      }} className="statistics__container">
         {/* Права частина */}
         <div className="statistics__right">
           <div className="statistics__grid-gallery">
