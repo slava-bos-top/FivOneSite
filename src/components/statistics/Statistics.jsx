@@ -472,7 +472,7 @@ function SplitScreen() {
             return (<SwiperSlide key={index} className="statistics_swiper_slide">
               <div
                 className="statistics__marathon-card"
-                onClick={() => setSelectedMarathon(marathon)}
+                // onClick={() => setSelectedMarathon(marathon)}
               >
                 <CircularProgress
                     percentage={percentage}
