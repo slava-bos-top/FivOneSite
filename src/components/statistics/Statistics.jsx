@@ -444,10 +444,10 @@ function SplitScreen() {
             <div
                 key={index}
                 className="statistics__marathon-card"
-                onClick={() => {
-                    handleUserData()
-                    setSelectedMarathon(marathon)
-                }}
+                // onClick={() => {
+                //     handleUserData()
+                //     setSelectedMarathon(marathon)
+                // }}
             >
                 <CircularProgress
                 percentage={percentage}
