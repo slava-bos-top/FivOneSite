@@ -331,7 +331,7 @@ const TelegramLogin = () => {
               fontSize: "16px",
               borderRadius: "10px",
               border: "1px solid #ccc",
-              maxWidth: "100px"
+              maxWidth: "150px"
             }}
           />
         </div>
