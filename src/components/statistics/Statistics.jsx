@@ -424,59 +424,60 @@ function SplitScreen() {
         </div>
       </div>
 
-      <div style={{
-        display: "flex",
-        fontFamily: "sans-serif",
-        backgroundColor: "#FFCE07",
-        padding: "20px",
-        columnGap: "20px",
-        marginTop: "0px",
-        height: "60vh",
-        marginBottom: "40px"
-      }} className="statistics__container">
-        <div className="statistics__right">
-          <div style={{maxWidth: "1600px"}} className="statistics__grid-gallery">
-          {coursesData.map((courses, index) => {
-              const percentage = ((courses.course) / (courses.totalCourse)) * 100;
-
-              return (
-              <div
-                  key={index}
-                  className="statistics__marathon-card"
-              >
-                  <CircularProgress
-                  percentage={percentage}
-                  colors={gradientColors}
-                  />
-                  <p className="statistics__marathon-title">{courses.title}</p>
-              </div>
-              );
-          })}
-          </div>
-        </div>
-        <div className="statistics__slider mobile-only">
-          <Swiper
-            modules={[Pagination]}
-            pagination={{ clickable: true }}
-            spaceBetween={20}
-            slidesPerView={1}
-          >
+      <div style={{paddingBottom: "60px"}}>
+        <div style={{
+          display: "flex",
+          fontFamily: "sans-serif",
+          backgroundColor: "#FFCE07",
+          padding: "20px",
+          columnGap: "20px",
+          marginTop: "0px",
+          height: "50vh",
+        }} className="statistics__container">
+          <div className="statistics__right">
+            <div style={{maxWidth: "1600px"}} className="statistics__grid-gallery">
             {coursesData.map((courses, index) => {
-              const percentage = ((courses.course) / (courses.totalCourse)) * 100;
+                const percentage = ((courses.course) / (courses.totalCourse)) * 100;
 
-              return (<SwiperSlide key={index} className="statistics_swiper_slide">
+                return (
                 <div
-                  className="statistics__marathon-card"
+                    key={index}
+                    className="statistics__marathon-card"
                 >
-                  <CircularProgress
-                      percentage={percentage}
-                      colors={gradientColors}
-                  />
-                  <p className="statistics__marathon-title">{courses.title}</p>
+                    <CircularProgress
+                    percentage={percentage}
+                    colors={gradientColors}
+                    />
+                    <p className="statistics__marathon-title">{courses.title}</p>
                 </div>
-              </SwiperSlide>)
+                );
             })}
-          </Swiper>
+            </div>
+          </div>
+          <div className="statistics__slider mobile-only">
+            <Swiper
+              modules={[Pagination]}
+              pagination={{ clickable: true }}
+              spaceBetween={20}
+              slidesPerView={1}
+            >
+              {coursesData.map((courses, index) => {
+                const percentage = ((courses.course) / (courses.totalCourse)) * 100;
+
+                return (<SwiperSlide key={index} className="statistics_swiper_slide">
+                  <div
+                    className="statistics__marathon-card"
+                  >
+                    <CircularProgress
+                        percentage={percentage}
+                        colors={gradientColors}
+                    />
+                    <p className="statistics__marathon-title">{courses.title}</p>
+                  </div>
+                </SwiperSlide>)
+              })}
+            </Swiper>
+          </div>
         </div>
       </div>
     </div>
