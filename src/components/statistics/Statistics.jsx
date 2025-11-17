@@ -264,225 +264,229 @@ function SplitScreen() {
   const toColor = "#E95C28"
 
   return (
-    <div style={{
-      display: "flex",
-      fontFamily: "sans-serif",
-      backgroundColor: "#FFCE07",
-      padding: "20px",
-      columnGap: "20px",
-      marginTop: "80px"
-    }} className="statistics__container">
-      {/* Ліва частина */}
+    <div>
       <div style={{
-        flex: 1,
+        display: "flex",
+        fontFamily: "sans-serif",
+        backgroundColor: "#FFCE07",
         padding: "20px",
-        backgroundColor: "rgba(255, 255, 255, 0.7)",
-        borderRight: "1px solid #ddd",
-        borderRadius: "30px"
-      }} className="statistics__left">
-        <div style={{ width: "100%", height: "100%", padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}}>
-            {selectedMarathon ? (
-            <>
-                <h2 style={{marginBottom: "20px"}}>{selectedMarathon.title}</h2>
+        columnGap: "20px",
+        marginTop: "80px"
+      }} className="statistics__container">
+        {/* Ліва частина */}
+        <div style={{
+          flex: 1,
+          padding: "20px",
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
+          borderRight: "1px solid #ddd",
+          borderRadius: "30px"
+        }} className="statistics__left">
+          <div style={{ width: "100%", height: "100%", padding: "20px", backgroundColor: "#fff", borderRadius: "30px"}}>
+              {selectedMarathon ? (
+              <>
+                  <h2 style={{marginBottom: "20px"}}>{selectedMarathon.title}</h2>
 
-                {/* Тиждень 1 */}
-                <div style={{ marginBottom: "16px" }} className="statistics__week-block">
-                <p>Тиждень 1: {selectedMarathon.week1}/{selectedMarathon.totalWeek1}</p>
-                <div className="statistics__progress-bar">
-                    <div style={{
-                    width: `${(selectedMarathon.week1 / selectedMarathon.totalWeek1) * 100}%`,
-                    backgroundColor: "#FFCE07",
-                    height: "100%"
-                    }} />
-                </div>
-                </div>
+                  {/* Тиждень 1 */}
+                  <div style={{ marginBottom: "16px" }} className="statistics__week-block">
+                  <p>Тиждень 1: {selectedMarathon.week1}/{selectedMarathon.totalWeek1}</p>
+                  <div className="statistics__progress-bar">
+                      <div style={{
+                      width: `${(selectedMarathon.week1 / selectedMarathon.totalWeek1) * 100}%`,
+                      backgroundColor: "#FFCE07",
+                      height: "100%"
+                      }} />
+                  </div>
+                  </div>
 
-                {/* Тиждень 2 */}
-                {selectedMarathon.totalWeek2 && (
-                <div style={{ marginBottom: "16px" }} className="statistics__week-block">
-                <p>Тиждень 2: {selectedMarathon.week2}/{selectedMarathon.totalWeek2}</p>
-                <div className="statistics__progress-bar">
-                    <div style={{
-                    width: `${(selectedMarathon.week2 / selectedMarathon.totalWeek2) * 100}%`,
-                    backgroundColor: "#FFCE07",
-                    height: "100%"
-                    }} />
-                </div>
-                </div>
-                )}
+                  {/* Тиждень 2 */}
+                  {selectedMarathon.totalWeek2 && (
+                  <div style={{ marginBottom: "16px" }} className="statistics__week-block">
+                  <p>Тиждень 2: {selectedMarathon.week2}/{selectedMarathon.totalWeek2}</p>
+                  <div className="statistics__progress-bar">
+                      <div style={{
+                      width: `${(selectedMarathon.week2 / selectedMarathon.totalWeek2) * 100}%`,
+                      backgroundColor: "#FFCE07",
+                      height: "100%"
+                      }} />
+                  </div>
+                  </div>
+                  )}
 
-                {/* Тиждень 3 (якщо він є) */}
-                {selectedMarathon.totalWeek3 && (
-                <div style={{ marginBottom: "16px" }} className="statistics__week-block">
-                    <p>Тиждень 3: {selectedMarathon.week3}/{selectedMarathon.totalWeek3}</p>
-                    <div className="statistics__progress-bar">
-                    <div style={{
-                        width: `${(selectedMarathon.week3 / selectedMarathon.totalWeek3) * 100}%`,
-                        backgroundColor: "#FFCE07",
-                        height: "100%"
-                    }} />
-                    </div>
-                </div>
-                )}
-                <p>Так тримати! Ти впевнено рухаєшся вперед! Крокуй далі!</p>
-                <div style={{alignItems: "center", display: "flex", justifyContent: "center", marginTop: "20px"}}>
-                    <a href="https://t.me/fivone_bot?start" className="header_nav_button" style={{marginLeft: "0"}}>Перейти до телеграм</a>
-                </div>
-            </>
-            ) : (
-            <>
-                <h2 style={{marginBottom: "20px"}}>Інструкція</h2>
-                <p style={{fontSize: "20px"}}>Обирай марафон, натискай на діаграму та відслідковуй свій прогрес по тижнях! Зафарбуй всі кружечки жовтим😉 Ми віримо в тебе!</p>
-            </>
-          )}
+                  {/* Тиждень 3 (якщо він є) */}
+                  {selectedMarathon.totalWeek3 && (
+                  <div style={{ marginBottom: "16px" }} className="statistics__week-block">
+                      <p>Тиждень 3: {selectedMarathon.week3}/{selectedMarathon.totalWeek3}</p>
+                      <div className="statistics__progress-bar">
+                      <div style={{
+                          width: `${(selectedMarathon.week3 / selectedMarathon.totalWeek3) * 100}%`,
+                          backgroundColor: "#FFCE07",
+                          height: "100%"
+                      }} />
+                      </div>
+                  </div>
+                  )}
+                  <p>Так тримати! Ти впевнено рухаєшся вперед! Крокуй далі!</p>
+                  <div style={{alignItems: "center", display: "flex", justifyContent: "center", marginTop: "20px"}}>
+                      <a href="https://t.me/fivone_bot?start" className="header_nav_button" style={{marginLeft: "0"}}>Перейти до телеграм</a>
+                  </div>
+              </>
+              ) : (
+              <>
+                  <h2 style={{marginBottom: "20px"}}>Інструкція</h2>
+                  <p style={{fontSize: "20px"}}>Обирай марафон, натискай на діаграму та відслідковуй свій прогрес по тижнях! Зафарбуй всі кружечки жовтим😉 Ми віримо в тебе!</p>
+              </>
+            )}
+          </div>
         </div>
-      </div>
 
-      {/* Права частина */}
-      <div className="statistics__right">
-        <div className="statistics__grid-gallery">
-        {marathonsData.map((marathon, index) => {
-            const percentage = ((marathon.week1 + marathon.week2 + marathon.week3) /
-            (marathon.totalWeek1 + marathon.totalWeek2 + marathon.totalWeek3)) * 100;
-
-            const percentageMini = (marathon.week1 / marathon.totalWeek1) * 100;
-
-            return (
-            <div
-                key={index}
-                className="statistics__marathon-card"
-                onClick={() => {
-                    handleUserData()
-                    setSelectedMarathon(marathon)
-                }}
-            >
-                <CircularProgress
-                percentage={marathon.exist ? percentage : percentageMini}
-                colors={gradientColors}
-                />
-                <p className="statistics__marathon-title">{marathon.title}</p>
-            </div>
-            );
-        })}
-        </div>
-      </div>
-      <div className="statistics__slider mobile-only">
-        <Swiper
-          modules={[Pagination]}
-          pagination={{ clickable: true }}
-          spaceBetween={20}
-          slidesPerView={1}
-        >
+        {/* Права частина */}
+        <div className="statistics__right">
+          <div className="statistics__grid-gallery">
           {marathonsData.map((marathon, index) => {
-            const percentage = ((marathon.week1 + marathon.week2 + marathon.week3) /
-            (marathon.totalWeek1 + marathon.totalWeek2 + marathon.totalWeek3)) * 100;
-            
-            const percentageMini = (marathon.week1 / marathon.totalWeek1) * 100;
+              const percentage = ((marathon.week1 + marathon.week2 + marathon.week3) /
+              (marathon.totalWeek1 + marathon.totalWeek2 + marathon.totalWeek3)) * 100;
 
-            return (<SwiperSlide key={index} className="statistics_swiper_slide">
+              const percentageMini = (marathon.week1 / marathon.totalWeek1) * 100;
+
+              return (
               <div
-                className="statistics__marathon-card"
-                onClick={() => setSelectedMarathon(marathon)}
+                  key={index}
+                  className="statistics__marathon-card"
+                  onClick={() => {
+                      handleUserData()
+                      setSelectedMarathon(marathon)
+                  }}
               >
-                <CircularProgress
-                    percentage={marathon.exist ? percentage : percentageMini}
-                    colors={gradientColors}
-                />
-                <p className="statistics__marathon-title">{marathon.title}</p>
-
-                {/* Тиждень 1 */}
-                <div style={{ marginBottom: "16px" }} className="statistics__week-block">
-                <p>Тиждень 1: {marathon.week1}/{marathon.totalWeek1}</p>
-                <div className="statistics__progress-bar">
-                    <div style={{
-                    width: `${(marathon.week1 / marathon.totalWeek1) * 100}%`,
-                    backgroundColor: "#FFCE07",
-                    height: "100%"
-                    }} />
-                </div>
-                </div>
-
-                {/* Тиждень 2 */}
-                {marathon.totalWeek2 && (
-                <div style={{ marginBottom: "16px" }} className="statistics__week-block">
-                <p>Тиждень 2: {marathon.week2}/{marathon.totalWeek2}</p>
-                <div className="statistics__progress-bar">
-                    <div style={{
-                    width: `${(marathon.week2 / marathon.totalWeek2) * 100}%`,
-                    backgroundColor: "#FFCE07",
-                    height: "100%"
-                    }} />
-                </div>
-                </div>
-                )}
-
-                {/* Тиждень 3 (якщо він є) */}
-                {marathon.totalWeek3 && (
-                <div style={{ marginBottom: "16px" }} className="statistics__week-block">
-                    <p>Тиждень 3: {marathon.week3}/{marathon.totalWeek3}</p>
-                    <div className="statistics__progress-bar">
-                    <div style={{
-                        width: `${(marathon.week3 / marathon.totalWeek3) * 100}%`,
-                        backgroundColor: "#FFCE07",
-                        height: "100%"
-                    }} />
-                    </div>
-                </div>)}
+                  <CircularProgress
+                  percentage={marathon.exist ? percentage : percentageMini}
+                  colors={gradientColors}
+                  />
+                  <p className="statistics__marathon-title">{marathon.title}</p>
               </div>
-            </SwiperSlide>)
+              );
           })}
-        </Swiper>
-      </div>
+          </div>
+        </div>
+        <div className="statistics__slider mobile-only">
+          <Swiper
+            modules={[Pagination]}
+            pagination={{ clickable: true }}
+            spaceBetween={20}
+            slidesPerView={1}
+          >
+            {marathonsData.map((marathon, index) => {
+              const percentage = ((marathon.week1 + marathon.week2 + marathon.week3) /
+              (marathon.totalWeek1 + marathon.totalWeek2 + marathon.totalWeek3)) * 100;
+              
+              const percentageMini = (marathon.week1 / marathon.totalWeek1) * 100;
 
-      {/* Права частина */}
-      <div className="statistics__right">
-        <div className="statistics__grid-gallery">
-        {coursesData.map((courses, index) => {
-            const percentage = ((courses.course) / (courses.totalCourse)) * 100;
+              return (<SwiperSlide key={index} className="statistics_swiper_slide">
+                <div
+                  className="statistics__marathon-card"
+                  onClick={() => setSelectedMarathon(marathon)}
+                >
+                  <CircularProgress
+                      percentage={marathon.exist ? percentage : percentageMini}
+                      colors={gradientColors}
+                  />
+                  <p className="statistics__marathon-title">{marathon.title}</p>
 
-            return (
-            <div
-                key={index}
-                className="statistics__marathon-card"
-                // onClick={() => {
-                //     handleUserData()
-                //     setSelectedMarathon(marathon)
-                // }}
-            >
-                <CircularProgress
-                percentage={percentage}
-                colors={gradientColors}
-                />
-                <p className="statistics__marathon-title">{courses.title}</p>
-            </div>
-            );
-        })}
+                  {/* Тиждень 1 */}
+                  <div style={{ marginBottom: "16px" }} className="statistics__week-block">
+                  <p>Тиждень 1: {marathon.week1}/{marathon.totalWeek1}</p>
+                  <div className="statistics__progress-bar">
+                      <div style={{
+                      width: `${(marathon.week1 / marathon.totalWeek1) * 100}%`,
+                      backgroundColor: "#FFCE07",
+                      height: "100%"
+                      }} />
+                  </div>
+                  </div>
+
+                  {/* Тиждень 2 */}
+                  {marathon.totalWeek2 && (
+                  <div style={{ marginBottom: "16px" }} className="statistics__week-block">
+                  <p>Тиждень 2: {marathon.week2}/{marathon.totalWeek2}</p>
+                  <div className="statistics__progress-bar">
+                      <div style={{
+                      width: `${(marathon.week2 / marathon.totalWeek2) * 100}%`,
+                      backgroundColor: "#FFCE07",
+                      height: "100%"
+                      }} />
+                  </div>
+                  </div>
+                  )}
+
+                  {/* Тиждень 3 (якщо він є) */}
+                  {marathon.totalWeek3 && (
+                  <div style={{ marginBottom: "16px" }} className="statistics__week-block">
+                      <p>Тиждень 3: {marathon.week3}/{marathon.totalWeek3}</p>
+                      <div className="statistics__progress-bar">
+                      <div style={{
+                          width: `${(marathon.week3 / marathon.totalWeek3) * 100}%`,
+                          backgroundColor: "#FFCE07",
+                          height: "100%"
+                      }} />
+                      </div>
+                  </div>)}
+                </div>
+              </SwiperSlide>)
+            })}
+          </Swiper>
         </div>
       </div>
-      <div className="statistics__slider mobile-only">
-        <Swiper
-          modules={[Pagination]}
-          pagination={{ clickable: true }}
-          spaceBetween={20}
-          slidesPerView={1}
-        >
+      
+      <div>
+        {/* Права частина */}
+        <div className="statistics__right">
+          <div className="statistics__grid-gallery">
           {coursesData.map((courses, index) => {
-            const percentage = ((courses.course) / (courses.totalCourse)) * 100;
+              const percentage = ((courses.course) / (courses.totalCourse)) * 100;
 
-            return (<SwiperSlide key={index} className="statistics_swiper_slide">
+              return (
               <div
-                className="statistics__marathon-card"
-                // onClick={() => setSelectedMarathon(marathon)}
+                  key={index}
+                  className="statistics__marathon-card"
+                  // onClick={() => {
+                  //     handleUserData()
+                  //     setSelectedMarathon(marathon)
+                  // }}
               >
-                <CircularProgress
-                    percentage={percentage}
-                    colors={gradientColors}
-                />
-                <p className="statistics__marathon-title">{courses.title}</p>
+                  <CircularProgress
+                  percentage={percentage}
+                  colors={gradientColors}
+                  />
+                  <p className="statistics__marathon-title">{courses.title}</p>
               </div>
-            </SwiperSlide>)
+              );
           })}
-        </Swiper>
+          </div>
+        </div>
+        <div className="statistics__slider mobile-only">
+          <Swiper
+            modules={[Pagination]}
+            pagination={{ clickable: true }}
+            spaceBetween={20}
+            slidesPerView={1}
+          >
+            {coursesData.map((courses, index) => {
+              const percentage = ((courses.course) / (courses.totalCourse)) * 100;
+
+              return (<SwiperSlide key={index} className="statistics_swiper_slide">
+                <div
+                  className="statistics__marathon-card"
+                  // onClick={() => setSelectedMarathon(marathon)}
+                >
+                  <CircularProgress
+                      percentage={percentage}
+                      colors={gradientColors}
+                  />
+                  <p className="statistics__marathon-title">{courses.title}</p>
+                </div>
+              </SwiperSlide>)
+            })}
+          </Swiper>
+        </div>
       </div>
     </div>
   );
