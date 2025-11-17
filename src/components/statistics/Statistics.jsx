@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import 'react-circular-progressbar/dist/styles.css';
-
-import './Statistics.css';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
+
+import 'react-circular-progressbar/dist/styles.css';
+import './Statistics.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -15,7 +14,7 @@ function CircularProgress({ percentage, colors }) {
     const strokeDasharray = 283;
     const strokeDashoffset = strokeDasharray * (1 - percentage / 100);
   
-    // 👇 Створюємо унікальний id для градієнта
+    // id for Gradient
     const gradientId = `grad-${fromColor}-${toColor}-${Math.random().toString(36).substr(2, 9)}`;
   
     return (
@@ -46,22 +45,8 @@ function CircularProgress({ percentage, colors }) {
     );
   }
 
-const gradients = [
-  ["#FFCE07", "#E95C28"],
-  ["#94BF47", "#16BAAE"],
-  ["#16BAAE", "#FFCE07"],
-  ["#E95C28", "#94BF47"],
-  ["#94BF47", "#FFCE07"]
-];
-
 function SplitScreen() {
   const [selectedMarathon, setSelectedMarathon] = useState(null);
-  const [selectedCourse, setSelectedCourse] = useState(null);
-  const [phone, setPhone] = useState("")
-
-  const [name, setName] = useState("")
-  const [surname, setSurname] = useState("")
-  const [image, setImage] = useState("")
   const [maraphone1, setMaraphone1] = useState(0)
   const [maraphone2, setMaraphone2] = useState(0)
   const [maraphone3, setMaraphone3] = useState(0)
@@ -258,10 +243,6 @@ function SplitScreen() {
       totalCourse: 10,
     },
   ];
-  console.log(marathonsData)
-
-  const fromColor = "#FFCE07"
-  const toColor = "#E95C28"
 
   return (
     <div>
@@ -273,7 +254,7 @@ function SplitScreen() {
         columnGap: "20px",
         marginTop: "80px"
       }} className="statistics__container">
-        {/* Ліва частина */}
+        {/* Left side */}
         <div style={{
           flex: 1,
           padding: "20px",
@@ -286,7 +267,7 @@ function SplitScreen() {
               <>
                   <h2 style={{marginBottom: "20px"}}>{selectedMarathon.title}</h2>
 
-                  {/* Тиждень 1 */}
+                  {/* Week 1 */}
                   <div style={{ marginBottom: "16px" }} className="statistics__week-block">
                   <p>Тиждень 1: {selectedMarathon.week1}/{selectedMarathon.totalWeek1}</p>
                   <div className="statistics__progress-bar">
@@ -298,7 +279,7 @@ function SplitScreen() {
                   </div>
                   </div>
 
-                  {/* Тиждень 2 */}
+                  {/* Week 2 */}
                   {selectedMarathon.totalWeek2 && (
                   <div style={{ marginBottom: "16px" }} className="statistics__week-block">
                   <p>Тиждень 2: {selectedMarathon.week2}/{selectedMarathon.totalWeek2}</p>
@@ -312,7 +293,7 @@ function SplitScreen() {
                   </div>
                   )}
 
-                  {/* Тиждень 3 (якщо він є) */}
+                  {/* Week 3 (if exist) */}
                   {selectedMarathon.totalWeek3 && (
                   <div style={{ marginBottom: "16px" }} className="statistics__week-block">
                       <p>Тиждень 3: {selectedMarathon.week3}/{selectedMarathon.totalWeek3}</p>
@@ -339,7 +320,7 @@ function SplitScreen() {
           </div>
         </div>
 
-        {/* Права частина */}
+        {/* Right side */}
         <div className="statistics__right">
           <div className="statistics__grid-gallery">
           {marathonsData.map((marathon, index) => {
@@ -391,7 +372,7 @@ function SplitScreen() {
                   />
                   <p className="statistics__marathon-title">{marathon.title}</p>
 
-                  {/* Тиждень 1 */}
+                  {/* Week 1 */}
                   <div style={{ marginBottom: "16px" }} className="statistics__week-block">
                   <p>Тиждень 1: {marathon.week1}/{marathon.totalWeek1}</p>
                   <div className="statistics__progress-bar">
@@ -403,7 +384,7 @@ function SplitScreen() {
                   </div>
                   </div>
 
-                  {/* Тиждень 2 */}
+                  {/* Week 2 */}
                   {marathon.totalWeek2 && (
                   <div style={{ marginBottom: "16px" }} className="statistics__week-block">
                   <p>Тиждень 2: {marathon.week2}/{marathon.totalWeek2}</p>
@@ -417,7 +398,7 @@ function SplitScreen() {
                   </div>
                   )}
 
-                  {/* Тиждень 3 (якщо він є) */}
+                  {/* Week 3 (if exist) */}
                   {marathon.totalWeek3 && (
                   <div style={{ marginBottom: "16px" }} className="statistics__week-block">
                       <p>Тиждень 3: {marathon.week3}/{marathon.totalWeek3}</p>
@@ -442,9 +423,7 @@ function SplitScreen() {
         backgroundColor: "#FFCE07",
         padding: "20px",
         columnGap: "20px",
-        marginTop: "80px"
       }} className="statistics__container">
-        {/* Права частина */}
         <div className="statistics__right">
           <div className="statistics__grid-gallery">
           {coursesData.map((courses, index) => {
@@ -454,10 +433,6 @@ function SplitScreen() {
               <div
                   key={index}
                   className="statistics__marathon-card"
-                  // onClick={() => {
-                  //     handleUserData()
-                  //     setSelectedMarathon(marathon)
-                  // }}
               >
                   <CircularProgress
                   percentage={percentage}
@@ -482,7 +457,6 @@ function SplitScreen() {
               return (<SwiperSlide key={index} className="statistics_swiper_slide">
                 <div
                   className="statistics__marathon-card"
-                  // onClick={() => setSelectedMarathon(marathon)}
                 >
                   <CircularProgress
                       percentage={percentage}
