@@ -431,7 +431,8 @@ function SplitScreen() {
         padding: "20px",
         columnGap: "20px",
         marginTop: "0px",
-        height: "40vh",
+        height: "60vh",
+        marginBottom: "40px"
       }} className="statistics__container">
         <div className="statistics__right">
           <div style={{maxWidth: "1600px"}} className="statistics__grid-gallery">

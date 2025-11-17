@@ -212,7 +212,7 @@ const TelegramLogin = () => {
           style={{
             display: "flex",
             gap: "10px",
-            width: "100%",
+            maxWidth: "100%",
           }}
         >
           <select
