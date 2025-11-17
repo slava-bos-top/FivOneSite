@@ -4,7 +4,7 @@ const TelegramLogin = () => {
   const [phone, setPhone] = useState("");
   const [checking, setChecking] = useState(false);
 
-  const [countryCode, setCountryCode] = useState("+380"); // код країни
+  const [countryCode, setCountryCode] = useState("+380"); // Code country
   const [fullPhone, setFullPhone] = useState("");
 
   const [loginText, setLoginText] = useState(false);
@@ -20,7 +20,7 @@ const TelegramLogin = () => {
   const startConfirmationPolling = () => {
     setRegistrationLink(true)
     let attempts = 0;
-    const maxAttempts = 50; // ~1 хвилина
+    const maxAttempts = 50; // ~1 minute
 
     const intervalId = setInterval(async () => {
       const exists = await checkIfPhoneExists();
@@ -62,7 +62,7 @@ const TelegramLogin = () => {
       } else if (attempts >= maxAttempts) {
         clearInterval(intervalId);
         setChecking(false);
-        alert("⏳ Час підтвердження вийшов. Спробуйте ще раз.");
+        alert("Час підтвердження вийшов. Спробуйте ще раз.");
       }
 
       attempts++;
@@ -73,7 +73,7 @@ const TelegramLogin = () => {
 
     e.preventDefault();
     if (!phone) {
-      alert("📱 Введіть номер телефону");
+      alert("Введіть номер телефону");
       return;
     }
 
@@ -96,7 +96,7 @@ const TelegramLogin = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chat_id: data.userId,
-          text: `👋 Вітаємо, ${data.name} ${data.surname}! Ви вже авторизовані.`,
+          text: `Вітаємо, ${data.name} ${data.surname}! Ви вже авторизовані.`,
           reply_markup: {
             inline_keyboard: [
               [
@@ -113,11 +113,11 @@ const TelegramLogin = () => {
       const result = await response.json();
   
       if (!result.success) {
-        alert("⚠️ Ви вже авторизовані, але повідомлення не надіслано.");
+        alert("Ви вже авторизовані, але повідомлення не надіслано.");
         return;
       }
 
-      console.log("🔄 Очікуємо підтвердження у Telegram...");
+      console.log("Очікуємо підтвердження у Telegram...");
 
         // Check column F every 3 seconds
       const intervalId = setInterval(async () => {
@@ -128,7 +128,7 @@ const TelegramLogin = () => {
         console.log(checkData)
         const normalizedPhone = phone.replace("+", "")
 
-        // Якщо колонка F = 1
+        // If F = 1
         if (checkData.number === "1" || checkData.number === 1) {
             clearInterval(intervalId); // Stop check
 

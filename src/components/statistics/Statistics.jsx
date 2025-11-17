@@ -432,10 +432,9 @@ function SplitScreen() {
         columnGap: "20px",
         marginTop: "0px",
         height: "40vh",
-        maxWidth: "1400px"
       }} className="statistics__container">
         <div className="statistics__right">
-          <div className="statistics__grid-gallery">
+          <div style={{maxWidth: "1600px"}} className="statistics__grid-gallery">
           {coursesData.map((courses, index) => {
               const percentage = ((courses.course) / (courses.totalCourse)) * 100;
 
