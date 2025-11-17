@@ -430,7 +430,9 @@ function SplitScreen() {
         backgroundColor: "#FFCE07",
         padding: "20px",
         columnGap: "20px",
-        marginTop: "0px"
+        marginTop: "0px",
+        height: "40vh",
+        maxWidth: "1400px"
       }} className="statistics__container">
         <div className="statistics__right">
           <div className="statistics__grid-gallery">

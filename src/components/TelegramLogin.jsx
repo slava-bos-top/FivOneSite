@@ -9,7 +9,6 @@ const TelegramLogin = () => {
 
   const [loginText, setLoginText] = useState(false);
   const [registrationLink, setRegistrationLink] = useState(false);
-  const encodedPhone = `phone_${phone.replace("+", "")}`;
   const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${`${countryCode}${phone}`.replace("+", "")}`;
 
   const checkIfPhoneExists = async () => {
@@ -91,7 +90,7 @@ const TelegramLogin = () => {
     if (data.confirmed) {
       console.log(data.confirmed)
       setLoginText(true)
-      // Надсилання повідомлення через наш API
+      // Send message throw API
       const response = await fetch("/api/send-message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -120,7 +119,7 @@ const TelegramLogin = () => {
 
       console.log("🔄 Очікуємо підтвердження у Telegram...");
 
-        // ⏳ Перевіряємо кожні 3 секунди колонку F
+        // Check column F every 3 seconds
       const intervalId = setInterval(async () => {
         const checkRes = await fetch(
             `https://script.google.com/macros/s/AKfycbyJXPjYjE752RwwDLgUZ6Av8WzXjo66i_WXuhKuqxjzx8M2WSVHMIpFVEC9ZqPccZw/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`
@@ -131,11 +130,8 @@ const TelegramLogin = () => {
 
         // Якщо колонка F = 1
         if (checkData.number === "1" || checkData.number === 1) {
-            clearInterval(intervalId); // зупиняємо перевірку
+            clearInterval(intervalId); // Stop check
 
-            // alert(`✅ Вхід підтверджено! Вітаємо, ${checkData.name} ${checkData.surname}`);
-
-            // 🔄 (Необов’язково) оновлюємо колонку F на "0", якщо маєш API для цього
             await fetch("/api/set-confirmed-zero", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -173,18 +169,12 @@ const TelegramLogin = () => {
 
             window.location.href = "https://fiv-one-site.vercel.app/statistics";
 
-            // Далі можна зберегти в локальне сховище або перейти на іншу сторінку
-            // Можна зробити навігацію або збереження
-            // localStorage.setItem('user', JSON.stringify(checkData));
-            // router.push('/dashboard');
-
         }
       }, 3000); 
   
       return;
     }
-  
-    // Якщо не зареєстрований — відкриваємо Telegram
+
     setChecking(true);
     window.open(telegramBotLink, "_blank");
     startConfirmationPolling();
@@ -217,7 +207,7 @@ const TelegramLogin = () => {
     
         <h2 style={{ color: "#0088cc", marginBottom: "10px" }}>Вхід через Telegram</h2>
     
-         {/* Вибір коду країни + поле телефону */}
+         {/* Code country + number */}
          <div
           style={{
             display: "flex",
