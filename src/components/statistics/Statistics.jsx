@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import 'react-circular-progressbar/dist/styles.css';
+
+import './Statistics.css';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-
-import 'react-circular-progressbar/dist/styles.css';
-import './Statistics.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -14,7 +15,7 @@ function CircularProgress({ percentage, colors }) {
     const strokeDasharray = 283;
     const strokeDashoffset = strokeDasharray * (1 - percentage / 100);
   
-    // id for Gradient
+    // 👇 Створюємо унікальний id для градієнта
     const gradientId = `grad-${fromColor}-${toColor}-${Math.random().toString(36).substr(2, 9)}`;
   
     return (
@@ -45,8 +46,22 @@ function CircularProgress({ percentage, colors }) {
     );
   }
 
+const gradients = [
+  ["#FFCE07", "#E95C28"],
+  ["#94BF47", "#16BAAE"],
+  ["#16BAAE", "#FFCE07"],
+  ["#E95C28", "#94BF47"],
+  ["#94BF47", "#FFCE07"]
+];
+
 function SplitScreen() {
   const [selectedMarathon, setSelectedMarathon] = useState(null);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [phone, setPhone] = useState("")
+
+  const [name, setName] = useState("")
+  const [surname, setSurname] = useState("")
+  const [image, setImage] = useState("")
   const [maraphone1, setMaraphone1] = useState(0)
   const [maraphone2, setMaraphone2] = useState(0)
   const [maraphone3, setMaraphone3] = useState(0)
@@ -243,6 +258,7 @@ function SplitScreen() {
       totalCourse: 10,
     },
   ];
+  console.log(marathonsData)
 
   return (
     <div>
