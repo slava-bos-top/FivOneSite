@@ -46,14 +46,6 @@ function CircularProgress({ percentage, colors }) {
     );
   }
 
-const gradients = [
-  ["#FFCE07", "#E95C28"],
-  ["#94BF47", "#16BAAE"],
-  ["#16BAAE", "#FFCE07"],
-  ["#E95C28", "#94BF47"],
-  ["#94BF47", "#FFCE07"]
-];
-
 function SplitScreen() {
   const [selectedMarathon, setSelectedMarathon] = useState(null);
   const [selectedCourse, setSelectedCourse] = useState(null);
@@ -258,7 +250,6 @@ function SplitScreen() {
       totalCourse: 10,
     },
   ];
-  console.log(marathonsData)
 
   return (
     <div>
@@ -439,6 +430,7 @@ function SplitScreen() {
         backgroundColor: "#FFCE07",
         padding: "20px",
         columnGap: "20px",
+        marginTop: "0px"
       }} className="statistics__container">
         <div className="statistics__right">
           <div className="statistics__grid-gallery">
