@@ -213,7 +213,7 @@ const TelegramLogin = () => {
           style={{
             display: "flex",
             gap: "10px",
-            maxWidth: "150px",
+            maxWidth: "100%",
           }}
         >
           <select
@@ -331,6 +331,7 @@ const TelegramLogin = () => {
               fontSize: "16px",
               borderRadius: "10px",
               border: "1px solid #ccc",
+              maxWidth: "100%"
             }}
           />
         </div>
