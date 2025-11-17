@@ -424,7 +424,7 @@ function SplitScreen() {
         </div>
       </div>
 
-      <div style={{paddingBottom: "60px"}}>
+      <div style={{paddingBottom: "60px", backgroundColor: "#FFCE07"}}>
         <div style={{
           display: "flex",
           fontFamily: "sans-serif",
