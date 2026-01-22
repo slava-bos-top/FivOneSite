@@ -48,7 +48,6 @@ function CircularProgress({ percentage, colors }) {
 
 function SplitScreen() {
   const [selectedMarathon, setSelectedMarathon] = useState(null);
-  const [selectedCourse, setSelectedCourse] = useState(null);
   const [phone, setPhone] = useState("")
 
   const [name, setName] = useState("")
