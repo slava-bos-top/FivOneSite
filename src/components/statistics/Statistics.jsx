@@ -88,7 +88,7 @@ function SplitScreen() {
   
           try {
             const checkRes = await fetch(
-              `https://script.google.com/macros/s/AKfycbyJXPjYjE752RwwDLgUZ6Av8WzXjo66i_WXuhKuqxjzx8M2WSVHMIpFVEC9ZqPccZw/exec?phone=${phone}`
+              `https://script.google.com/macros/s/AKfycbxTAxXmmt_nafnDoqx8FzUerrj2CrXXhhMVAkgs5eRg4B0KpzMBwGHNiaptkiHdekje/exec?phone=${phone}`
             );
             const checkData = await checkRes.json();
   
@@ -137,7 +137,7 @@ function SplitScreen() {
 
         try {
           const checkRes = await fetch(
-            `https://script.google.com/macros/s/AKfycbyJXPjYjE752RwwDLgUZ6Av8WzXjo66i_WXuhKuqxjzx8M2WSVHMIpFVEC9ZqPccZw/exec?phone=${phone}`
+            `https://script.google.com/macros/s/AKfycbxTAxXmmt_nafnDoqx8FzUerrj2CrXXhhMVAkgs5eRg4B0KpzMBwGHNiaptkiHdekje/exec?phone=${phone}`
           );
           const checkData = await checkRes.json();
 
@@ -236,17 +236,17 @@ function SplitScreen() {
   const coursesData = [
     {
       title: "Курс “Фізика навколо нас”",
-      course: course1,
+      course: course1, 
       totalCourse: 10,
     },
     {
       title: "Курс “Старт програмування”",
-      course: course2,
+      course: course3, 
       totalCourse: 10,
     },
     {
       title: "Курс “Розвиток креативності”",
-      course: course3,
+      course: course2, 
       totalCourse: 10,
     },
   ];

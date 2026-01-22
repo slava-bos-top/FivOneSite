@@ -12,7 +12,7 @@ const TelegramLogin = () => {
   const telegramBotLink = `https://t.me/fivone_bot?start=confirm_${`${countryCode}${phone}`.replace("+", "")}`;
 
   const checkIfPhoneExists = async () => {
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbyJXPjYjE752RwwDLgUZ6Av8WzXjo66i_WXuhKuqxjzx8M2WSVHMIpFVEC9ZqPccZw/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbxTAxXmmt_nafnDoqx8FzUerrj2CrXXhhMVAkgs5eRg4B0KpzMBwGHNiaptkiHdekje/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`);
     const data = await res.json();
     return data.confirmed === "true" || data.confirmed === true;
   };
@@ -27,7 +27,7 @@ const TelegramLogin = () => {
 
       if (exists) {
         const checkRes = await fetch(
-          `https://script.google.com/macros/s/AKfycbyJXPjYjE752RwwDLgUZ6Av8WzXjo66i_WXuhKuqxjzx8M2WSVHMIpFVEC9ZqPccZw/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`
+          `https://script.google.com/macros/s/AKfycbxTAxXmmt_nafnDoqx8FzUerrj2CrXXhhMVAkgs5eRg4B0KpzMBwGHNiaptkiHdekje/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`
         );
         const checkData = await checkRes.json();
         clearInterval(intervalId);
@@ -84,7 +84,7 @@ const TelegramLogin = () => {
     setFullPhone(`${countryCode}${phone}`);
     console.log(fullPhone);
   
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbyJXPjYjE752RwwDLgUZ6Av8WzXjo66i_WXuhKuqxjzx8M2WSVHMIpFVEC9ZqPccZw/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`);
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbxTAxXmmt_nafnDoqx8FzUerrj2CrXXhhMVAkgs5eRg4B0KpzMBwGHNiaptkiHdekje/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`);
     const data = await res.json();
   
     if (data.confirmed) {
@@ -122,7 +122,7 @@ const TelegramLogin = () => {
         // Check column F every 3 seconds
       const intervalId = setInterval(async () => {
         const checkRes = await fetch(
-            `https://script.google.com/macros/s/AKfycbyJXPjYjE752RwwDLgUZ6Av8WzXjo66i_WXuhKuqxjzx8M2WSVHMIpFVEC9ZqPccZw/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`
+            `https://script.google.com/macros/s/AKfycbxTAxXmmt_nafnDoqx8FzUerrj2CrXXhhMVAkgs5eRg4B0KpzMBwGHNiaptkiHdekje/exec?phone=${`${countryCode}${phone}`.replace("+", "")}`
         );
         const checkData = await checkRes.json();
         console.log(checkData)
