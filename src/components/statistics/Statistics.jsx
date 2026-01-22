@@ -235,12 +235,12 @@ function SplitScreen() {
   const coursesData = [
     {
       title: "Курс “Фізика навколо нас”",
-      course: course1, 
+      course: course3, 
       totalCourse: 10,
     },
     {
       title: "Курс “Старт програмування”",
-      course: course3, 
+      course: course1, 
       totalCourse: 10,
     },
     {
